@@ -29,7 +29,7 @@
                         <label style="font-weight: bold">First Name</label>
                         <div class="form-group @if($errors->has('fname')) has-danger @endif">
                             <input type="text" class="form-control" name="fname" value="{{ old('fname') }}"
-                                   placeholder="First Name"
+                                   placeholder="Ex: Juan"
                                    @if($errors->has('fname')) id="inputDanger1" @endif>
                             @if($errors->has('fname'))
                                 <div class="form-control-feedback">Sorry, the first name you typed is incorrect</div>
@@ -40,7 +40,7 @@
                         <label style="font-weight: bold">Middle Name</label>
                         <div class="form-group @if($errors->has('mname')) has-danger @endif">
                             <input type="text" class="form-control" name="mname" value="{{ old('mname') }}"
-                                   placeholder="Middle Name"
+                                   placeholder="Ex: Cruz"
                                    @if($errors->has('mname')) id="inputDanger1" @endif>
                             @if($errors->has('mname'))
                                 <div class="form-control-feedback">Sorry, the middle name you typed is incorrect</div>
@@ -51,7 +51,7 @@
                         <div class="form-group @if($errors->has('lname')) has-danger @endif">
                             <label style="font-weight: bold">Last Name</label>
                             <input type="text" class="form-control" name="lname" value="{{ old('lname') }}"
-                                   placeholder="Last Name"
+                                   placeholder="Ex: Dela Luna"
                                    @if($errors->has('lname')) id="inputDanger1" @endif>
                             @if($errors->has('lname'))
                                 <div class="form-control-feedback">Sorry, the last name you typed is incorrect</div>
@@ -96,7 +96,7 @@
                         <label style="font-weight: bold">Contact Number</label>
                         <div class="form-group @if($errors->has('connum')) has-danger @endif">
                             <input type="number" class="form-control" name="connum" value="{{ old('connum') }}"
-                                   placeholder="Contact Number"
+                                   placeholder="Ex: 09123456789"
                                    @if($errors->has('connum')) id="inputDanger1" @endif>
                             @if($errors->has('connum'))
                                 <div class="form-control-feedback">Sorry, the contact number you typed is incorrect
@@ -223,27 +223,111 @@
             <!-- Modal -->
             <div class="modal fade" id="condition" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title text-center" id="exampleModalLabel">Terms and Condition</h5>
+                            <h5 class="modal-title text-center" id="exampleModalLabel">Terms of Service</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body"> Far far away, behind the word mountains, far from the countries
-                            Vokalia
-                            and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right
-                            at
-                            the coast of the Semantics, a large language ocean. A small river named Duden flows by
-                            their
-                            place and supplies it with the necessary regelialia. It is a paradisematic country, in
-                            which
-                            roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no
-                            control about the blind texts it is an almost unorthographic life One day however a
-                            small
-                            line of blind text by the name of Lorem Ipsum decided to leave for the far World of
-                            Grammar.
+                        <div class="modal-body">
+
+                            <b>Terms of Service</b>
+
+                            <br><br>
+
+                            Last updated: (October 1, 2017)
+                            Please read these Terms of Service carefully before using the www.hanap-praxis.com
+                            website and the Hanap mobile application operated by Praxis. Your access to and use of the
+                            service is conditioned on your acceptance of and compliance with these terms. These terms
+                            apply to all users who access or use the service. By accessing or using Hanap you agree to
+                            be bound by these terms. If you disagree with any part of the terms then you may not access
+                            Hanap.
+
+                            <br><br>
+
+                            <b>Restrictions</b>
+
+                            <br><br>
+
+                            You are emphatically restricted from all of the following:
+                            <br>
+                            * publishing any Website material in any media&#59;<br>
+                            * selling, sublicensing and/or otherwise commercializing any Website materia&#59;<br>
+                            * publicly performing and/or showing any Website material&#59;<br>
+                            * using this Website in any way that is, or may be, damaging to this Website&#59;<br>
+                            * using this Website in any way that impacts user access to this Website&#59;<br>
+                            * using this Website contrary to applicable laws and regulations, or in a way that causes,
+                            or may cause, harm to the Website, or to any person or business entity&#59;<br>
+                            * engaging in any data mining, data harvesting, data extracting or any other similar
+                            activity in relation to this Website, or while using this Website&#59;<br>
+                            * using this Website to engage in any advertising or marketing&#59;<br>
+                            Certain areas of this Website are restricted from access by you and Praxis may further
+                            restrict access by you to any areas of this Website, at any time, in its sole and absolute
+                            discretion.  Any user ID and password you may have for this Website are confidential and you
+                            must maintain confidentiality of such information.
+
+                            <br><br>
+
+                            <b>Termination</b>
+
+                            <br><br>
+
+                            We may terminate or suspend your access to Hanap immediately, without prior notice or
+                            liability, for any reason whatsoever, including without limitation if you breach the Terms.
+
+                            <br><br>
+
+                            <b>Changes</b>
+
+                            <br><br>
+
+                            We reserve the right, at our sole discretion, to modify or replace these Terms at any time.
+                            If a revision is material we will try to provide at least 30 days notice prior to any new
+                            terms taking effect. What constitutes a material change will be determined at our sole
+                            discretion.
+
+                            <br><br>
+
+                            <b>Limitation of liability</b>
+
+                            <br><br>
+
+                            In no event shall Praxis, nor any of its employees, be liable to you for anything arising
+                            out of or in any way connected with your use of this Website, whether such liability is
+                            under contract, tort or otherwise, and Praxis, including its employees shall not be liable
+                            for any indirect, consequential or special liability arising out of or in any way related to
+                            your use of this Website.
+
+                            <br><br>
+
+                            <b>Indemnification</b>
+
+                            <br><br>
+
+                            You hereby indemnify to the fullest extent Praxis from and against any and all liabilities,
+                            costs, demands, causes of action, damages and expenses (including reasonable attorney’s
+                            fees) arising out of or in any way related to your breach of any of the provisions of these
+                            Terms.
+
+                            <br><br>
+
+                            <b>Severability</b>
+
+                            <br><br>
+
+                            If any provision of these Terms is found to be unenforceable or invalid under any applicable
+                            law, such unenforceability or invalidity shall not render these Terms unenforceable or
+                            invalid as a whole, and such provisions shall be deleted without affecting the remaining
+                            provisions herein.
+
+                            <br><br>
+                            By clicking “Submit” I agree that:
+                            I have read the User Agreement
+                            I am at least 18 years old
+
+
                             <br><br>
                             <center>
                                 <div class="g-recaptcha" data-sitekey="6Lc87hAUAAAAAFWWUUfvGbGR-FMi-GZpN_t_ezcY"></div>
@@ -255,7 +339,9 @@
                             </div>
                             <div class="divider"></div>
                             <div class="right-side">
-                                <button type="button" class="btn btn-danger btn-link">Disagree</button>
+                                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal"
+                                        aria-label="Close">Disagree
+                                </button>
                             </div>
                         </div>
                     </div>

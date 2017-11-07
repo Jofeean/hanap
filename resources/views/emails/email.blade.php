@@ -474,7 +474,7 @@
                                                             <center style="color:#ffffff; font-family:'Source Sans Pro', Tahoma, Verdana, Segoe, sans-serif; font-size:20px;">
                                             <![endif]-->
                                             <div style="color: #ffffff; background-color: #BACBB1; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; max-width: 510px; width: 55%; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 20px; padding-bottom: 5px; padding-left: 20px; font-family: 'Source Sans Pro', Tahoma, Verdana, Segoe, sans-serif; text-align: center; mso-border-alt: none;">
-                                                <a href="localhost:8000/" style="color: black; text-decoration:none">
+                                                <a href="hanap-praxis.com" style="color: black; text-decoration:none">
                                                     <span style="font-size:12px;line-height:24px;"><span
                                                                 style="font-size: 20px; line-height: 40px;"
                                                                 data-mce-style="font-size: 20px;"><strong><span

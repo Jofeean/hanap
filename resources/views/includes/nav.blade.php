@@ -16,9 +16,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/" style="color: white;">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: white;">About</a>
-                    </li>
+                    {{--<li class="nav-item">--}}
+                        {{--<a class="nav-link" href="#" style="color: white;">About</a>--}}
+                    {{--</li>--}}
                 </ul>
             </div>
         </div>
@@ -39,9 +39,9 @@
             </a>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: white;">About</a>
-                    </li>
+                    {{--<li class="nav-item">--}}
+                        {{--<a class="nav-link" href="#" style="color: white;">About</a>--}}
+                    {{--</li>--}}
                     <li class="nav-item">
                         <a class="nav-link" href="/missingperson/list" style="color: white;">Mising Person List</a>
                     </li>

@@ -297,24 +297,25 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title text-center" id="exampleModalLabel">Terms and Condition</h5>
+                            <h5 class="modal-title text-center" id="exampleModalLabel">Terms</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body"> Far far away, behind the word mountains, far from the countries
-                            Vokalia
-                            and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right
-                            at
-                            the coast of the Semantics, a large language ocean. A small river named Duden flows by
-                            their
-                            place and supplies it with the necessary regelialia. It is a paradisematic country, in
-                            which
-                            roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no
-                            control about the blind texts it is an almost unorthographic life One day however a
-                            small
-                            line of blind text by the name of Lorem Ipsum decided to leave for the far World of
-                            Grammar.
+                        <div class="modal-body">
+                            Filing a Missing Person Report is subject for public viewing and can be seen by other users.
+                            Information that a user submits can also be used a piece of evidence in accordance to the
+                            laws of the Republic of the Philippines.
+
+                            <br><br>
+
+                            After declaring that a Missing Person has been Found. There will be a buffer time of 24
+                            hours before the Found Person can be declared again as Missing. This is to prevent spam and
+                            damaging the website.
+
+                            <br><br>
+
+                            By clicking “Submit” I agree and understand the terms that were presented.
                         </div>
                         <div class="modal-footer">
                             <div class="left-side">
@@ -322,7 +323,9 @@
                             </div>
                             <div class="divider"></div>
                             <div class="right-side">
-                                <button type="button" class="btn btn-danger btn-link">Disagree</button>
+                                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal"
+                                        aria-label="Close">Disagree
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -7,10 +7,17 @@
 @section('body')
 
     <div class="container-fluid">
-        <br>
+
+        <br><br><br><br><br>
+        <div class="row">
+            <div class="col-md-10 offset-1">
+                <h1>News and Announcements</h1>
+                <br>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-6 offset-md-1">
-                <br><br><br><br><br><br>
                 <div class="card page-carousel">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
@@ -24,13 +31,12 @@
                                     <table style="height: 500px;">
                                         <td valign="middle" align="center">
                                             <img class="d-block img-fluid"
-                                                 src="https://i.pinimg.com/736x/78/f1/e5/78f1e5532a53020eb56560e7c538c927--hope-quotes-positive-short-motivational-quotes-for-life.jpg"
+                                                 src="{!! asset('images/announcements/announcement1.png') !!}"
                                                  alt="First slide"
                                                  style="max-width: 100%; max-height: 500px; width: auto;">
                                         </td>
                                     </table>
                                     <div class="carousel-caption d-none d-md-block">
-                                        <p style="color: rgb(170,170,170);">Somewhere</p>
                                     </div>
                                 </div>
                             </div>
@@ -39,13 +45,12 @@
                                     <table style="height: 500px;">
                                         <td valign="middle" align="center">
                                             <img class="d-block img-fluid"
-                                                 src="https://www.brainyquote.com/photos_tr/en/h/helenkeller/164579/helenkeller1.jpg"
+                                                 src="{!! asset('images/announcements/announcement2.png') !!}"
                                                  alt="Second slide"
                                                  style="max-width: 100%; max-height: 500px; width: auto;">
                                         </td>
                                     </table>
                                     <div class="carousel-caption d-none d-md-block">
-                                        <p style="color: rgb(170,170,170);">Somewhere else</p>
                                     </div>
                                 </div>
                             </div>
@@ -54,13 +59,12 @@
                                     <table style="height: 500px;">
                                         <td valign="middle" align="center">
                                             <img class="d-block img-fluid"
-                                                 src="http://www.quotesigma.com/wp-content/uploads/2016/06/hope-quotes.jpg"
+                                                 src="{!! asset('images/announcements/announcement3.png') !!}"
                                                  alt="Third slide"
                                                  style="max-width: 100%; max-height: 500px; width: auto;">
                                         </td>
                                     </table>
                                     <div class="carousel-caption d-none d-md-block">
-                                        <p style="color: rgb(170,170,170);">Here it is</p>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +87,7 @@
             @if(session('priv') != 'user')
                 <div class="col-md-4">
                     <center>
-                        <div class="card card-register">
+                        <div class="card card-register" style="margin-top: 0px">
                             <h1 class="title" style="color: white">Welcome</h1>
 
                             @if($errors->has('notactive'))
@@ -135,7 +139,7 @@
 
                             </form>
                             <div class="forgot">
-                                <a href="#" class="btn btn-link btn-default" style="color: white">Forgot password?</a>
+                                {{--<a href="#" class="btn btn-link btn-default" style="color: white">Forgot password?</a>--}}
                                 <a href="/registration" class="btn btn-link btn-default"
                                    style="color: white">Register!</a>
                             </div>
@@ -145,9 +149,89 @@
                                 <script>document.write(new Date().getFullYear())</script>
                                 , Copyrights Reserved <i class="fa fa-heart heart"></i> HANAP by Praxis
                             </h6>
-                            <h6>
-                                Template by <i class="fa fa-heart heart"></i> Creative-Tim
-                            </h6>
+                            {{--<h6>--}}
+                            {{--Template by <i class="fa fa-heart heart"></i> Creative-Tim--}}
+                            {{--</h6>--}}
+                        </div>
+                    </center>
+                </div>
+            @endif
+
+            @if(session('priv') == 'user')
+                <div class="col-md-4">
+                    <center>
+                        <div style="background-color: white; border-radius: 10px">
+                            <div class="row" style="padding: 20px">
+                                <div class="page-carousel">
+                                    <div id="carouselExampleIndicators-1" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#carouselExampleIndicators-1" data-slide-to="0"
+                                                class="active"></li>
+                                            <li data-target="#carouselExampleIndicators-1" data-slide-to="1"></li>
+                                            <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
+                                        </ol>
+                                        <div class="carousel-inner" role="listbox" style="height:  0px;">
+
+                                            <div class="carousel-item active">
+                                                <div style="margin: auto">
+                                                    <table style="height: 500px;">
+                                                        <td valign="middle" align="center">
+                                                            <img class="d-block img-fluid"
+                                                                 src="{!! asset('images/articles/article1.jpg') !!}"
+                                                                 alt="First slide"
+                                                                 style="max-width: 100%; max-height: 500px; width: auto;">
+                                                        </td>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <div class="carousel-item">
+                                                <div style="margin: auto">
+                                                    <table style="height: 500px;">
+                                                        <td valign="middle" align="center">
+                                                            <img class="d-block img-fluid"
+                                                                 src="{!! asset('images/articles/article2.jpg') !!}"
+                                                                 alt="Second slide"
+                                                                 style="max-width: 100%; max-height: 500px; width: auto;">
+                                                        </td>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <div class="carousel-item">
+                                                <div style="margin: auto">
+                                                    <table style="height: 500px;">
+                                                        <td valign="middle" align="center">
+                                                            <img class="d-block img-fluid"
+                                                                 src="{!! asset('images/articles/article3.jpg') !!}"
+                                                                 alt="Third slide"
+                                                                 style="max-width: 100%; max-height: 500px; width: auto;">
+                                                        </td>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <a class="left carousel-control carousel-control-prev"
+                                           href="#carouselExampleIndicators-1" role="button" data-slide="prev">
+                                            <span class="fa fa-angle-left"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="right carousel-control carousel-control-next"
+                                           href="#carouselExampleIndicators-1" role="button" data-slide="next">
+                                            <span class="fa fa-angle-right"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding: 20px">
+                                Press briefing on the Anti-Kidnapping Group's accomplishments with the surrender of SPO1
+                                Benjamin Pagarigan, one of the suspects in the CARLOS ABAD TAN Kidnapping for Ransom
+                                Case, and the arrest of Rafael de Jesus, a suspect in the kidnapping of an 11-year old
+                                child and his driver who were rescued last October 27, 2017 by the AKG operatives.
+                            </div>
                         </div>
                     </center>
                 </div>
@@ -299,5 +383,9 @@
 @endsection
 
 @section('scripts')
+
+    <script type="text/javascript">
+
+    </script>
 
 @endsection
