@@ -50,7 +50,7 @@ Route::get('/missingperson/reportsighting', function () {
 
 //missingperson list
 Route::get('/missingperson/list', function () {
-    if(session('id') == null){
+    if (session('id') == null) {
         return redirect('/');
     }
 
@@ -64,7 +64,7 @@ Route::get('/missingperson/list', function () {
 
 //missingperson list by the owner
 Route::get('/missingperson/yourreports', function () {
-    if(session('id') == null){
+    if (session('id') == null) {
         return redirect('/');
     }
 
@@ -117,7 +117,7 @@ Route::post('/apikey/update', 'admin@update');
 //missingperson list police
 Route::get('/missingperson/reports', 'police@missings');
 
-//test
+//test email send
 Route::get('/test/send', function () {
     Mail::to('jofeean@gmail.com')->send(new App\Mail\Emails('subject', 'body', 'Mr. Jofeean'));
 });
@@ -152,5 +152,34 @@ Route::get('/test/send/mobile', function () {
         echo "Error Num " . $result . " was encountered!";
     }
 
+});
+
+//test search
+Route::get('/test/view', function () {
+    $users = new App\missing;
+    $key = 'Jofeean Male';
+    $searches = explode(' ', $key);
+    $data['missings'] = array();
+
+    foreach($searches as $search){
+        $user = $users
+            ->orwhere('Missing_fname', 'LIKE', "%" . $search . "%")
+            ->orWhere('Missing_mname', 'LIKE', "%" . $search . "%")
+            ->orWhere('Missing_lname', 'LIKE', "%" . $search . "%")
+            ->orWhere('Missing_gender', 'LIKE', "%" . $search . "%")
+            ->orWhere('Missing_bday', 'LIKE', "%" . $search . "%")
+            ->orWhere('Missing_livaddress', 'LIKE', "%" . $search . "%")->get();
+
+        foreach ($user as $use){
+            array_push($data['missings'], $use);
+        }
+    }
+
+    $users = new App\user;
+    $data['users'] = $users->get();
+    $data['missings'] = array_unique($data['missings']);
+   // dd($data['missings']);
+
+    return view('missing.listresult', $data);
 });
 

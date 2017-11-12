@@ -61,11 +61,12 @@
                         <div class="form-group @if($errors->has('gender')) has-danger @endif">
                             <select class="form-control" name="gender"
                                     @if($errors->has('gender')) id="inputDanger1" @endif>
+                                <option value="-- Select --">-- Select --</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
                             @if($errors->has('gender'))
-                                <div class="form-control-feedback">Sorry, the gender you typed is incorrect</div>
+                                <div class="form-control-feedback">Sorry, the gender you selected is incorrect</div>
                             @endif
                         </div>
                     </div>
