@@ -18,8 +18,26 @@
             <hr>
             <br>
 
+            @if($errors->has('reported'))
+                <div class="alert alert-danger alert-with-icon" data-notify="container">
+                    <div class="container">
+                        <div class="alert-wrapper">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="nc-icon nc-simple-remove"></i>
+                            </button>
+                            <div class="message"><i class="nc-icon nc-bell-55"></i>
+                                &nbsp;The person was already reported.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            @endif
+
+
             <div style="background-color: white; padding: 20px; border-radius: 10px">
                 <div class="row">
+
                     <div class="col-md-4">
                         <label style="font-weight: bold">First Name</label>
                         <div class="form-group @if($errors->has('fname')) has-danger @endif">
@@ -31,6 +49,7 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <label style="font-weight: bold">Middle Name</label>
                         <div class="form-group @if($errors->has('mname')) has-danger @endif">
@@ -42,6 +61,7 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <label style="font-weight: bold">Last Name</label>
                         <div class="form-group @if($errors->has('lname')) has-danger @endif">
@@ -53,15 +73,28 @@
                             @endif
                         </div>
                     </div>
+
                 </div>
 
                 <div class="row">
+                    <div class="col-md-4">
+                        <label style="font-weight: bold">Nickname/Alias</label>
+                        <div class="form-group @if($errors->has('nname')) has-danger @endif">
+                            <input type="text" class="form-control" name="nname" value="{{ old('nname') }}"
+                                   placeholder="Ex: Nene"
+                                   @if($errors->has('nname')) id="inputDanger1" @endif>
+                            @if($errors->has('nname'))
+                                <div class="form-control-feedback">Sorry, the nickname you typed is incorrect</div>
+                            @endif
+                        </div>
+                    </div>
+
                     <div class="col-md-4">
                         <label style="font-weight: bold">Gender</label>
                         <div class="form-group @if($errors->has('gender')) has-danger @endif">
                             <select class="form-control" name="gender"
                                     @if($errors->has('gender')) id="inputDanger1" @endif>
-                                <option value="-- Select --">-- Select --</option>
+                                <option value="">-- Select --</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
@@ -70,33 +103,20 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <label style="font-weight: bold">Birthday</label>
-                        <div class="form-group @if($errors->has('birthday')) has-danger @endif">
+                        <div class="form-group @if($errors->has('birthday') || $errors->has('bdayy')) has-danger @endif">
                             <div class='input-group date' id='datetimepicker'>
                                 <input type='text' class="form-control datetimepicker" name="birthday"
                                        value="{{ old('birthday') }}"
-                                       placeholder="Birthday" @if($errors->has('birthday')) id="inputDanger1" @endif>
+                                       placeholder="Birthday" @if($errors->has('birthday') || $errors->has('bdayy')) id="inputDanger1" @endif>
                                 <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                 </span>
                             </div>
-                            @if($errors->has('birthday'))
+                            @if($errors->has('birthday') || $errors->has('bdayy'))
                                 <div class="form-control-feedback">Sorry, the date of birth typed is incorrect</div>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <label style="font-weight: bold">Address</label>
-                        <div class="form-group @if($errors->has('address')) has-danger @endif">
-                            <input type="text" class="form-control" name="address" value="{{ old('address') }}"
-                                   placeholder="Address Where the Missing Person Lives"
-                                   @if($errors->has('address')) id="inputDanger1" @endif>
-                            @if($errors->has('address'))
-                                <div class="form-control-feedback">Sorry, the address you typed is incorrect</div>
                             @endif
                         </div>
                     </div>
@@ -111,24 +131,57 @@
             <div style="background-color: white; padding: 20px; border-radius: 10px">
                 <div class="row">
                     <div class="col-md-4">
+                        <label style="font-weight: bold">Hair Color</label>
+                        <div class="form-group @if($errors->has('hcolor')) has-danger @endif">
+                            <select class="form-control" name="hcolor"
+                                    @if($errors->has('hcolor')) id="inputDanger1" @endif>
+                                <option value="">-- Select --</option>
+                                <option value="Brown">Brown</option>
+                                <option value="Black">Black</option>
+                                <option value="White">White</option>
+                                <option value="Gray">Gray</option>
+                                <option value="Blonde">Blonde</option>
+                                <option value="Red">Red</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Green">Green</option>
+                                <option value="Orange">Orange</option>
+                                <option value="Pink">Pink</option>
+                                <option value="Bald">Bald</option>
+                                <option value="Unsure">Unsure</option>
+                            </select>
+                            @if($errors->has('hcolor'))
+                                <div class="form-control-feedback">Sorry, the gender you selected is incorrect</div>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
                         <label style="font-weight: bold">Height</label>
                         <div class="form-group @if($errors->has('height')) has-danger @endif">
-                            <input type="text" class="form-control" name="height" value="{{ old('height') }}"
-                                   placeholder="Height of the Missing Person in Foot"
+                            <input type="number" class="form-control" name="height" value="{{ old('height') }}"
+                                   placeholder="CM"
                                    @if($errors->has('height')) id="inputDanger1" @endif>
                             @if($errors->has('height'))
                                 <div class="form-control-feedback">Sorry, the height you typed is incorrect</div>
                             @endif
                         </div>
                     </div>
+
                     <div class="col-md-4">
-                        <label style="font-weight: bold">Weight</label>
-                        <div class="form-group @if($errors->has('weight')) has-danger @endif">
-                            <input type="text" class="form-control" name="weight" value="{{ old('weight') }}"
-                                   placeholder="Weight of the Missing Person in Kilogram"
-                                   @if($errors->has('weight')) id="inputDanger1" @endif>
-                            @if($errors->has('weight'))
-                                <div class="form-control-feedback">Sorry, the weight you typed is incorrect</div>
+                        <label style="font-weight: bold">Eye Color</label>
+                        <div class="form-group @if($errors->has('eye')) has-danger @endif">
+                            <select class="form-control" name="eye"
+                                    @if($errors->has('eye')) id="inputDanger1" @endif>
+                                <option value="">-- Select --</option>
+                                <option value="Black">Black</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Brown">Brown</option>
+                                <option value="Gray">Gray</option>
+                                <option value="Green">Green</option>
+                                <option value="Unsure">Unsure</option>
+                            </select>
+                            @if($errors->has('eye'))
+                                <div class="form-control-feedback">Sorry, the gender you selected is incorrect</div>
                             @endif
                         </div>
                     </div>
@@ -136,28 +189,74 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <label style="font-weight: bold">Eye Color</label>
-                        <div class="form-group @if($errors->has('eye')) has-danger @endif">
-                            <input type="text" class="form-control" name="eye" value="{{ old('eye') }}"
-                                   placeholder="Color of the Eye like Blue, Green, Black etc."
-                                   @if($errors->has('eye')) id="inputDanger1" @endif>
-                            @if($errors->has('eye'))
-                                <div class="form-control-feedback">Sorry, the eye color you typed is incorrect</div>
+                        <label style="font-weight: bold">Hair</label>
+                        <div class="form-group @if($errors->has('hair')) has-danger @endif">
+                            <input type="text" class="form-control" name="hair" value="{{ old('hair') }}"
+                                   placeholder="Ex: Straight, Curly, Short, Long, Frizzy, etc."
+                                   @if($errors->has('hair')) id="inputDanger1" @endif>
+                            @if($errors->has('hair'))
+                                <div class="form-control-feedback">Sorry, the height you typed is incorrect</div>
                             @endif
                         </div>
                     </div>
+
+                    <div class="col-md-4">
+                        <label style="font-weight: bold">Weight</label>
+                        <div class="form-group @if($errors->has('weight')) has-danger @endif">
+                            <input type="number" class="form-control" name="weight" value="{{ old('weight') }}"
+                                   placeholder="KG"
+                                   @if($errors->has('weight')) id="inputDanger1" @endif>
+                            @if($errors->has('weight'))
+                                <div class="form-control-feedback">Sorry, the weight you typed is incorrect</div>
+                            @endif
+                        </div>
+                    </div>
+
                     <div class="col-md-4">
                         <label style="font-weight: bold">Body Type</label>
                         <div class="form-group @if($errors->has('btype')) has-danger @endif">
-                            <input type="text" class="form-control" name="btype" value="{{ old('btype') }}"
-                                   placeholder="Body Type like Obese, Thin, Buffed etc."
-                                   @if($errors->has('btype')) id="inputDanger1" @endif>
+                            <select class="form-control" name="btype"
+                                    @if($errors->has('btype')) id="inputDanger1" @endif>
+                                <option value="">-- Select --</option>
+                                <option value="Slim">Slim</option>
+                                <option value="Athletic">Athletic</option>
+                                <option value="Muscular">Muscular</option>
+                                <option value="Round">Round</option>
+                                <option value="Big-boned">Big-boned</option>
+                            </select>
                             @if($errors->has('btype'))
-                                <div class="form-control-feedback">Sorry, the body you typed is incorrect</div>
+                                <div class="form-control-feedback">Sorry, the gender you selected is incorrect</div>
                             @endif
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label style="font-weight: bold">Body Hair</label>
+                        <div class="form-group @if($errors->has('bhair')) has-danger @endif">
+                            <input type="text" class="form-control" name="bhair" value="{{ old('bhair') }}"
+                                   placeholder="Ex:  Arms, Legs, Chest, etc."
+                                   @if($errors->has('bhair')) id="inputDanger1" @endif>
+                            @if($errors->has('bhair'))
+                                <div class="form-control-feedback">Sorry, the height you typed is incorrect</div>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label style="font-weight: bold">Facial Hair</label>
+                        <div class="form-group @if($errors->has('fhair')) has-danger @endif">
+                            <input type="text" class="form-control" name="fhair" value="{{ old('fhair') }}"
+                                   placeholder="Ex:  Arms, Legs, Chest, etc."
+                                   @if($errors->has('fhair')) id="inputDanger1" @endif>
+                            @if($errors->has('fhair'))
+                                <div class="form-control-feedback">Sorry, the height you typed is incorrect</div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <br>
@@ -169,40 +268,25 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label style="font-weight: bold">Date of Disappearance</label>
-                        <div class="form-group @if($errors->has('dodis')) has-danger @endif">
+                        <div class="form-group @if($errors->has('dodis') || $errors->has('dodiss') || $errors->has('dodisss')) has-danger @endif">
                             <div class='input-group date' id='dodis'>
                                 <input type='text' class="form-control datetimepicker" name="dodis"
                                        value="{{ old('dodis') }}"
                                        placeholder="Date of Disappearance"
-                                       @if($errors->has('dodis')) id="inputDanger1" @endif>
+                                       @if($errors->has('dodis')  || $errors->has('dodiss') || $errors->has('dodisss')) id="inputDanger1" @endif>
                                 <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                         </span>
                             </div>
-                            @if($errors->has('dodis'))
+                            @if($errors->has('dodis')  || $errors->has('dodiss') || $errors->has('dodisss') )
                                 <div class="form-control-feedback">Sorry, the date of disappearance you typed is
                                     incorrect
                                 </div>
                             @endif
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-1">
-                        <label style="font-weight: bold">Zone</label>
-                        <div class="form-group">
-                            <select class="form-control" name="zone">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-11">
+                    <div class="col-md-4">
                         <label style="font-weight: bold">Address</label>
                         <div class="form-group @if($errors->has('disaddress')) has-danger @endif">
                             <input type="text" class="form-control" name="disaddress" value="{{ old('disaddress') }}"
@@ -210,6 +294,44 @@
                                    @if($errors->has('disaddress')) id="inputDanger1" @endif>
                             @if($errors->has('disaddress'))
                                 <div class="form-control-feedback">Sorry, the address you typed is incorrect</div>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label style="font-weight: bold">City</label>
+                        <div class="form-group @if($errors->has('city1')) has-danger @endif">
+                            <select class="form-control" name="city1"
+                                    @if($errors->has('city1')) id="inputDanger1" @endif>
+                                <option value="">-- Select --</option>
+
+                                <option value="Caloocan City">Caloocan</option>
+
+                                <option value="Las Piñas City">Las Piñas</option>
+
+                                <option value="Makati City">Makati</option>
+                                <option value="Malabon City">Malabon</option>
+                                <option value="Mandaluyong City">Mandaluyong</option>
+                                <option value="Manila City">Manila</option>
+                                <option value="Marikina City">Marikina</option>
+                                <option value="Muntinlupa City">Muntinlupa</option>
+
+                                <option value="Navotas City">Navotas</option>
+
+                                <option value="Parañaque City">Parañaque</option>
+                                <option value="Pasay City">Pasay</option>
+                                <option value="Pasig City">Pasig</option>
+
+                                <option value="Quezon City">Quezon</option>
+
+                                <option value="San Juan City">San Juan</option>
+
+                                <option value="Taguig City">Taguig</option>
+
+                                <option value="Valenzuela City">Valenzuela</option>
+                            </select>
+                            @if($errors->has('city1'))
+                                <div class="form-control-feedback">Sorry, the city you selected is incorrect</div>
                             @endif
                         </div>
                     </div>
@@ -224,33 +346,35 @@
             <div style="background-color: white; padding: 20px; border-radius: 10px">
                 <div class="row">
                     <div class="col-md-4">
-                        <label style="font-weight: bold">Body Markings</label>
+                        <label style="font-weight: bold">Distinctive Physical Feature</label>
                         <div class="form-group @if($errors->has('bmark')) has-danger @endif">
                         <textarea type="text" class="form-control" name="bmark" rows="12" style="resize: none"
                                   @if($errors->has('bmark')) id="inputDanger1" @endif
-                                  placeholder="Body Markings like Tattoo on the Shoulder, Birth Mark at the back, Body Pierce at the Lips etc.">{{ old('bmark') }}</textarea>
+                                  placeholder="Ex: Amputated left arm, Tattoo in right arm, Nose piercing, Notched lips, Unknown, etc.">{{ old('bmark') }}</textarea>
                             @if($errors->has('bmark'))
                                 <div class="form-control-feedback">Sorry, the body markings you typed is incorrect</div>
                             @endif
                         </div>
                     </div>
+
                     <div class="col-md-4">
-                        <label style="font-weight: bold">Clothes</label>
+                        <label style="font-weight: bold">Clothes/Accessories</label>
                         <div class="form-group @if($errors->has('clothes')) has-danger @endif">
                         <textarea type="text" class="form-control" name="clothes" rows="12" style="resize: none"
                                   @if($errors->has('clothes')) id="inputDanger1" @endif
-                                  placeholder="Clothes Wore by the Missing Person before He went Missing">{{ old('clothes') }}</textarea>
+                                  placeholder="Ex: White shirt, black pants, yellow slippers, sunglasses, cross necklace/pendant, Unknown, etc">{{ old('clothes') }}</textarea>
                             @if($errors->has('clothes'))
                                 <div class="form-control-feedback">Sorry, the clothes you typed is incorrect</div>
                             @endif
                         </div>
                     </div>
+
                     <div class="col-md-4">
-                        <label style="font-weight: bold">Other</label>
+                        <label style="font-weight: bold">Medical</label>
                         <div class="form-group @if($errors->has('other')) has-danger @endif">
                         <textarea type="text" class="form-control" name="other" rows="12" style="resize: none"
                                   @if($errors->has('other')) id="inputDanger1" @endif
-                                  placeholder="Other Information about the Missing Person like Mentally Ill, Arm has been Decapitated etc.">{{ old('other') }}</textarea>
+                                  placeholder="Ex: Known illnesses, Allergies, Mental disorders, Unknown, etc.">{{ old('other') }}</textarea>
                             @if($errors->has('other'))
                                 <div class="form-control-feedback">Sorry, the clothes you typed is incorrect</div>
                             @endif
@@ -339,6 +463,8 @@
 
 @section('scripts')
     <script type="text/javascript">
+        $('#resultsmodal').modal('show');
+
         $('#datetimepicker').datetimepicker({
             icons: {
                 time: "fa fa-clock-o",

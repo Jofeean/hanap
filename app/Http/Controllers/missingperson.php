@@ -43,18 +43,22 @@ class missingperson extends Controller
             'fname' => 'required|string|max:250',
             'mname' => 'max:250',
             'lname' => 'required|string|max:250',
+            'nname' => 'max:250',
             'gender' => 'required|alpha|max:6',
             'birthday' => 'required',
-            'address' => 'required|string|max:250',
 
-            'height' => 'required|numeric',
-            'weight' => 'required|numeric',
+            'hcolor' => 'required|alpha|max:20',
+            'height' => 'max:3',
+            'weight' => 'max:3',
             'eye' => 'required|string|max:20',
             'btype' => 'required|string|max:20',
+            'hair' => 'max:250',
+            'bhair' => 'max:250',
+            'fhair' => 'max:250',
 
             'dodis' => 'required',
-            'zone' => 'required|numeric|digits_between:1,6',
             'disaddress' => 'required|string|max:250',
+            'city1' => 'required|string|max:50',
 
             'bmark' => 'required|string|max:250',
             'clothes' => 'required|string|max:250',
@@ -70,6 +74,22 @@ class missingperson extends Controller
                 ->withInput($request->input());
         }
 
+        $bday = strtotime($request->birthday);
+        $dodis = strtotime($request->dodis);
+        $now = strtotime('now');
+
+        if ($bday > $now) {
+            return redirect()->back()->withErrors(['bdayy' => 'bdayy'])->withInput($request->input());
+        }
+
+        if ($dodis < $now) {
+            return redirect()->back()->withErrors(['dodiss' => 'dodiss'])->withInput($request->input());
+        }
+
+        if ($bday < $dodis) {
+            return redirect()->back()->withErrors(['dodisss' => 'dodisss'])->withInput($request->input());
+        }
+
         $apikey = new apikey;
         $apikey = $apikey->orderBy('created_at', 'desc')->first();
 
@@ -83,16 +103,19 @@ class missingperson extends Controller
         $missing->Missing_lname = ucwords(trim(htmlspecialchars(strip_tags($request->lname))));
         $missing->Missing_gender = ucfirst(trim(htmlspecialchars(strip_tags($request->gender))));
         $missing->Missing_bday = trim(htmlspecialchars(strip_tags($request->birthday)));
-        $missing->Missing_livaddress = ucwords(trim(htmlspecialchars(strip_tags($request->address))));
 
-        $missing->Missing_height = trim(htmlspecialchars(strip_tags($request->height)));
-        $missing->Missing_weight = trim(htmlspecialchars(strip_tags($request->weight)));
+        $missing->Missing_hcolor = ucwords(trim(htmlspecialchars(strip_tags($request->hcolor))));
+        $missing->Missing_height = ucwords(trim(htmlspecialchars(strip_tags($request->height))));
         $missing->Missing_eyecolor = ucwords(trim(htmlspecialchars(strip_tags($request->eye))));
+        $missing->Missing_hair = ucwords(trim(htmlspecialchars(strip_tags($request->hair))));
+        $missing->Missing_weight = ucwords(trim(htmlspecialchars(strip_tags($request->weight))));
         $missing->Missing_bodytype = ucwords(trim(htmlspecialchars(strip_tags($request->btype))));
+        $missing->Missing_bodyhair = ucwords(trim(htmlspecialchars(strip_tags($request->bhair))));
+        $missing->Missing_facialhair = ucwords(trim(htmlspecialchars(strip_tags($request->fhair))));
 
         $missing->Missing_dodis = trim(htmlspecialchars(strip_tags($request->dodis)));
-        $missing->Missing_zone = trim(htmlspecialchars(strip_tags($request->zone)));
         $missing->Missing_disaddress = ucwords(trim(htmlspecialchars(strip_tags($request->disaddress))));
+        $missing->Missing_discity = ucwords(trim(htmlspecialchars(strip_tags($request->city1))));
 
         $missing->Missing_bodymarkings = ucfirst(trim(htmlspecialchars(strip_tags($request->bmark))));
         $missing->Missing_clothes = ucfirst(trim(htmlspecialchars(strip_tags($request->clothes))));
@@ -107,11 +130,89 @@ class missingperson extends Controller
             $constraint->aspectRatio();
         })->save(public_path('images/missingthumb/' . $filename), 100);
 
-
-        //person
         require_once 'HTTP/Request2.php';
 
-        $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons');
+        //detect
+        $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/detect');
+        $url = $request->getUrl();
+
+        $headers = array(
+            // Request headers
+            'Content-Type' => 'application/octet-stream',
+            'Ocp-Apim-Subscription-Key' => $apikey->Apikey,
+        );
+
+        $request->setHeader($headers);
+
+        $parameters = array(
+            // Request parameters
+            'returnFaceId' => 'true',
+        );
+
+        $url->setQueryVariables($parameters);
+
+        $request->setMethod(HTTP_Request2::METHOD_POST);
+
+        // Request body
+        $image = public_path('images/missingthumb/' . $filename);
+        $fp = fopen($image, 'rb');
+        $request->setBody($fp);
+
+        try {
+            $response = $request->send();
+            $json1 = json_decode($response->getBody());
+            $faceid = $json1[0]->faceId;
+        } catch (HttpException $ex) {
+            echo $ex;
+        }
+
+        //find match
+        $missings = new missing;
+        $missings = $missings->where('Missing_status', '=', '0')->get();
+
+        foreach ($missings as $missing) {
+
+            //face verification
+            $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/verify');
+            $url = $request->getUrl();
+
+            $headers = array(
+                // Request headers
+                'Content-Type' => 'application/json',
+                'Ocp-Apim-Subscription-Key' => $apikey->Apikey,
+            );
+
+            $request->setHeader($headers);
+
+            $parameters = array(// Request parameters
+
+            );
+
+            $url->setQueryVariables($parameters);
+
+            $request->setMethod(HTTP_Request2::METHOD_POST);
+
+            // Request body
+            $request->setBody('{
+                "faceId":"' . $faceid . '",
+                "personId":"' . $missing->Missing_faceid . '",
+                "personGroupId":"hanapmissing"
+            }');
+
+            try {
+                $response = $request->send();
+                $json1 = json_decode($response->getBody());
+                if ($json1->isIdentical == true) {
+                    return redirect()->back()->withErrors(['reported' => 'reported'])->withInput();
+                }
+
+            } catch (HttpException $ex) {
+                echo $ex;
+            }
+        }
+
+        //person
+        $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons');
         $url = $request->getUrl();
 
         $headers = array(
@@ -144,7 +245,7 @@ class missingperson extends Controller
         }
 
         //person face
-        $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons/{personId}/persistedFaces');
+        $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons/{personId}/persistedFaces');
         $url = $request->getUrl();
 
         $headers = array(
@@ -168,6 +269,7 @@ class missingperson extends Controller
         // Request body
         $image = public_path('images/missingthumb/' . $filename);
         $fp = fopen($image, 'rb');
+
         $request->setBody($fp);
 
         try {
@@ -202,7 +304,9 @@ class missingperson extends Controller
 
 
         $missing->save();
+
         return redirect("/missingperson/yourreports");
+
     }
 
     public function match(Request $request)
@@ -252,7 +356,7 @@ class missingperson extends Controller
         $apikey = $apikey->orderBy('created_at', 'desc')->first();
 
         //detect
-        $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect');
+        $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/detect');
         $url = $request->getUrl();
 
         $headers = array(
@@ -296,7 +400,7 @@ class missingperson extends Controller
         foreach ($missings as $missing) {
 
             //face verification
-            $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/verify');
+            $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/verify');
             $url = $request->getUrl();
 
             $headers = array(

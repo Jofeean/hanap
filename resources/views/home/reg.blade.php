@@ -36,6 +36,7 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <label style="font-weight: bold">Middle Name</label>
                         <div class="form-group @if($errors->has('mname')) has-danger @endif">
@@ -47,6 +48,7 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <div class="form-group @if($errors->has('lname')) has-danger @endif">
                             <label style="font-weight: bold">Last Name</label>
@@ -66,22 +68,24 @@
                         <div class="form-group @if($errors->has('gender')) has-danger @endif">
                             <select class="form-control" name="gender"
                                     @if($errors->has('gender')) id="inputDanger1" @endif>
+                                <option>-- Select --</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
                             @if($errors->has('gender'))
-                                <div class="form-control-feedback">Sorry, the last name you typed is incorrect</div>
+                                <div class="form-control-feedback">Sorry, the gender you selected is incorrect</div>
                             @endif
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <label style="font-weight: bold">Birthday</label>
-                        <div class="form-group @if($errors->has('birthday')) has-danger @endif">
+                        <div class="form-group @if($errors->has('birthday') || $errors->has('bday')) has-danger @endif">
                             <div class='input-group date' id='datetimepicker'>
                                 <input type='text' class="form-control datetimepicker" name="birthday"
                                        value="{{ old('birthday') }}"
                                        placeholder="Birthday"
-                                       @if($errors->has('birthday')) id="inputDanger1" @endif>
+                                       @if($errors->has('birthday') || $errors->has('bday')) id="inputDanger1" @endif>
                                 <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"><i class="fa fa-calendar" aria-hidden="true"></i></span></span>
                             </div>
@@ -90,8 +94,12 @@
                                     incorrect
                                 </div>
                             @endif
+                            @if($errors->has('bday'))
+                                <div class="form-control-feedback">Sorry, you must be 18 years old.</div>
+                            @endif
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <label style="font-weight: bold">Contact Number</label>
                         <div class="form-group @if($errors->has('connum')) has-danger @endif">
@@ -107,7 +115,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <label style="font-weight: bold">Address</label>
                         <div class="form-group @if($errors->has('address')) has-danger @endif">
                             <input type="text" class="form-control" name="address" value="{{ old('address') }}"
@@ -115,6 +123,44 @@
                                    @if($errors->has('address')) id="inputDanger1" @endif>
                             @if($errors->has('address'))
                                 <div class="form-control-feedback">Sorry, the address you typed is incorrect</div>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label style="font-weight: bold">City</label>
+                        <div class="form-group @if($errors->has('city')) has-danger @endif">
+                            <select class="form-control" name="city"
+                                    @if($errors->has('city')) id="inputDanger1" @endif>
+                                <option value="">-- Select --</option>
+
+                                <option value="Caloocan City">Caloocan</option>
+
+                                <option value="Las Piñas City">Las Piñas</option>
+
+                                <option value="Makati City">Makati</option>
+                                <option value="Malabon City">Malabon</option>
+                                <option value="Mandaluyong City">Mandaluyong</option>
+                                <option value="Manila City">Manila</option>
+                                <option value="Marikina City">Marikina</option>
+                                <option value="Muntinlupa City">Muntinlupa</option>
+
+                                <option value="Navotas City">Navotas</option>
+
+                                <option value="Parañaque City">Parañaque</option>
+                                <option value="Pasay City">Pasay</option>
+                                <option value="Pasig City">Pasig</option>
+
+                                <option value="Quezon City">Quezon</option>
+
+                                <option value="San Juan City">San Juan</option>
+
+                                <option value="Taguig City">Taguig</option>
+
+                                <option value="Valenzuela City">Valenzuela</option>
+                            </select>
+                            @if($errors->has('city'))
+                                <div class="form-control-feedback">Sorry, the city you selected is incorrect</div>
                             @endif
                         </div>
                     </div>
@@ -141,6 +187,7 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <label style="font-weight: bold">Password</label>
                         <div class="form-group @if($errors->has('password')) has-danger @endif">
@@ -153,6 +200,7 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <label style="font-weight: bold">Confirm Password</label>
                         <div class="form-group @if($errors->has('repass')) has-danger @endif">
@@ -185,6 +233,7 @@
                     <br>
                     <input type="file" id="dp" name="dp" accept=".jpg, .jpeg"/>
                 </div>
+
                 <div class="col-md-4">
                     <label style="font-weight: bold">Valid ID 1</label>
                     <div id="vidis1" style="padding: 20px; background-color: white; border-radius: 10px">
@@ -196,17 +245,7 @@
                     <br>
                     <input type="file" id="vi1" name="vi1" accept=".jpg, .jpeg"/>
                 </div>
-                <div class="col-md-4">
-                    <label style="font-weight: bold">Valid ID 2</label>
-                    <div id="vidis2" style="padding: 20px; background-color: white; border-radius: 10px">
-                        @if($errors->has('vi1'))
-                            <div class="form-control-feedback" style="color: red">Sorry, you must provide another valid
-                                ID
-                            </div>
-                        @endif</div>
-                    <br>
-                    <input type="file" id="vi2" name="vi2" accept=".jpg, .jpeg"/>
-                </div>
+
             </div>
 
             <br>

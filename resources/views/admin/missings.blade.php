@@ -27,22 +27,22 @@
                             </div>
 
                             {{--<form action="#" method="">--}}
-                                {{--<div class="col-md-7">--}}
+                            {{--<div class="col-md-7">--}}
 
-                                    {{--<div class="form-group">--}}
-                                        {{--<input type="text" class="form-control" name="search"--}}
-                                               {{--placeholder="Name, Address, Gender, Birthdays">--}}
-                                        {{--@if($errors->has('search'))--}}
-                                            {{--<div style="color: red">Sorry, you must enter a text.--}}
-                                            {{--</div>--}}
-                                        {{--@endif--}}
-                                    {{--</div>--}}
+                            {{--<div class="form-group">--}}
+                            {{--<input type="text" class="form-control" name="search"--}}
+                            {{--placeholder="Name, Address, Gender, Birthdays">--}}
+                            {{--@if($errors->has('search'))--}}
+                            {{--<div style="color: red">Sorry, you must enter a text.--}}
+                            {{--</div>--}}
+                            {{--@endif--}}
+                            {{--</div>--}}
 
-                                {{--</div>--}}
+                            {{--</div>--}}
 
-                                {{--<div class="col-md-1">--}}
-                                    {{--<input type="submit" value="Search" class="btn btn-info">--}}
-                                {{--</div>--}}
+                            {{--<div class="col-md-1">--}}
+                            {{--<input type="submit" value="Search" class="btn btn-info">--}}
+                            {{--</div>--}}
 
                             {{--</form>--}}
 
@@ -71,8 +71,8 @@
                                         <td>
                                             <center>
                                                 <a style="margin-top: 20px"
-                                                   data-toggle="modal" data-target="#{{ $missing->Missing_id }}"><img
-                                                            src="{{ asset('images/missingthumb/'.$missing->Missing_picture) }}"
+                                                   data-toggle="modal" data-target="#{{ $missing->Missing_id }}">
+                                                    <img src="{{ asset('images/missingthumb/'.$missing->Missing_picture) }}"
                                                             style="max-height: 100px; max-width: 70%"
                                                             class="img-rounded">
                                                 </a>

@@ -102,6 +102,12 @@
                         <p>Police Accounts</p>
                     </a>
                 </li>
+                <li class="@yield('announcements')">
+                    <a href="/announcements">
+                        <i class="ti-layout"></i>
+                        <p>Announcements / News</p>
+                    </a>
+                </li>
                 <li class="@yield('update')">
                     <a href="/admin/apikey/update">
                         <i class="ti-loop"></i>

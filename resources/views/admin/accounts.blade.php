@@ -33,7 +33,6 @@
                                 <th>Email</th>
                                 <th>Contact No</th>
                                 <th>Valid ID 1</th>
-                                <th>Valid ID 2</th>
                                 <th>Actions</th>
                                 </thead>
                                 <tbody>
@@ -55,8 +54,6 @@
                                         <td>{{ $user->User_mobilenum }}</td>
                                         <td><img src="{{ asset('images/vi1thumb/'.$user->User_valId1) }}"
                                                  style="max-height: 100px; max-width: 70%" class="img-rounded"></td>
-                                        <td><img src="{{ asset('images/vi1thumb/'.$user->User_valId2) }}"
-                                                 style="max-height: 100px; max-width: 70%" class="img-rounded"></td>
                                         <td>
                                             <a class="btn btn-info" style="margin-top: 20px"
                                                data-toggle="modal" data-target="#{{ $user->User_id }}">View
@@ -68,6 +65,15 @@
                                             @elseif($user->User_status == 1)
                                                 <a class="btn btn-success" href="/user/activate/{{ $user->User_id }}"
                                                    style="margin-top: 20px">Active
+                                                </a>
+                                            @endif
+                                            @if($user->User_status == 0)
+                                                <a class="btn btn-warning" href="/user/deny/{{ $user->User_id }}"
+                                                   style="margin-top: 20px">Deny
+                                                </a>
+                                            @elseif($user->User_status == 2)
+                                                <a class="btn btn-danger" href="/user/deny/{{ $user->User_id }}"
+                                                   style="margin-top: 20px">Denied
                                                 </a>
                                             @endif
                                         </td>
@@ -111,22 +117,19 @@
                                                             <br>
                                                             <b>Birthday:</b> {{ $user->User_bday }}
                                                             <br>
-                                                            <b>Address:</b> {{ $user->User_address }}
+                                                            <b>Address:</b> {{ $user->User_address }} {{ $user->User_city }}
                                                             <HR>
                                                             <b>Email:</b> {{ $user->User_email }}
                                                             <br>
                                                             <b>Mobile Number:</b> {{ $user->User_mobilenum }}
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <h4>Valid IDs:</h4>
+                                                            <h4>Valid ID:</h4>
                                                             <hr>
                                                             <img src="{{ asset('images/vi1/'.$user->User_valId1) }}"
                                                                  style="max-height: 200px; max-width: 100%"
                                                                  class="img-rounded">
                                                             <br>
-                                                            <img src="{{ asset('images/vi2/'.$user->User_valId2) }}"
-                                                                 style="max-height: 200px; max-width: 100%"
-                                                                 class="img-rounded">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -170,10 +173,32 @@
                 type: 'success',
                 timer: 4000
             });
+
             @elseif ($errors->has('denied'))
             $.notify({
                 icon: 'ti-close',
                 message: "Account has already  activated."
+
+            }, {
+                type: 'danger',
+                timer: 4000
+            });
+            @endif
+
+            @if ($errors->has('success1'))
+            $.notify({
+                icon: 'ti-check',
+                message: "Account has been denied."
+
+            }, {
+                type: 'success',
+                timer: 4000
+            });
+
+            @elseif ($errors->has('denied1'))
+            $.notify({
+                icon: 'ti-close',
+                message: "Account has already denied."
 
             }, {
                 type: 'danger',

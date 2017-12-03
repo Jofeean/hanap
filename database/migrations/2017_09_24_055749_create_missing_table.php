@@ -23,18 +23,22 @@ class CreateMissingTable extends Migration
             $table->string('Missing_fname');
             $table->string('Missing_mname')->nullable();
             $table->string('Missing_lname');
+            $table->string('Missing_nname')->nullable();
             $table->string('Missing_gender');
             $table->string('Missing_bday');
-            $table->string('Missing_livaddress');
 
-            $table->string('Missing_height');
-            $table->string('Missing_weight');
+            $table->string('Missing_hcolor');
+            $table->string('Missing_height')->nullable();
             $table->string('Missing_eyecolor');
+            $table->string('Missing_hair')->nullable();
+            $table->string('Missing_weight')->nullabale();
             $table->string('Missing_bodytype');
+            $table->string('Missing_bodyhair');
+            $table->string('Missing_facialhair');
 
             $table->string('Missing_dodis');
-            $table->string('Missing_zone');
             $table->string('Missing_disaddress');
+            $table->string('Missing_discity');
 
             $table->string('Missing_bodymarkings');
             $table->string('Missing_clothes');

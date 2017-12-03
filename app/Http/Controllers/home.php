@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\admin;
+use App\news;
+use App\announcement;
 use App\missing;
 use App\police;
 use App\user;
@@ -33,7 +35,7 @@ class home extends Controller
 
     public function register(Request $request)
     {
-        if(session('id') != null){
+        if (session('id') != null) {
             return redirect('/');
         }
 
@@ -45,6 +47,7 @@ class home extends Controller
             'birthday' => 'required',
             'connum' => 'required|digits:11',
             'address' => 'required|string|max:250',
+            'city' => 'required|string|max:50',
 
             'email' => 'required|email|unique:users,User_email|unique:admins,Admin_email|unique:polices,Police_email|max:250',
             'password' => 'required|min:6|max:50',
@@ -52,10 +55,10 @@ class home extends Controller
 
             'dp' => 'required|image',
             'vi1' => 'required|image',
-            'vi2' => 'required|image'
         ]);
 
         if ($validator->fails()) {
+
             return redirect()
                 ->back()
                 ->withErrors($validator)
@@ -67,21 +70,33 @@ class home extends Controller
             return redirect()->back()->withErrors(['recaptcha' => 'recaptcha'])->withInput($request->input());
         }
 
+
+        $date = new DateTime($request->birthday);
+        $now = new DateTime();
+        $interval = $now->diff($date);
+
+        if ($interval->y < 18) {
+            return redirect()->back()->withErrors(['bday' => 'bday'])->withInput($request->input());
+        }
+
         //inserting data
         $filename = date('mdyhi') . time() . '.' . $request->file('dp')->getClientOriginalExtension();
         $user = new user;
         $user->User_fname = ucwords(trim(strip_tags(htmlspecialchars($request->fname))));
         $user->User_mname = ucwords(trim(strip_tags(htmlspecialchars($request->mname))));
         $user->User_lname = ucwords(trim(strip_tags(htmlspecialchars($request->lname))));
+
         $user->User_gender = ucfirst(trim(strip_tags(htmlspecialchars($request->gender))));
         $user->User_bday = trim(strip_tags(htmlspecialchars($request->birthday)));
         $user->User_address = ucwords(trim(strip_tags(htmlspecialchars($request->address))));
+        $user->User_city = ucwords(trim(strip_tags(htmlspecialchars($request->city))));
+
         $user->User_email = trim(strip_tags(htmlspecialchars($request->email)));
         $user->User_password = bcrypt(trim(strip_tags(htmlspecialchars($request->password))));
         $user->User_mobilenum = trim(strip_tags(htmlspecialchars($request->connum)));
+
         $user->User_picture = $filename;
         $user->User_valId1 = $filename;
-        $user->User_valId2 = $filename;
 
         //email
         $name = $user->User_fname . ' ' . $user->User_lname;
@@ -111,9 +126,6 @@ class home extends Controller
         Image::make($request->file('vi1'))
             ->save(public_path('images/vi1/' . $filename), 100);
 
-        Image::make($request->file('vi2'))
-            ->save(public_path('images/vi2/' . $filename), 100);
-
         //thumbnail
         Image::make($request->file('dp'))->resize(null, 400, function ($constraint) {
             $constraint->aspectRatio();
@@ -123,10 +135,6 @@ class home extends Controller
             $constraint->aspectRatio();
         })->save(public_path('images/vi1thumb/' . $filename), 100);
 
-        Image::make($request->file('vi2'))->resize(null, 400, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save(public_path('images/vi2thumb/' . $filename), 100);
-
         $user->save();
 
         return redirect('/');
@@ -134,7 +142,7 @@ class home extends Controller
 
     public function login(Request $request)
     {
-        if(session('id') != null){
+        if (session('id') != null) {
             return redirect('/');
         }
 
@@ -213,6 +221,10 @@ class home extends Controller
         $data['missings'] = $users->limit(10)->where('Missing_status', '=', '0')->inRandomOrder()->get();
         $users = new user;
         $data['users'] = $users->get();
+        $users = new news;
+        $data['news'] = $users->get();
+        $users = new announcement;
+        $data['announcements'] = $users->get();
 
         if (session('priv') == 'admin') {
 
@@ -321,9 +333,9 @@ class home extends Controller
                     $data['fage6']++;
                 }
 
-                if ($missing->Missing_gender == 'Male') {
+                if ($found->Missing_gender == 'Male') {
                     $data['fmale']++;
-                } elseif ($missing->Missing_gender == 'Female') {
+                } elseif ($found->Missing_gender == 'Female') {
                     $data['ffemale']++;
                 }
 

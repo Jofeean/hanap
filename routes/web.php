@@ -50,10 +50,6 @@ Route::get('/missingperson/reportsighting', function () {
 
 //missingperson list
 Route::get('/missingperson/list', function () {
-    if (session('id') == null) {
-        return redirect('/');
-    }
-
     $users = new App\missing;
     $data['missings'] = $users->where('Missing_status', '=', '0')->paginate(15);
     $users = new App\user;
@@ -93,6 +89,11 @@ Route::get('/missingperson/found/{id}', 'missingperson@found');
 //activate user
 Route::get('/user/activate/{id}', 'admin@activate');
 
+//deny user
+Route::get('/user/deny/{id}', 'admin@deny');
+
+
+//admin
 //users list admin
 Route::get('/user/lists', 'admin@users');
 
@@ -114,9 +115,30 @@ Route::get('/admin/apikey/update', 'admin@up');
 //do update apikey add admin
 Route::post('/apikey/update', 'admin@update');
 
+//announcements
+Route::get('/announcements', 'admin@announcements');
+
+//admin announcements
+Route::post('/announcements/add/{id}', 'admin@addann');
+
+//admin delete announcement
+Route::get('/announcements/delete/{id}', 'admin@delann');
+
+//admin delete news
+Route::get('/news/delete/{id}', 'admin@delnews');
+
+
+//police
 //missingperson list police
 Route::get('/missingperson/reports', 'police@missings');
 
+//geo-map
+Route::get('/geomap', 'police@geomap');
+
+Route::post('/geomap/notif', 'police@notif');
+
+
+//tests
 //test email send
 Route::get('/test/send', function () {
     Mail::to('jofeean@gmail.com')->send(new App\Mail\Emails('subject', 'body', 'Mr. Jofeean'));
@@ -161,16 +183,16 @@ Route::get('/test/view', function () {
     $searches = explode(' ', $key);
     $data['missings'] = array();
 
-    foreach($searches as $search){
+    foreach ($searches as $search) {
         $user = $users
             ->orwhere('Missing_fname', 'LIKE', "%" . $search . "%")
             ->orWhere('Missing_mname', 'LIKE', "%" . $search . "%")
             ->orWhere('Missing_lname', 'LIKE', "%" . $search . "%")
             ->orWhere('Missing_gender', 'LIKE', "%" . $search . "%")
             ->orWhere('Missing_bday', 'LIKE', "%" . $search . "%")
-            ->orWhere('Missing_livaddress', 'LIKE', "%" . $search . "%")->get();
+            ->orWhere('Missing_livaddress', 'LIKE', "%" . $search . "%")->orderBy('Missing_fname', 'asc')->get();
 
-        foreach ($user as $use){
+        foreach ($user as $use) {
             array_push($data['missings'], $use);
         }
     }
@@ -178,8 +200,37 @@ Route::get('/test/view', function () {
     $users = new App\user;
     $data['users'] = $users->get();
     $data['missings'] = array_unique($data['missings']);
-   // dd($data['missings']);
 
     return view('missing.listresult', $data);
 });
 
+Route::get('/test/redirect', function () {
+    return redirect('/')->withErrors(['registered' => 'registered']);
+});
+
+//test
+//Route::get('/test', function () {
+//
+//    $date1 = new DateTime('7/22/1998');
+//    $date = new DateTime('7/24/2017');
+//    $now = new DateTime();
+//    $dodis = $now->diff($date1);
+//    $age = $now->diff($date);
+//
+//    echo strtotime('now') .' '. date("m/d/Y", strtotime('now'));
+//
+//});
+
+//add admin static
+//Route::get('/test/add/admin', function () {
+//    $user = new App\admin();
+//    $user->Admin_Name = 'Jofeean';
+//    $user->Admin_lname = 'Ogario';
+//    $user->Admin_gender = 'Male';
+//    $user->Admin_bday = '7/24/1998';
+//    $user->Admin_address = 'Sta. Mesa Manila';
+//    $user->Admin_mobilenum = '09153616520';
+//    $user->Admin_email = 'jofeean@gmail.com';
+//    $user->Admin_password = bcrypt('Pugson@1030');
+//    $user->save();
+//});

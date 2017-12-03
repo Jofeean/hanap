@@ -18,17 +18,20 @@ class CreateUserTable extends Migration
             $table->string('User_fname');
             $table->string('User_mname')->nullable();
             $table->string('User_lname');
+
             $table->string('User_gender');
             $table->string('User_bday');
             $table->string('User_address');
+            $table->string('User_city');
+
             $table->string('User_email');
             $table->string('User_password');
             $table->string('User_mobilenum');
+
             $table->string('User_status')->default('0');
             $table->string('User_code')->nullable();
             $table->string('User_picture');
             $table->string('User_valId1');
-            $table->string('User_valId2');
             $table->timestamps();
         });
     }

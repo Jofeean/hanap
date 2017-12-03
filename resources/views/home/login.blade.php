@@ -26,48 +26,22 @@
                             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner" role="listbox" style="height: 500px;">
-                            <div class="carousel-item active">
-                                <div style="margin: auto">
-                                    <table style="height: 500px;">
-                                        <td valign="middle" align="center">
-                                            <img class="d-block img-fluid"
-                                                 src="{!! asset('images/announcements/announcement1.png') !!}"
-                                                 alt="First slide"
-                                                 style="max-width: 100%; max-height: 500px; width: auto;">
-                                        </td>
-                                    </table>
-                                    <div class="carousel-caption d-none d-md-block">
+                            @foreach($announcements as $announcement)
+                                <div class="carousel-item @if($loop->first) active @endif">
+                                    <div style="margin: auto">
+                                        <table style="height: 500px;">
+                                            <td valign="middle" align="center">
+                                                <img class="d-block img-fluid"
+                                                     src="{!! asset('images/announcements/'. $announcement->Announcement_picture) !!}"
+                                                     alt="First slide"
+                                                     style="max-width: 100%; max-height: 500px; width: auto;">
+                                            </td>
+                                        </table>
+                                        <div class="carousel-caption d-none d-md-block">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div style="margin: auto">
-                                    <table style="height: 500px;">
-                                        <td valign="middle" align="center">
-                                            <img class="d-block img-fluid"
-                                                 src="{!! asset('images/announcements/announcement2.png') !!}"
-                                                 alt="Second slide"
-                                                 style="max-width: 100%; max-height: 500px; width: auto;">
-                                        </td>
-                                    </table>
-                                    <div class="carousel-caption d-none d-md-block">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div style="margin: auto">
-                                    <table style="height: 500px;">
-                                        <td valign="middle" align="center">
-                                            <img class="d-block img-fluid"
-                                                 src="{!! asset('images/announcements/announcement3.png') !!}"
-                                                 alt="Third slide"
-                                                 style="max-width: 100%; max-height: 500px; width: auto;">
-                                        </td>
-                                    </table>
-                                    <div class="carousel-caption d-none d-md-block">
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
 
                         <a class="left carousel-control carousel-control-prev" href="#carouselExampleIndicators"
@@ -99,6 +73,22 @@
                                             </button>
                                             <div class="message"><i class="nc-icon nc-bell-55"></i> Your account is not
                                                 activated
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if($errors->has('registered'))
+                                <div class="alert alert-success alert-with-icon" data-notify="container">
+                                    <div class="container">
+                                        <div class="alert-wrapper">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <i class="nc-icon nc-simple-remove"></i>
+                                            </button>
+                                            <div class="message"><i class="nc-icon nc-bell-55"></i>
+                                                You registered successfully. Please wait for the activation of your
+                                                account.
                                             </div>
                                         </div>
                                     </div>
@@ -171,45 +161,26 @@
                                             <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
                                         </ol>
                                         <div class="carousel-inner" role="listbox" style="height: 500px;">
-
-                                            <div class="carousel-item active">
-                                                <div style="margin: auto">
-                                                    <table style="height: 500px;">
-                                                        <td valign="middle" align="center">
-                                                            <img class="d-block img-fluid"
-                                                                 src="{!! asset('images/articles/article1.jpg') !!}"
-                                                                 alt="First slide"
-                                                                 style="max-width: 100%; max-height: 500px; width: auto;">
-                                                        </td>
-                                                    </table>
+                                            @foreach($news as $announcement)
+                                                <div class="carousel-item @if($loop->first) active @endif">
+                                                    <div style="margin: auto">
+                                                        <table style="height: 500px;">
+                                                            <td valign="middle" align="center">
+                                                                <img class="d-block img-fluid"
+                                                                     src="{!! asset('images/articles/'. $announcement->News_picture) !!}"
+                                                                     alt="First slide"
+                                                                     style="max-width: 100%; max-height: 500px; width: auto;">
+                                                            </td>
+                                                        </table>
+                                                        <div class="carousel-caption d-none d-md-block">
+                                                        </div>
+                                                    </div>
+                                                    <div class="carousel-caption"
+                                                         style="background: rgba(11,16,17,0.21); border-radius: 10px">
+                                                        <p>{{ $announcement->News_caption }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-
-                                            <div class="carousel-item">
-                                                <div style="margin: auto">
-                                                    <table style="height: 500px;">
-                                                        <td valign="middle" align="center">
-                                                            <img class="d-block img-fluid"
-                                                                 src="{!! asset('images/articles/article2.jpg') !!}"
-                                                                 alt="Second slide"
-                                                                 style="max-width: 100%; max-height: 500px; width: auto;">
-                                                        </td>
-                                                    </table>
-                                                </div>
-                                            </div>
-
-                                            <div class="carousel-item">
-                                                <div style="margin: auto">
-                                                    <table style="height: 500px;">
-                                                        <td valign="middle" align="center">
-                                                            <img class="d-block img-fluid"
-                                                                 src="{!! asset('images/articles/article3.jpg') !!}"
-                                                                 alt="Third slide"
-                                                                 style="max-width: 100%; max-height: 500px; width: auto;">
-                                                        </td>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                            @endforeach
 
                                         </div>
 
@@ -227,10 +198,7 @@
                                 </div>
                             </div>
                             <div class="row" style="padding: 20px">
-                                Press briefing on the Anti-Kidnapping Group's accomplishments with the surrender of SPO1
-                                Benjamin Pagarigan, one of the suspects in the CARLOS ABAD TAN Kidnapping for Ransom
-                                Case, and the arrest of Rafael de Jesus, a suspect in the kidnapping of an 11-year old
-                                child and his driver who were rescued last October 27, 2017 by the AKG operatives.
+
                             </div>
                         </div>
                     </center>

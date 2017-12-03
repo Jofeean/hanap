@@ -90,6 +90,12 @@
                         <p>Missing Persons</p>
                     </a>
                 </li>
+                <li class="@yield('geomap')">
+                    <a href="/geomap">
+                        <i class="ti-map-alt"></i>
+                        <p>Geo-Map</p>
+                    </a>
+                </li>
                 <li>
                     <a href="/logout">
                         <i class="ti-arrow-circle-left"></i>

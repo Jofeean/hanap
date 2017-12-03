@@ -16,6 +16,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/" style="color: white;">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/missingperson/list" style="color: white;">Mising Person List</a>
+                    </li>
                     {{--<li class="nav-item">--}}
                         {{--<a class="nav-link" href="#" style="color: white;">About</a>--}}
                     {{--</li>--}}

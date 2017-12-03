@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\announcement;
 use App\apikey;
 use App\Mail\Emails;
 use App\missing;
+use App\news;
 use App\police;
 use App\user;
 use Image;
@@ -32,7 +34,7 @@ class admin extends Controller
 
     public function regpol(Request $request, $id)
     {
-        if (session('priv') == 'admin') {
+        if (session('priv') != 'admin') {
             return redirect('/');
         }
 
@@ -175,6 +177,45 @@ class admin extends Controller
         return redirect()->back()->withErrors(['denied' => 'denied']);
     }
 
+    public function deny($id)
+    {
+        if (session('priv') != 'admin') {
+            return redirect('/');
+        }
+
+        $user = new user;
+        $user = $user->where('User_id', '=', trim(strip_tags(htmlspecialchars($id))))->first();
+
+        if ($user->User_status == '0') {
+            //email
+            $name = $user->User_fname . ' ' . $user->User_lname;
+            $body = 'Sorry your account at HANAP has been denied for various reasons. For more questions please visit the nearest police station.';
+            $subject = 'Denied';
+
+            Mail::to($user->User_email)->send(new Emails($subject, $body, $name));
+
+            //text
+            $result = $this->itexmo($user->User_mobilenum,
+                "Sorry your account at HANAP has been denied for various reasons. For more questions please visit the nearest police station.",
+                "ST-JOSHU107250_XJ3V7 ");
+
+            if ($result == "") {
+                echo "something went wrong please try it again";
+                die();
+            } else if ($result == 0) {
+
+            } else {
+                echo "something went wrong please try it again";
+                die();
+            }
+
+            $user->where('User_id', '=', trim(strip_tags(htmlspecialchars($id))))->update(['User_status' => '2']);
+            return redirect()->back()->withErrors(['success1' => 'success1']);
+        }
+
+        return redirect()->back()->withErrors(['denied1' => 'denied1']);
+    }
+
     public function missings()
     {
         if (session('priv') == 'admin') {
@@ -230,7 +271,7 @@ class admin extends Controller
             //person group
             require_once 'HTTP/Request2.php';
 
-            $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}');
+            $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}');
             $url = $request->getUrl();
 
             $headers = array(
@@ -265,7 +306,7 @@ class admin extends Controller
                 //person
                 require_once 'HTTP/Request2.php';
 
-                $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons');
+                $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons');
                 $url = $request->getUrl();
 
                 $headers = array(
@@ -299,7 +340,7 @@ class admin extends Controller
 
 
                 //person face
-                $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons/{personId}/persistedFaces');
+                $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons/{personId}/persistedFaces');
                 $url = $request->getUrl();
 
                 $headers = array(
@@ -339,6 +380,103 @@ class admin extends Controller
             $api->save();
         }
 
+        return redirect('/');
+    }
+
+    public function announcements()
+    {
+        if (session('priv') == 'admin') {
+
+            $ann = new announcement;
+            $data['announcements'] = $ann->get();
+            $ann = new news;
+            $data['news'] = $ann->get();
+
+            return view('admin/announcements', $data);
+        }
+        return redirect('/');
+    }
+
+    public function addann(Request $request, $id)
+    {
+        if (session('priv') == 'admin') {
+            if ($id == 1) {
+                $validator = Validator::make($request->all(), [
+                    'ann' => 'required|image'
+                ]);
+
+                if ($validator->fails()) {
+                    return redirect()
+                        ->back()
+                        ->withErrors(['announcements' => 'announcements', 'den' => 'den'])
+                        ->withInput($request->input());
+                }
+
+                $filename = date('mdyhi') . time() . '.' . $request->file('ann')->getClientOriginalExtension();
+
+                $news = new announcement;
+                $news->Announcement_picture = $filename;
+
+                //original
+                Image::make($request->file('ann'))
+                    ->save(public_path('images/announcements/' . $filename), 100);
+
+                $news->save();
+
+                return redirect()->back()->withErrors(['announcements' => 'announcements', 'success' => 'success']);
+            }
+            if ($id == 2) {
+                $validator = Validator::make($request->all(), [
+                    'news' => 'required|image',
+                    'caption' => 'required|string|max:250'
+                ]);
+
+                if ($validator->fails()) {
+                    return redirect()
+                        ->back()
+                        ->withErrors(['news' => 'news', 'den' => 'den'])
+                        ->withInput($request->input());
+                }
+
+                $filename = date('mdyhi') . time() . '.' . $request->file('news')->getClientOriginalExtension();
+
+                $news = new news;
+                $news->News_caption = $request->caption;
+                $news->News_picture = $filename;
+
+                //original
+                Image::make($request->file('news'))
+                    ->save(public_path('images/articles/' . $filename), 100);
+
+                $news->save();
+
+                return redirect()->back()->withErrors(['news' => 'news', 'success' => 'success']);
+            }
+        }
+        return redirect('/');
+    }
+
+    public function delann($id)
+    {
+        if (session('priv') == 'admin') {
+
+            $news = new announcement;
+            $news->where('Announcement_id', '=', $id)->delete();
+
+            return redirect()->back()->withErrors(['announcements' => 'announcements', 'del' => 'del']);
+        }
+        return redirect('/');
+    }
+
+    public function delnews($id)
+    {
+        if (session('priv') == 'admin') {
+
+            $news = new news;
+            $news->where('News_id', '=', $id)->delete();
+
+            return redirect()->back()->withErrors(['news' => 'news', 'del' => 'del']);
+        }
         return redirect('/');
     }
 }
