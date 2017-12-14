@@ -14,7 +14,7 @@
 
             <div class="col-md-6">
                 <br><br>
-                <form action="#" method="">
+                <form action="post" method="">
 
                     <div class="row">
                         <div class="col-md-11">
@@ -23,7 +23,7 @@
                                        placeholder="Name Birthday Adrress Gender Height Weight etc."
                                        @if($errors->has('fname')) id="inputDanger1" @endif>
                                 @if($errors->has('fname'))
-                                    <div claxss="form-control-feedback">Sorry, the first name you typed is incorrect
+                                    <div claxss="form-control-feedback">Sorry, the key you typed is incorrect
                                     </div>
                                 @endif
                             </div>

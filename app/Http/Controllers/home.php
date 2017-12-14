@@ -542,60 +542,45 @@ class home extends Controller
                 ->withInput($request->input());
         }
 
-        $user = new user;
-        $user = $user->where('User_email', '=', trim(strip_tags(htmlspecialchars($request->email))))->first();
+        $users = new missing;
+        $key = strip_tags(htmlspecialchars(trim($request->fname)));
+        $searches = explode(' ', $key);
+        $data['missings'] = array();
 
-        $admin = new admin;
-        $admin = $admin->where('Admin_email', '=', trim(strip_tags(htmlspecialchars($request->email))))->first();
+        foreach ($searches as $search) {
+            $user = $users
+                ->orwhere('Missing_fname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_mname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_lname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_gender', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bday', 'LIKE', "%" . $search . "%")
 
-        $police = new police;
-        $police = $police->where('Police_email', '=', trim(strip_tags(htmlspecialchars($request->email))))->first();
+                ->orwhere('Missing_hcolor', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_height', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_eyecolor', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_hair', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_weight', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bodytype', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bodyhair', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_facialhair', 'LIKE', "%" . $search . "%")
 
-        if ($user == null) {
+                ->orWhere('Missing_dodis', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_disaddress', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_discity', 'LIKE', "%" . $search . "%")
 
-            if ($admin == null) {
+                ->orWhere('Missing_bodymarkings', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_clothes', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_other', 'LIKE', "%" . $search . "%")->get();
 
-                if ($police == null) {
-                    return redirect()->back()->withErrors(['email' => 'not found'])->withInput($request->input());
-                } elseif (!(Hash::check(strip_tags(trim(htmlspecialchars($request->password))), $police->Police_password))) {
-                    return redirect()->back()->withErrors(['password' => 'wrong password'])->withInput($request->input());
-                } elseif (Hash::check(strip_tags(trim(htmlspecialchars($request->password))), $police->Police_password)) {
-                    $request->session()->put('id', $police->Police_id);
-                    $request->session()->put('uname', $police->Police_email);
-                    $request->session()->put('fname', $police->Police_Name);
-                    $request->session()->put('lname', $police->Police_lname);
-                    $request->session()->put('priv', 'police');
-                    return redirect('/');
-                }
-
-            } elseif (!(Hash::check(strip_tags(trim(htmlspecialchars($request->password))), $admin->Admin_password))) {
-                return redirect()->back()->withErrors(['password' => 'wrong password'])->withInput($request->input());
-            } elseif (Hash::check(strip_tags(trim(htmlspecialchars($request->password))), $admin->Admin_password)) {
-                $request->session()->put('id', $admin->Admin_id);
-                $request->session()->put('uname', $admin->Admin_email);
-                $request->session()->put('fname', $admin->Admin_Name);
-                $request->session()->put('lname', $admin->Admin_lname);
-                $request->session()->put('priv', 'admin');
-                return redirect('/');
+            foreach ($user as $use) {
+                array_push($data['missings'], $use);
             }
-
-        } elseif (!(Hash::check(strip_tags(trim(htmlspecialchars($request->password))), $user->User_password))) {
-            return redirect()->back()->withErrors(['password' => 'wrong password'])->withInput($request->input());
-        } elseif
-        (Hash::check(strip_tags(trim(htmlspecialchars($request->password))), $user->User_password)) {
-
-            if ($user->User_status == 0) {
-                return redirect()
-                    ->back()
-                    ->withErrors(['notactive' => 'notactive']);
-            }
-
-            $request->session()->put('id', $user->User_id);
-            $request->session()->put('uname', $user->User_email);
-            $request->session()->put('fname', $user->User_fname);
-            $request->session()->put('lname', $user->User_lname);
-            $request->session()->put('priv', 'user');
-            return redirect('/');
         }
+
+        $users = new user;
+        $data['users'] = $users->get();
+        $data['missings'] = array_unique($data['missings']);
+
+        return view('missing.listresult', $data);
     }
 }
