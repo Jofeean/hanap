@@ -14,7 +14,7 @@
 
             <div class="col-md-6">
                 <br><br>
-                <form action="post" method="">
+                <form action="/missingperson/list/search-results" method="post">
 
                     <div class="row">
                         <div class="col-md-11">

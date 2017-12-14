@@ -92,7 +92,7 @@ Route::get('/user/activate/{id}', 'admin@activate');
 //deny user
 Route::get('/user/deny/{id}', 'admin@deny');
 
-//missingperson list
+//missingperson list search
 Route::post('/missingperson/list/search-results', 'home@search');
 
 
