@@ -100,7 +100,7 @@
                                 <option value="Female">Female</option>
                             </select>
                             @if($errors->has('gender'))
-                                <div class="form-control-feedback">Sorry, the gender you selected is incorrect</div>
+                                <div class="form-control-feedback">Please select a gender</div>
                             @endif
                         </div>
                     </div>
@@ -152,7 +152,7 @@
                                 <option value="Unsure">Unsure</option>
                             </select>
                             @if($errors->has('hcolor'))
-                                <div class="form-control-feedback">Sorry, the Hair color you selected is incorrect</div>
+                                <div class="form-control-feedback">Please select an hair color</div>
                             @endif
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                                 <option value="Unsure">Unsure</option>
                             </select>
                             @if($errors->has('eye'))
-                                <div class="form-control-feedback">Sorry, the eye color you selected is incorrect</div>
+                                <div class="form-control-feedback">Please select an eye color</div>
                             @endif
                         </div>
                     </div>
@@ -205,7 +205,7 @@
                                 <option value="Frizzy">Frizzy</option>
                             </select>
                             @if($errors->has('hair'))
-                                <div class="form-control-feedback">Sorry, the hair you selected is incorrect</div>
+                                <div class="form-control-feedback">Please select an hair type</div>
                             @endif
                         </div>
                     </div>
@@ -236,7 +236,7 @@
                                 <option value="Big-boned">Big-boned</option>
                             </select>
                             @if($errors->has('btype'))
-                                <div class="form-control-feedback">Sorry, the body type you selected is incorrect</div>
+                                <div class="form-control-feedback">Please select a body type</div>
                             @endif
                         </div>
                     </div>
@@ -343,7 +343,7 @@
                                 <option value="Valenzuela City">Valenzuela</option>
                             </select>
                             @if($errors->has('city1'))
-                                <div class="form-control-feedback">Sorry, the city you selected is incorrect</div>
+                                <div class="form-control-feedback">Please select a city</div>
                             @endif
                         </div>
                     </div>
