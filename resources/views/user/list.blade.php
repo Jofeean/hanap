@@ -230,14 +230,12 @@
                                                     </div>
                                                 </div>
                                                 <br><br>
-                                                @if(session('id') != null)
-                                                    <div class="row">
+                                                <div class="row">
                                                         <a style="margin-top: 20px"
                                                            href="/missingperson/found/{{ $missing->Missing_id }}">
                                                             <button class="btn btn-info btn-lg">Found Already?</button>
                                                         </a>
-                                                    </div>
-                                                @endif
+                                                </div>
                                             </div>
                                         </div>
 
