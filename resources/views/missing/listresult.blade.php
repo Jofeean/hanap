@@ -14,27 +14,26 @@
 
             <div class="col-md-6">
                 <br><br>
-                {{--<form action="#" method="">--}}
+                <form action="/missingperson/list/search-results" method="post">
+                    {{ csrf_field() }}
+                    <div class="row">
+                        <div class="col-md-11">
+                            <div class="form-group @if($errors->has('fname')) has-danger @endif">
+                                <input type="text" class="form-control" name="fname" value="{{ old('fname') }}"
+                                       placeholder="Name Birthday Adrress Gender Height Weight etc. dsfgdsfg"
+                                       @if($errors->has('fname')) id="inputDanger1" @endif>
+                                @if($errors->has('fname'))
+                                    <div claxss="form-control-feedback">Sorry, the key you typed is incorrect
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
 
-                    {{--<div class="row">--}}
-                        {{--<div class="col-md-11">--}}
-                            {{--<div class="form-group @if($errors->has('fname')) has-danger @endif">--}}
-                                {{--<input type="text" class="form-control" name="fname" value="{{ old('fname') }}"--}}
-                                       {{--placeholder="First Name"--}}
-                                       {{--@if($errors->has('fname')) id="inputDanger1" @endif>--}}
-                                {{--@if($errors->has('fname'))--}}
-                                    {{--<div claxss="form-control-feedback">Sorry, the first name you typed is incorrect--}}
-                                    {{--</div>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-
-                        {{--<div class="col-md-1">--}}
-                            {{--<input type="submit" value="Search" class="btn btn-info">--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-                {{--</form>--}}
+                        <div class="col-md-1">
+                            <input type="submit" value="Search" class="btn btn-info">
+                        </div>
+                    </div>
+                </form>
 
             </div>
         </div>
