@@ -67,12 +67,12 @@ class missingperson extends Controller
             'pmp' => 'required|image'
         ]);
 
-//        if ($validator->fails()) {
-//            return redirect()
-//                ->back()
-//                ->withErrors($validator)
-//                ->withInput($request->input());
-//        }
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput($request->input());
+        }
 
         $bday = strtotime($request->birthday);
         $dodis = strtotime($request->dodis);
