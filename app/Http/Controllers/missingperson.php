@@ -49,7 +49,7 @@ class missingperson extends Controller
 
             'hcolor' => 'required|alpha|max:20',
             'height' => 'min:0|max:3',
-            'weight' => 'max:3',
+            'weight' => 'min:0|max:3',
             'eye' => 'required|string|max:20',
             'btype' => 'required|string|max:20',
             'hair' => 'required|max:250',
