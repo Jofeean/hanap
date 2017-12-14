@@ -218,7 +218,7 @@ class home extends Controller
     public function home()
     {
         $users = new missing;
-        $data['missings'] = $users->limit(10)->where('Missing_status', '=', '0')->inRandomOrder()->get();
+        $data['missings'] = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(9)->get();
         $users = new user;
         $data['users'] = $users->get();
         $users = new news;
