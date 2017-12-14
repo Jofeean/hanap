@@ -547,9 +547,7 @@ class home extends Controller
                 ->orwhere('Missing_fname', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_mname', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_lname', 'LIKE', "%" . $search . "%")
-                ->orWhere('Missing_gender', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_bday', 'LIKE', "%" . $search . "%")
-
                 ->orwhere('Missing_hcolor', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_height', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_eyecolor', 'LIKE', "%" . $search . "%")
@@ -558,11 +556,9 @@ class home extends Controller
                 ->orWhere('Missing_bodytype', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_bodyhair', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_facialhair', 'LIKE', "%" . $search . "%")
-
                 ->orWhere('Missing_dodis', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_disaddress', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_discity', 'LIKE', "%" . $search . "%")
-
                 ->orWhere('Missing_bodymarkings', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_clothes', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_other', 'LIKE', "%" . $search . "%")->get();
@@ -570,6 +566,11 @@ class home extends Controller
             foreach ($user as $use) {
                 array_push($data['missings'], $use);
             }
+        }
+
+        $user = $users->where('Missing_gender', 'LIKE', $search )->get();
+        foreach ($user as $use) {
+            array_push($data['missings'], $use);
         }
 
         $users = new user;
