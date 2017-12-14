@@ -112,71 +112,45 @@ class police extends Controller
 
     public function notif(Request $request)
     {
-        if (session('priv') == 'police') {
-            $validator = Validator::make($request->all(), [
-                'city' => 'required',
-            ]);
+        $users = new missing;
+        $key = 'Jofeean Male';
+        $searches = explode(' ', $key);
+        $data['missings'] = array();
 
-            if ($validator->fails()) {
-                return redirect()
-                    ->back()
-                    ->withErrors($validator)
-                    ->withInput($request->input());
-            }
+        foreach ($searches as $search) {
+            $user = $users
+                ->orwhere('Missing_fname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_mname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_lname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_gender', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bday', 'LIKE', "%" . $search . "%")
 
-            $notif = new notif;
-            $notifs = $notif->where('Notif_city', 'LIKE', '%' . $request->city . '%')
-                ->orderBy('created_at', 'desc')->first();
+                ->orwhere('Missing_hcolor', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_height', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_eyecolor', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_hair', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_weight', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bodytype', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bodyhair', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_facialhair', 'LIKE', "%" . $search . "%")
 
-            $last = new DateTime($notifs->created_at);
-            $las = $last->add(new \DateInterval('P1D'));
-            $now = new DateTime();
+                ->orWhere('Missing_dodis', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_disaddress', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_discity', 'LIKE', "%" . $search . "%")
 
+                ->orWhere('Missing_bodymarkings', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_clothes', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_other', 'LIKE', "%" . $search . "%")->get();
 
-            if ($now >= $las) {
-
-                $notif->Police_id = session('id');
-                $notif->Notif_city = $request->city;
-                $notif->save();
-
-                $users = new user;
-                $users = $users->where('User_city', 'LIKE', "%" . $request->city . "%")->get();
-
-                $missings = new missing;
-                $missings = $missings->where('Missing_discity', 'LIKE', '%' . $request->city . '%')->count();
-
-                foreach ($users as $user) {
-                    //email
-                    $name = $user->User_fname . ' ' . $user->User_lname;
-                    $body = "HANAP application notifies you to know that there are " . $missings . " persons went missing near your area.";
-                    $subject = 'Regular Notification';
-
-                    Mail::to($user->User_email)->send(new Emails($subject, $body, $name));
-
-                    //text
-                    $result = $this->itexmo($user->User_mobilenum,
-                        "HANAP application notifies you to know that there are " . $missings . " persons went missing near your area.",
-                        "ST-ANTON124629_M8INX");
-
-                    if ($result == "") {
-                        echo "something went wrong please try it again";
-                        die();
-                    } else if ($result == 0) {
-
-                    } else {
-                        echo "something went wrong please try it again";
-                        die();
-                    }
-                }
-
-                return redirect()->back()->withErrors(['success' => $request->city]);
-
-            } elseif ($now < $las) {
-                $last = $last->add(new \DateInterval('P1D'));
-                $dif = $last->diff($now);
-                return redirect()->back()->withErrors(['error' => $dif->h]);
+            foreach ($user as $use) {
+                array_push($data['missings'], $use);
             }
         }
-        return redirect('/');
+
+        $users = new user;
+        $data['users'] = $users->get();
+        $data['missings'] = array_unique($data['missings']);
+
+        return view('missing.listresult', $data);
     }
 }

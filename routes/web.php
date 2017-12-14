@@ -92,6 +92,9 @@ Route::get('/user/activate/{id}', 'admin@activate');
 //deny user
 Route::get('/user/deny/{id}', 'admin@deny');
 
+//missingperson list
+Route::post('/missingperson/list/search-results', 'home@search');
+
 
 //admin
 //users list admin

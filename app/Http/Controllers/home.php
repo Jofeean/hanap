@@ -523,4 +523,79 @@ class home extends Controller
 
         return view('home.login', $data);
     }
+
+    public function search(Request $request)
+    {
+        if (session('id') != null) {
+            return redirect('/');
+        }
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email  |max:250',
+            'password' => 'required|string|max:250',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput($request->input());
+        }
+
+        $user = new user;
+        $user = $user->where('User_email', '=', trim(strip_tags(htmlspecialchars($request->email))))->first();
+
+        $admin = new admin;
+        $admin = $admin->where('Admin_email', '=', trim(strip_tags(htmlspecialchars($request->email))))->first();
+
+        $police = new police;
+        $police = $police->where('Police_email', '=', trim(strip_tags(htmlspecialchars($request->email))))->first();
+
+        if ($user == null) {
+
+            if ($admin == null) {
+
+                if ($police == null) {
+                    return redirect()->back()->withErrors(['email' => 'not found'])->withInput($request->input());
+                } elseif (!(Hash::check(strip_tags(trim(htmlspecialchars($request->password))), $police->Police_password))) {
+                    return redirect()->back()->withErrors(['password' => 'wrong password'])->withInput($request->input());
+                } elseif (Hash::check(strip_tags(trim(htmlspecialchars($request->password))), $police->Police_password)) {
+                    $request->session()->put('id', $police->Police_id);
+                    $request->session()->put('uname', $police->Police_email);
+                    $request->session()->put('fname', $police->Police_Name);
+                    $request->session()->put('lname', $police->Police_lname);
+                    $request->session()->put('priv', 'police');
+                    return redirect('/');
+                }
+
+            } elseif (!(Hash::check(strip_tags(trim(htmlspecialchars($request->password))), $admin->Admin_password))) {
+                return redirect()->back()->withErrors(['password' => 'wrong password'])->withInput($request->input());
+            } elseif (Hash::check(strip_tags(trim(htmlspecialchars($request->password))), $admin->Admin_password)) {
+                $request->session()->put('id', $admin->Admin_id);
+                $request->session()->put('uname', $admin->Admin_email);
+                $request->session()->put('fname', $admin->Admin_Name);
+                $request->session()->put('lname', $admin->Admin_lname);
+                $request->session()->put('priv', 'admin');
+                return redirect('/');
+            }
+
+        } elseif (!(Hash::check(strip_tags(trim(htmlspecialchars($request->password))), $user->User_password))) {
+            return redirect()->back()->withErrors(['password' => 'wrong password'])->withInput($request->input());
+        } elseif
+        (Hash::check(strip_tags(trim(htmlspecialchars($request->password))), $user->User_password)) {
+
+            if ($user->User_status == 0) {
+                return redirect()
+                    ->back()
+                    ->withErrors(['notactive' => 'notactive']);
+            }
+
+            $request->session()->put('id', $user->User_id);
+            $request->session()->put('uname', $user->User_email);
+            $request->session()->put('fname', $user->User_fname);
+            $request->session()->put('lname', $user->User_lname);
+            $request->session()->put('priv', 'user');
+            return redirect('/');
+        }
+    }
 }
