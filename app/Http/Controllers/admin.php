@@ -158,10 +158,12 @@ class admin extends Controller
             Mail::to($user->User_email)->send(new Emails($subject, $body, $name));
 
             //text
-            $result = $this->itexmo($user->User_mobilenum, "Thank you for registering at HANAP. Your account has been verified and activated now you can login to our website.", "ST-JOSHU107250_XJ3V7 ");
+            $result = $this->itexmo($user->User_mobilenum,
+                "Thank you for registering at HANAP. Your account has been verified and activated now you can login to our website.",
+                "ST-ANTON124629_M8INX");
 
             if ($result == "") {
-                echo "something went wrong please try it again";
+                echo "something went wrong please try it again 1";
                 die();
             } else if ($result == 0) {
 
@@ -197,7 +199,7 @@ class admin extends Controller
             //text
             $result = $this->itexmo($user->User_mobilenum,
                 "Sorry your account at HANAP has been denied for various reasons. For more questions please visit the nearest police station.",
-                "ST-JOSHU107250_XJ3V7 ");
+                "ST-ANTON124629_M8INX");
 
             if ($result == "") {
                 echo "something went wrong please try it again";
