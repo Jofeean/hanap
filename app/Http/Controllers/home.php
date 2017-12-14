@@ -568,7 +568,7 @@ class home extends Controller
             }
         }
 
-        $user = $users->where('Missing_gender', 'LIKE', $search )->get();
+        $user = $users->where('Missing_gender', '=', $search )->get();
         foreach ($user as $use) {
             array_push($data['missings'], $use);
         }
