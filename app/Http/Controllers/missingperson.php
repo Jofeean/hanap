@@ -290,7 +290,9 @@ class missingperson extends Controller
         $user = $user->where('User_id', '=', session('id'))->first();
 
         //text
-        $result = $this->itexmo($user->User_mobilenum, "Your report is now posted at the missing person list. We hope you'll see him/her soon.", "ST-JOSHU107250_XJ3V7 ");
+        $result = $this->itexmo($user->User_mobilenum,
+            "Your report is now posted at the missing person list. We hope you'll see him/her soon.",
+            "ST-ANTON124629_M8INX");
 
         if ($result == "") {
             echo "something went wrong please try it again";
@@ -450,7 +452,9 @@ class missingperson extends Controller
                     Mail::to($user->User_email)->send(new Emails($subject, $body, $name));
 
                     //text
-                    $result = $this->itexmo($user->User_mobilenum, 'Good day! We got some good news! Someone saw a person and got ' . round($json1->confidence * 100, 2) . '% similarities at your missing relative', "ST-JOSHU107250_XJ3V7");
+                    $result = $this->itexmo($user->User_mobilenum,
+                        'Good day! We got some good news! Someone saw a person and got ' . round($json1->confidence * 100, 2) . '% similarities at your missing relative',
+                        "ST-ANTON124629_M8INX");
 
                     if ($result == "") {
                         echo "something went wrong please try it again";
@@ -512,9 +516,11 @@ class missingperson extends Controller
         if ($user->Missing_status == '0') {
 
             if (session('priv') == 'police' || session('priv') == 'admin') {
+
+                //text
                 $result = $this->itexmo($missing->User_mobilenum,
                     "Your missing person report has been closed by the " . session('priv'),
-                    "ST-JOSHU107250_XJ3V7 ");
+                    "ST-ANTON124629_M8INX");
 
                 if ($result == "") {
                     echo "something went wrong please try it again";

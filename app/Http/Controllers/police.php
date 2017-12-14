@@ -156,7 +156,7 @@ class police extends Controller
                     //text
                     $result = $this->itexmo($user->User_mobilenum,
                         "HANAP application notifies you to know that there are " . $missings . " persons went missing near your area.",
-                        "ST-JOSHU107250_XJ3V7 ");
+                        "ST-ANTON124629_M8INX");
 
                     if ($result == "") {
                         echo "something went wrong please try it again";

@@ -106,7 +106,7 @@ class home extends Controller
         Mail::to($user->User_email)->send(new Emails($subject, $body, $name));
 
         //text
-        $result = $this->itexmo($user->User_mobilenum, "Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.", "ST-JOSHU107250_XJ3V7 ");
+        $result = $this->itexmo($user->User_mobilenum, "Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.", "ST-ANTON124629_M8INX");
 
         if ($result == "") {
             echo "something went wrong please try it again";

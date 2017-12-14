@@ -162,7 +162,7 @@ Route::get('/test/send/mobile', function () {
         return file_get_contents($url, false, $context);
     }
 
-    $result = itexmo("09772585152", "Josh qaqo", "ST-JOSHU107250_XJ3V7 ");
+    $result = itexmo("09053139902", "Josh qaqo", "ST-ANTON124629_M8INX");
 
     if ($result == "") {
         echo "iTexMo: No response from server!!!
@@ -190,7 +190,8 @@ Route::get('/test/view', function () {
             ->orWhere('Missing_lname', 'LIKE', "%" . $search . "%")
             ->orWhere('Missing_gender', 'LIKE', "%" . $search . "%")
             ->orWhere('Missing_bday', 'LIKE', "%" . $search . "%")
-            ->orWhere('Missing_livaddress', 'LIKE', "%" . $search . "%")->orderBy('Missing_fname', 'asc')->get();
+            ->orWhere('Missing_livaddress', 'LIKE', "%" . $search . "%")
+            ->orderBy('Missing_fname', 'asc')->get();
 
         foreach ($user as $use) {
             array_push($data['missings'], $use);
