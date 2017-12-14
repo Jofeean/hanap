@@ -94,6 +94,7 @@
                         <div class="form-group @if($errors->has('gender')) has-danger @endif">
                             <select class="form-control" name="gender"
                                     @if($errors->has('gender')) id="inputDanger1" @endif>
+                                @if($errors->has('gender'))<option value="{{ old('gender') }}">{{ old('gender') }}</option>@endif
                                 <option value="">-- Select --</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -135,6 +136,7 @@
                         <div class="form-group @if($errors->has('hcolor')) has-danger @endif">
                             <select class="form-control" name="hcolor"
                                     @if($errors->has('hcolor')) id="inputDanger1" @endif>
+                                @if($errors->has('hcolor'))<option value="{{ old('hcolor') }}">{{ old('hcolor') }}</option>@endif
                                 <option value="">-- Select --</option>
                                 <option value="Brown">Brown</option>
                                 <option value="Black">Black</option>
@@ -172,6 +174,7 @@
                         <div class="form-group @if($errors->has('eye')) has-danger @endif">
                             <select class="form-control" name="eye"
                                     @if($errors->has('eye')) id="inputDanger1" @endif>
+                                @if($errors->has('eye'))<option value="{{ old('eye') }}">{{ old('eye') }}</option>@endif
                                 <option value="">-- Select --</option>
                                 <option value="Black">Black</option>
                                 <option value="Blue">Blue</option>
@@ -191,11 +194,18 @@
                     <div class="col-md-4">
                         <label style="font-weight: bold">Hair</label>
                         <div class="form-group @if($errors->has('hair')) has-danger @endif">
-                            <input type="text" class="form-control" name="hair" value="{{ old('hair') }}"
-                                   placeholder="Ex: Straight, Curly, Short, Long, Frizzy, etc."
-                                   @if($errors->has('hair')) id="inputDanger1" @endif>
+                            <select class="form-control" name="hair"
+                                    @if($errors->has('hair')) id="inputDanger1" @endif>
+                                @if($errors->has('hair'))<option value="{{ old('hair') }}">{{ old('hair') }}</option>@endif
+                                <option value="">-- Select --</option>
+                                <option value="Straight">Straight</option>
+                                <option value="Curly">Curly</option>
+                                <option value="Short">Short</option>
+                                <option value="Long">Long</option>
+                                <option value="Frizzy">Frizzy</option>
+                            </select>
                             @if($errors->has('hair'))
-                                <div class="form-control-feedback">Sorry, the hair type you typed is incorrect</div>
+                                <div class="form-control-feedback">Sorry, the hair you selected is incorrect</div>
                             @endif
                         </div>
                     </div>
@@ -217,6 +227,7 @@
                         <div class="form-group @if($errors->has('btype')) has-danger @endif">
                             <select class="form-control" name="btype"
                                     @if($errors->has('btype')) id="inputDanger1" @endif>
+                                @if($errors->has('btype'))<option value="{{ old('btype') }}">{{ old('btype') }}</option>@endif
                                 <option value="">-- Select --</option>
                                 <option value="Slim">Slim</option>
                                 <option value="Athletic">Athletic</option>
@@ -303,6 +314,7 @@
                         <div class="form-group @if($errors->has('city1')) has-danger @endif">
                             <select class="form-control" name="city1"
                                     @if($errors->has('city1')) id="inputDanger1" @endif>
+                                @if($errors->has('city'))<option value="{{ old('city') }}">{{ old('city') }}</option>@endif
                                 <option value="">-- Select --</option>
 
                                 <option value="Caloocan City">Caloocan</option>
