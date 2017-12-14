@@ -170,7 +170,7 @@ class missingperson extends Controller
         $missings = new missing;
         $missings = $missings->where('Missing_status', '=', '0')->get();
 
-        foreach ($missings as $missing) {
+        foreach ($missings as $missing1) {
 
             //face verification
             $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/verify');
@@ -195,7 +195,7 @@ class missingperson extends Controller
             // Request body
             $request->setBody('{
                 "faceId":"' . $faceid . '",
-                "personId":"' . $missing->Missing_faceid . '",
+                "personId":"' . $missing1->Missing_faceid . '",
                 "personGroupId":"hanapmissing"
             }');
 
