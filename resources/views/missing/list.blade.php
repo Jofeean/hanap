@@ -15,7 +15,7 @@
             <div class="col-md-6">
                 <br><br>
                 <form action="/missingperson/list/search-results" method="post">
-
+                    {{ csrf_field() }}
                     <div class="row">
                         <div class="col-md-11">
                             <div class="form-group @if($errors->has('fname')) has-danger @endif">
