@@ -48,13 +48,13 @@ class missingperson extends Controller
             'birthday' => 'required',
 
             'hcolor' => 'required|alpha|max:20',
-            'height' => 'required|max:3',
-            'weight' => 'required|max:3',
+            'height' => 'max:3',
+            'weight' => 'max:3',
             'eye' => 'required|string|max:20',
             'btype' => 'required|string|max:20',
             'hair' => 'required|max:250',
-            'bhair' => 'required|max:250',
-            'fhair' => 'required|max:250',
+            'bhair' => 'max:250',
+            'fhair' => 'max:250',
 
             'dodis' => 'required',
             'disaddress' => 'required|string|max:250',

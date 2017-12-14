@@ -78,7 +78,7 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <label style="font-weight: bold">Nickname/Alias</label>
+                        <label style="font-weight: bold">Nickname/Alias</label> (Optional)
                         <div class="form-group @if($errors->has('nname')) has-danger @endif">
                             <input type="text" class="form-control" name="nname" value="{{ old('nname') }}"
                                    placeholder="Ex: Nene"
@@ -158,7 +158,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label style="font-weight: bold">Height</label>
+                        <label style="font-weight: bold">Height</label> (Optional)
                         <div class="form-group @if($errors->has('height')) has-danger @endif">
                             <input type="number" class="form-control" name="height" value="{{ old('height') }}"
                                    placeholder="CM"
@@ -211,7 +211,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label style="font-weight: bold">Weight</label>
+                        <label style="font-weight: bold">Weight</label> (Optional)
                         <div class="form-group @if($errors->has('weight')) has-danger @endif">
                             <input type="number" class="form-control" name="weight" value="{{ old('weight') }}"
                                    placeholder="KG"
@@ -244,7 +244,7 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <label style="font-weight: bold">Body Hair</label>
+                        <label style="font-weight: bold">Body Hair</label> (Optional)
                         <div class="form-group @if($errors->has('bhair')) has-danger @endif">
                             <input type="text" class="form-control" name="bhair" value="{{ old('bhair') }}"
                                    placeholder="Ex:  Arms, Legs, Chest, etc."
@@ -256,7 +256,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label style="font-weight: bold">Facial Hair</label>
+                        <label style="font-weight: bold">Facial Hair</label> (Optional)
                         <div class="form-group @if($errors->has('fhair')) has-danger @endif">
                             <input type="text" class="form-control" name="fhair" value="{{ old('fhair') }}"
                                    placeholder="Ex:  Arms, Legs, Chest, etc."
