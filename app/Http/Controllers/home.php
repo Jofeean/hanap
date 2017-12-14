@@ -526,10 +526,6 @@ class home extends Controller
 
     public function search(Request $request)
     {
-        if (session('id') != null) {
-            return redirect('/');
-        }
-
         $validator = Validator::make($request->all(), [
             'email' => 'required|email  |max:250',
             'password' => 'required|string|max:250',
