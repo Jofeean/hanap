@@ -67,12 +67,12 @@ class missingperson extends Controller
             'pmp' => 'required|image'
         ]);
 
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput($request->input());
-        }
+//        if ($validator->fails()) {
+//            return redirect()
+//                ->back()
+//                ->withErrors($validator)
+//                ->withInput($request->input());
+//        }
 
         $bday = strtotime($request->birthday);
         $dodis = strtotime($request->dodis);
@@ -82,11 +82,11 @@ class missingperson extends Controller
             return redirect()->back()->withErrors(['bdayy' => 'bdayy'])->withInput($request->input());
         }
 
-        if ($dodis < $now) {
+        if ($dodis > $now) {
             return redirect()->back()->withErrors(['dodiss' => 'dodiss'])->withInput($request->input());
         }
 
-        if ($bday < $dodis) {
+        if ($bday > $dodis) {
             return redirect()->back()->withErrors(['dodisss' => 'dodisss'])->withInput($request->input());
         }
 

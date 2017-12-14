@@ -150,7 +150,7 @@
                                 <option value="Unsure">Unsure</option>
                             </select>
                             @if($errors->has('hcolor'))
-                                <div class="form-control-feedback">Sorry, the gender you selected is incorrect</div>
+                                <div class="form-control-feedback">Sorry, the Hair color you selected is incorrect</div>
                             @endif
                         </div>
                     </div>
@@ -181,7 +181,7 @@
                                 <option value="Unsure">Unsure</option>
                             </select>
                             @if($errors->has('eye'))
-                                <div class="form-control-feedback">Sorry, the gender you selected is incorrect</div>
+                                <div class="form-control-feedback">Sorry, the eye color you selected is incorrect</div>
                             @endif
                         </div>
                     </div>
@@ -195,7 +195,7 @@
                                    placeholder="Ex: Straight, Curly, Short, Long, Frizzy, etc."
                                    @if($errors->has('hair')) id="inputDanger1" @endif>
                             @if($errors->has('hair'))
-                                <div class="form-control-feedback">Sorry, the height you typed is incorrect</div>
+                                <div class="form-control-feedback">Sorry, the hair type you typed is incorrect</div>
                             @endif
                         </div>
                     </div>
@@ -225,7 +225,7 @@
                                 <option value="Big-boned">Big-boned</option>
                             </select>
                             @if($errors->has('btype'))
-                                <div class="form-control-feedback">Sorry, the gender you selected is incorrect</div>
+                                <div class="form-control-feedback">Sorry, the body type you selected is incorrect</div>
                             @endif
                         </div>
                     </div>
@@ -239,7 +239,7 @@
                                    placeholder="Ex:  Arms, Legs, Chest, etc."
                                    @if($errors->has('bhair')) id="inputDanger1" @endif>
                             @if($errors->has('bhair'))
-                                <div class="form-control-feedback">Sorry, the height you typed is incorrect</div>
+                                <div class="form-control-feedback">Sorry, the body hair you typed is incorrect</div>
                             @endif
                         </div>
                     </div>
@@ -251,7 +251,7 @@
                                    placeholder="Ex:  Arms, Legs, Chest, etc."
                                    @if($errors->has('fhair')) id="inputDanger1" @endif>
                             @if($errors->has('fhair'))
-                                <div class="form-control-feedback">Sorry, the height you typed is incorrect</div>
+                                <div class="form-control-feedback">Sorry, the facial hair you typed is incorrect</div>
                             @endif
                         </div>
                     </div>
