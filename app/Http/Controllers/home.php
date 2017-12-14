@@ -527,8 +527,7 @@ class home extends Controller
     public function search(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email  |max:250',
-            'password' => 'required|string|max:250',
+            'fname' => 'required|max:250'
         ]);
 
         if ($validator->fails()) {
