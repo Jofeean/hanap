@@ -432,7 +432,7 @@ class missingperson extends Controller
                 $response = $request->send();
                 $json1 = json_decode($response->getBody());
 
-                echo $json1->isIdentical;
+                dd($json1->isIdentical);
 
                 $identical = $json1->isIdentical;
 
