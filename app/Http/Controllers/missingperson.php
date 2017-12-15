@@ -499,7 +499,7 @@ class missingperson extends Controller
             }
         }
 
-        var_dump($json1);
+        dd($json1);
 
         //return view('user.sighting', $data);
 
