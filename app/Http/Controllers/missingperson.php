@@ -432,82 +432,75 @@ class missingperson extends Controller
                 $response = $request->send();
                 $json1 = json_decode($response->getBody());
 
-                dd($json1);
-                
-                if($json1->isIdentical == null){
-                    echo 'yey';
+
+
+                if ($json1->confidence > 0.5) {
+                    $user = new user;
+                    $user = $user->where('User_id', '=', $missing->User_id)->first();
+
+                    //inserting data for matches table
+                    $matches = new match;
+                    $matches->User_id = trim(htmlspecialchars(strip_tags(session('id'))));;
+                    $matches->Missing_id = $missing->Missing_id;
+                    $matches->Missing_id = $missing->Missing_id;
+                    $matches->Sighting_id = $sighting->Sighting_id;
+                    $matches->Match_confidence = ($json1->confidence * 100);
+
+                    //email
+                    $name = $user->User_fname . ' ' . $user->User_lname;
+                    $body = 'Good day! We got some good news! Someone saw a person and got ' . round($json1->confidence * 100, 2) . '% similarities at your missing relative';
+                    $subject = 'Found a Match';
+
+                    Mail::to($user->User_email)->send(new Emails($subject, $body, $name));
+
+                    //text
+                    $result = $this->itexmo($user->User_mobilenum,
+                        'Good day! We got some good news! Someone saw a person and got ' . round($json1->confidence * 100, 2) . '% similarities at your missing relative',
+                        "ST-ANTON124629_M8INX");
+
+                    if ($result == "") {
+                        echo "something went wrong please try it again";
+                        die();
+                    } else if ($result == 0) {
+
+                    } else {
+                        echo "something went wrong please try it again";
+                        die();
+                    }
+
+                    $matches->save();
+
+                    array_push($data['matches'], [
+                        'Missing_id' => $missing->Missing_id,
+                        'Missing_name' => $missing->Missing_fname . ' ' . $missing->Missing_mname . ' ' . $missing->Missing_lname,
+                        'Missing_gender' => $missing->Missing_gender,
+                        'Missing_bday' => $missing->Missing_bday,
+                        'Missing_dodis' => $missing->Missing_dodis,
+                        'Missing_disaddress' => $missing->Missing_disaddress,
+                        'Missing_height' => $missing->Missing_height,
+                        'Missing_weight' => $missing->Missing_weight,
+                        'Missing_eyecolor' => $missing->Missing_eyecolor,
+                        'Missing_bodytype' => $missing->Missing_bodytype,
+                        'Missing_bodymarkings' => $missing->Missing_bodymarkings,
+                        'Missing_clothes' => $missing->Missing_clothes,
+                        'Missing_other' => $missing->Missing_other,
+                        'Missing_picture' => $missing->Missing_picture,
+
+                        'User_id' => $user->User_id,
+                        'User_picture' => $user->User_picture,
+                        'User_name' => $user->User_fname . ' ' . $user->User_mname . ' ' . $user->User_lname,
+                        'User_mobilenum' => $user->User_mobilenum,
+
+                        'confidence' => $json1->confidence,
+                    ]);
                 }
-
-                $identical = $json1->isIdentical;
-
-
-//                if ($identical == true) {
-//                    $user = new user;
-//                    $user = $user->where('User_id', '=', $missing->User_id)->first();
-//
-//                    //inserting data for matches table
-//                    $matches = new match;
-//                    $matches->User_id = trim(htmlspecialchars(strip_tags(session('id'))));;
-//                    $matches->Missing_id = $missing->Missing_id;
-//                    $matches->Missing_id = $missing->Missing_id;
-//                    $matches->Sighting_id = $sighting->Sighting_id;
-//                    $matches->Match_confidence = ($json1->confidence * 100);
-//
-//                    //email
-//                    $name = $user->User_fname . ' ' . $user->User_lname;
-//                    $body = 'Good day! We got some good news! Someone saw a person and got ' . round($json1->confidence * 100, 2) . '% similarities at your missing relative';
-//                    $subject = 'Found a Match';
-//
-//                    Mail::to($user->User_email)->send(new Emails($subject, $body, $name));
-//
-//                    //text
-//                    $result = $this->itexmo($user->User_mobilenum,
-//                        'Good day! We got some good news! Someone saw a person and got ' . round($json1->confidence * 100, 2) . '% similarities at your missing relative',
-//                        "ST-ANTON124629_M8INX");
-//
-//                    if ($result == "") {
-//                        echo "something went wrong please try it again";
-//                        die();
-//                    } else if ($result == 0) {
-//
-//                    } else {
-//                        echo "something went wrong please try it again";
-//                        die();
-//                    }
-//
-//                    $matches->save();
-//
-//                    array_push($data['matches'], [
-//                        'Missing_id' => $missing->Missing_id,
-//                        'Missing_name' => $missing->Missing_fname . ' ' . $missing->Missing_mname . ' ' . $missing->Missing_lname,
-//                        'Missing_gender' => $missing->Missing_gender,
-//                        'Missing_bday' => $missing->Missing_bday,
-//                        'Missing_dodis' => $missing->Missing_dodis,
-//                        'Missing_disaddress' => $missing->Missing_disaddress,
-//                        'Missing_height' => $missing->Missing_height,
-//                        'Missing_weight' => $missing->Missing_weight,
-//                        'Missing_eyecolor' => $missing->Missing_eyecolor,
-//                        'Missing_bodytype' => $missing->Missing_bodytype,
-//                        'Missing_bodymarkings' => $missing->Missing_bodymarkings,
-//                        'Missing_clothes' => $missing->Missing_clothes,
-//                        'Missing_other' => $missing->Missing_other,
-//                        'Missing_picture' => $missing->Missing_picture,
-//
-//                        'User_id' => $user->User_id,
-//                        'User_picture' => $user->User_picture,
-//                        'User_name' => $user->User_fname . ' ' . $user->User_mname . ' ' . $user->User_lname,
-//                        'User_mobilenum' => $user->User_mobilenum,
-//
-//                        'confidence' => $json1->confidence,
-//                    ]);
-//                }
 
             } catch (HttpException $ex) {
                 echo $ex;
             }
         }
 
-        //return view('user.sighting', $data);
+        return view('user.sighting', $data);
 
     }
 
