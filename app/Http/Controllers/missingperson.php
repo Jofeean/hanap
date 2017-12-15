@@ -357,6 +357,7 @@ class missingperson extends Controller
         $apikey = new apikey;
         $apikey = $apikey->orderBy('created_at', 'desc')->first();
 
+        $json1 = $json = null;
         //detect
         $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/detect');
         $url = $request->getUrl();
