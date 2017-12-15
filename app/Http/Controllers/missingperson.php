@@ -432,8 +432,7 @@ class missingperson extends Controller
                 $response = $request->send();
                 $json1 = json_decode($response->getBody());
 
-
-                if ($json1->confidence > 0.5) {
+                if ($json1->isIdentical == true) {
                     $user = new user;
                     $user = $user->where('User_id', '=', $missing->User_id)->first();
 
@@ -498,7 +497,6 @@ class missingperson extends Controller
                 echo $ex;
             }
         }
-
 
         return view('user.sighting', $data);
 
