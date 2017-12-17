@@ -41,6 +41,12 @@
 
         <div class="row">
 
+            @if($missings == null)
+                <div class="col-md-12">
+                    We couldn't find anything.
+                </div>
+            @endif
+
             @foreach($missings as $missing)
                 <div class="col-md-4" data-toggle="modal" data-target="#{{ $missing->Missing_id }}">
                     <div class="card">
