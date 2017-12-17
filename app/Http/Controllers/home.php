@@ -544,7 +544,6 @@ class home extends Controller
 
         foreach ($searches as $search) {
             $user = $users
-                ->where('Missing_status', '=', "0")
                 ->orwhere('Missing_fname', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_mname', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_lname', 'LIKE', "%" . $search . "%")
@@ -565,7 +564,9 @@ class home extends Controller
                 ->orWhere('Missing_other', 'LIKE', "%" . $search . "%")->get();
 
             foreach ($user as $use) {
-                array_push($data['missings'], $use);
+                if($use->Missing_status == 0){
+                    array_push($data['missings'], $use);
+                }
             }
         }
 
