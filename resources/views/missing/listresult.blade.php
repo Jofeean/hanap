@@ -43,7 +43,9 @@
 
             @if($missings == null)
                 <div class="col-md-12">
-                    We couldn't find anything.
+                    <div class="container" style="font-size: 75px">
+                        We couldn't find anything.
+                    </div>
                 </div>
             @endif
 
