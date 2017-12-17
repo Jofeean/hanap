@@ -43,7 +43,7 @@
 
             @if($missings == null)
                 <div class="col-md-12">
-                    <div class="container" style="font-size: 75px">
+                    <div class="container" style="font-size: 40px; color: rgba(11,16,17,0.19); font-weight: bold">
                         We couldn't find anything.
                     </div>
                 </div>
