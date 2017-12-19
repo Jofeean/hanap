@@ -55,9 +55,11 @@
                                     <?php $i = 0?>
                                     @foreach($galleries as $gallery)
 
-                                        <div class="carousel-item @if($loop->first) active @endif">
-                                            <div style="margin: auto">
-                                                <table style="height: 500px;">
+                                        @if($i == 0)
+                                            <div class="carousel-item @if($loop->first) active @endif">
+                                                <div style="margin: auto">
+                                                    <table style="height: 500px;">
+                                        @endif
 
                                                     <td valign="middle" align="center">
                                                         <img class="d-block img-fluid"
@@ -66,17 +68,25 @@
                                                              style="max-width: 100%; max-height: 500px; width: auto;">
                                                     </td>
 
+                                        @if($i == 0)
                                                 </table>
                                                 <div class="carousel-caption d-none d-md-block">
                                                 </div>
                                             </div>
-                                            <div class="carousel-caption"
-                                                 style="background: rgba(11,16,17,0.21); border-radius: 10px">
-                                                <div class="col-md-2">qer</div>
+                                            <div class="carousel-caption">
+                                        @endif
+                                                <div class="col-md-2"
+                                                     style="background: rgba(11,16,17,0.21); border-radius: 10px">
+                                                    qer
+                                                </div>
 
+                                        @if($i == 0)
+                                                </div>
                                             </div>
-                                        </div>
-                                        <?php $i++ ?>
+                                        @else@if($i == 0)
+                                                <?php $i=0 ?>
+                                        @endif
+                                            <?php $i++ ?>
                                     @endforeach
 
                                 </div>
