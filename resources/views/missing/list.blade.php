@@ -64,7 +64,6 @@
                                         ?>
 
                                         @if($i == 6 || $loop->last)
-                                            <?php $gals = array()?>
                                             <div class="carousel-item @if($t == 1) active @endif">
                                                 <div style="margin: auto">
                                                     <table style="height: 370px;">
@@ -96,6 +95,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <?php $gals = array()?>
                                         @endif
                                         <?php $i++; ?>
                                     @endforeach
