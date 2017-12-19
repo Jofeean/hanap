@@ -71,7 +71,7 @@
                                                         <td valign="middle" align="center">
                                                             <div class="row" style="height: 250px">
                                                                 @foreach($gals as $gal)
-                                                                    <div class="col-md-12">
+                                                                    <div class="col-md-2">
                                                                         <img class="d-block img-fluid"
                                                                              src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
                                                                              alt="First slide"
@@ -81,7 +81,7 @@
                                                             </div>
                                                             <div class="row">
                                                                 @foreach($gals as $gal)
-                                                                    <div class="col-md-10 offset-1">
+                                                                    <div class="col-md-2">
                                                                         Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
                                                                         <br>
                                                                         Missing since: {{ $gal->Missing_dodis }}
