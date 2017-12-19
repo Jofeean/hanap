@@ -541,7 +541,7 @@ class home extends Controller
         $key = strip_tags(htmlspecialchars(trim($request->fname)));
         $searches = explode(' ', $key);
         $data['missings'] = array();
-
+        $data['galleries'] = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
         foreach ($searches as $search) {
             $user = $users->where('Missing_gender', '=', $search)->get();
             foreach ($user as $use) {
