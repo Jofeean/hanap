@@ -19,6 +19,121 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+                    <div style="background-color: white; border-radius: 10px">
+                        <div class="row" style="padding: 20px">
+                            <div class="page-carousel col-md-12">
+                                <div id="carouselExampleIndicators-1" class="carousel slide"
+                                     data-ride="carousel">
+                                    <div class="carousel-inner" role="listbox" style="height: 370px;">
+                                        <?php $i = $t = 0; $gals = array(); ?>
+                                        @foreach($galleries as $gallery)
+                                            <?php
+
+                                            if ($loop->first) {
+                                                $t = 1;
+                                            } elseif ($i != 7) {
+                                                array_push($gals, $gallery);
+                                            }
+                                            ?>
+
+                                            @if($i == 6)
+                                                <div class="carousel-item @if($t == 1) active @endif">
+                                                    <div style="margin: auto">
+                                                        <table style="height: 370px;">
+
+                                                            <td valign="middle" align="center">
+                                                                <div class="row" style="height: 250px">
+                                                                    @foreach($gals as $gal)
+                                                                        <div class="col-md-2">
+                                                                            <img class="d-block img-fluid"
+                                                                                 src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
+                                                                                 alt="First slide"
+                                                                                 style="max-width: 100%; max-height: 250px; width: auto;"><br>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                                <div class="row">
+                                                                    @foreach($gals as $gal)
+                                                                        <div class="col-md-2">
+                                                                            Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
+                                                                            <br>
+                                                                            Missing
+                                                                            since: {{ $gal->Missing_dodis }}
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                            </td>
+                                                            <?php $t = 0 ?>
+                                                        </table>
+                                                        <div class="carousel-caption d-none d-md-block">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?php $gals = array(); $i = 0?>
+
+                                            @elseif($loop->last)
+
+                                                <div class="carousel-item @if($t == 1) active @endif">
+                                                    <div style="margin: auto">
+                                                        <table style="height: 370px;">
+
+                                                            <td valign="middle" align="center">
+                                                                <div class="row" style="height: 250px">
+                                                                    @foreach($gals as $gal)
+                                                                        <div class="col-md-2">
+                                                                            <img class="d-block img-fluid"
+                                                                                 src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
+                                                                                 alt="First slide"
+                                                                                 style="max-width: 100%; max-height: 250px; width: auto;"><br>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                                <div class="row">
+                                                                    @foreach($gals as $gal)
+                                                                        <div class="col-md-2">
+                                                                            Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
+                                                                            <br>
+                                                                            Missing
+                                                                            since: {{ $gal->Missing_dodis }}
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                            </td>
+                                                            <?php $t = 0 ?>
+                                                        </table>
+                                                        <div class="carousel-caption d-none d-md-block">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?php $gals = array()?>
+                                            @endif
+
+                                            <?php $i++; ?>
+                                        @endforeach
+                                    </div>
+                                    <a class="left carousel-control carousel-control-prev"
+                                       href="#carouselExampleIndicators-1" role="button" data-slide="prev">
+                                        <span class="fa fa-angle-left"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control carousel-control-next"
+                                       href="#carouselExampleIndicators-1" role="button" data-slide="next">
+                                        <span class="fa fa-angle-right"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding: 20px">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            
+            <div class="row">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="header">
                             <h4 class="title">All Reported Missing Persons</h4>
@@ -47,130 +162,6 @@
                             </form>
 
                         </div>
-
-                        <br>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div style="background-color: white; border-radius: 10px">
-                                    <div class="row" style="padding: 20px">
-                                        <div class="page-carousel col-md-12">
-                                            <div id="carouselExampleIndicators-1" class="carousel slide"
-                                                 data-ride="carousel">
-                                                <ol class="carousel-indicators">
-                                                    <li data-target="#carouselExampleIndicators-1" data-slide-to="0"
-                                                        class="active"></li>
-                                                    <li data-target="#carouselExampleIndicators-1"
-                                                        data-slide-to="1"></li>
-                                                    <li data-target="#carouselExampleIndicators-1"
-                                                        data-slide-to="2"></li>
-                                                </ol>
-                                                <div class="carousel-inner" role="listbox" style="height: 370px;">
-                                                    <?php $i = $t = 0; $gals = array(); ?>
-                                                    @foreach($galleries as $gallery)
-                                                        <?php
-
-                                                        if ($loop->first) {
-                                                            $t = 1;
-                                                        } elseif ($i != 7) {
-                                                            array_push($gals, $gallery);
-                                                        }
-                                                        ?>
-
-                                                        @if($i == 6)
-                                                            <div class="carousel-item @if($t == 1) active @endif">
-                                                                <div style="margin: auto">
-                                                                    <table style="height: 370px;">
-
-                                                                        <td valign="middle" align="center">
-                                                                            <div class="row" style="height: 250px">
-                                                                                @foreach($gals as $gal)
-                                                                                    <div class="col-md-2">
-                                                                                        <img class="d-block img-fluid"
-                                                                                             src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
-                                                                                             alt="First slide"
-                                                                                             style="max-width: 100%; max-height: 250px; width: auto;"><br>
-                                                                                    </div>
-                                                                                @endforeach
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                @foreach($gals as $gal)
-                                                                                    <div class="col-md-2">
-                                                                                        Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
-                                                                                        <br>
-                                                                                        Missing
-                                                                                        since: {{ $gal->Missing_dodis }}
-                                                                                    </div>
-                                                                                @endforeach
-                                                                            </div>
-                                                                        </td>
-                                                                        <?php $t = 0 ?>
-                                                                    </table>
-                                                                    <div class="carousel-caption d-none d-md-block">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <?php $gals = array(); $i = 0?>
-
-                                                        @elseif($loop->last)
-
-                                                            <div class="carousel-item @if($t == 1) active @endif">
-                                                                <div style="margin: auto">
-                                                                    <table style="height: 370px;">
-
-                                                                        <td valign="middle" align="center">
-                                                                            <div class="row" style="height: 250px">
-                                                                                @foreach($gals as $gal)
-                                                                                    <div class="col-md-2">
-                                                                                        <img class="d-block img-fluid"
-                                                                                             src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
-                                                                                             alt="First slide"
-                                                                                             style="max-width: 100%; max-height: 250px; width: auto;"><br>
-                                                                                    </div>
-                                                                                @endforeach
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                @foreach($gals as $gal)
-                                                                                    <div class="col-md-2">
-                                                                                        Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
-                                                                                        <br>
-                                                                                        Missing
-                                                                                        since: {{ $gal->Missing_dodis }}
-                                                                                    </div>
-                                                                                @endforeach
-                                                                            </div>
-                                                                        </td>
-                                                                        <?php $t = 0 ?>
-                                                                    </table>
-                                                                    <div class="carousel-caption d-none d-md-block">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <?php $gals = array()?>
-                                                        @endif
-
-                                                        <?php $i++; ?>
-                                                    @endforeach
-                                                </div>
-                                                <a class="left carousel-control carousel-control-prev"
-                                                   href="#carouselExampleIndicators-1" role="button" data-slide="prev">
-                                                    <span class="fa fa-angle-left"></span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                                <a class="right carousel-control carousel-control-next"
-                                                   href="#carouselExampleIndicators-1" role="button" data-slide="next">
-                                                    <span class="fa fa-angle-right"></span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="padding: 20px">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
 
                         <div class="content table-responsive table-full-width">
                             <table class="table table-striped">
