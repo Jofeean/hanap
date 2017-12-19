@@ -131,7 +131,7 @@
                                                 {{--</div>--}}
                                             {{--</div>--}}
                                             {{--<?php $gals = array()?>--}}
-                                        {{--@endif--}}
+                                        @endif
 
                                         <?php $i++; ?>
                                     @endforeach
