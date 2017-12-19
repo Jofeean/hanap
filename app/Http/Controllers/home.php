@@ -538,13 +538,17 @@ class home extends Controller
         }
 
         $users = new missing;
-        $data['galleries'] = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
         $key = strip_tags(htmlspecialchars(trim($request->fname)));
         $searches = explode(' ', $key);
         $data['missings'] = array();
 
         foreach ($searches as $search) {
-
+            $user = $users->where('Missing_gender', '=', $search)->get();
+            foreach ($user as $use) {
+                if ($use->Missing_status == 0) {
+                    array_push($data['missings'], $use);
+                }
+            }
 
             $user = $users
                 ->orwhere('Missing_fname', 'LIKE', "%" . $search . "%")
@@ -564,9 +568,8 @@ class home extends Controller
                 ->orWhere('Missing_discity', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_bodymarkings', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_clothes', 'LIKE', "%" . $search . "%")
-                ->orWhere('Missing_other', 'LIKE', "%" . $search . "%")
-                ->where('Missing_gender', '=', $search)->get();
-            $user = $users->where('Missing_gender', '=', $search)->get();
+                ->orWhere('Missing_other', 'LIKE', "%" . $search . "%")->get();
+
             foreach ($user as $use) {
                 if ($use->Missing_status == 0) {
                     array_push($data['missings'], $use);
