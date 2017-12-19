@@ -75,21 +75,25 @@
                                                                      alt="First slide"
                                                                      style="max-width: 100%; max-height: 250px; width: auto;">
                                                             </td>
+
                                                         @endforeach
-                                                    <?php $t =0 ?>
+                                                        <?php $t = 0 ?>
                                                     </table>
                                                     <div class="carousel-caption d-none d-md-block">
                                                     </div>
                                                 </div>
                                                 <div class="carousel-caption"
                                                      style="background: rgba(11,16,17,0.21); border-radius: 10px">
-                                                    <div class="col-md-2">
-                                                        qer
-                                                    </div>
+                                                    @foreach($gals as $gal)
+                                                        <div class="col-md-2">
+                                                            Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }} <br>
+                                                            Missing since: {{ $gal->Missing_dodis }}
+                                                        </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         @endif
-                                            <?php $i++ ?>
+                                        <?php $i++ ?>
                                     @endforeach
                                 </div>
                                 <a class="left carousel-control carousel-control-prev"
