@@ -43,7 +43,7 @@
             <div class="col-md-12">
                 <div style="background-color: white; border-radius: 10px">
                     <div class="row" style="padding: 20px">
-                        <div class="page-carousel">
+                        <div class="page-carousel col-md-12">
                             <div id="carouselExampleIndicators-1" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <li data-target="#carouselExampleIndicators-1" data-slide-to="0"
@@ -52,30 +52,43 @@
                                     <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
                                 </ol>
                                 <div class="carousel-inner" role="listbox" style="height: 500px;">
-                                    <?php $i = 0?>
+                                    <center>
+                                    <?php $i = $t = 0; $gals = array();?>
                                     @foreach($galleries as $gallery)
+                                        <?php
+                                        if ($i == 0) {
+                                            array_add($gals, $gallery);
+                                        }
+                                        ?>
 
-                                        <div class="carousel-item @if($loop->first) active @endif">
-                                            <div style="margin: auto">
-                                                <table style="height: 500px;">
-                                                    <td valign="middle" align="center">
-                                                        <img class="d-block img-fluid"
-                                                             src="{!! asset('images/missingthumb/'. $gallery->Missing_picture) !!}"
-                                                             alt="First slide"
-                                                             style="max-width: 100%; max-height: 500px; width: auto;">
-                                                    </td>
-                                                </table>
-                                                <div class="carousel-caption d-none d-md-block">
+                                        @if($i == 6)
+                                            @foreach($gals as $gal)
+                                                <div class="carousel-item @if($loop->first) active @endif">
+                                                    <div style="margin: auto">
+                                                        <table style="height: 250px;">
+                                                            <td valign="middle" align="center">
+                                                                <img class="d-block img-fluid"
+                                                                     src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
+                                                                     alt="First slide"
+                                                                     style="max-width: 100%; max-height: 250px; width: auto;">
+                                                            </td>
+                                                        </table>
+                                                        <div class="carousel-caption d-none d-md-block">
+                                                        </div>
+                                                    </div>
+                                                    <div class="carousel-caption">
+                                                        <div class="col-md-2"
+                                                             style="background: rgba(11,16,17,0.21); border-radius: 10px">
+                                                            qer
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="carousel-caption">
-                                                <div class="col-md-2"
-                                                     style="background: rgba(11,16,17,0.21); border-radius: 10px">qer</div>
-                                            </div>
-                                        </div>
+                                            @endforeach
+                                            <?php $i = 0;?>
+                                        @endif
                                         <?php $i++ ?>
                                     @endforeach
-
+                                    </center>
                                 </div>
 
                                 <a class="left carousel-control carousel-control-prev"
