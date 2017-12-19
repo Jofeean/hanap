@@ -63,7 +63,7 @@
 
                                                         <td valign="middle" align="center">
                                                             <img class="d-block img-fluid"
-                                                                 src="{!! asset('images/articles/'. $gallery->Missing_picture) !!}"
+                                                                 src="{!! asset('images/missingthumb/'. $gallery->Missing_picture) !!}"
                                                                  alt="First slide"
                                                                  style="max-width: 100%; max-height: 500px; width: auto;">
                                                         </td>
