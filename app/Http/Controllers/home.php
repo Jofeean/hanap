@@ -564,7 +564,7 @@ class home extends Controller
                 ->orWhere('Missing_bodymarkings', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_clothes', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_other', 'LIKE', "%" . $search . "%")
-                ->orWhere('Missing_gender', '=', $search)->get();
+                ->where('Missing_gender', '=', $search)->get();
 
             foreach ($user as $use) {
                 if ($use->Missing_status == 0) {
