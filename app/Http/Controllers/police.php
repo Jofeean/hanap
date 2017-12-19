@@ -48,6 +48,7 @@ class police extends Controller
         }
 
         $missings = new missing;
+        $data['galleries'] = $missings->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
         $missings = $missings->get();
 
         $data['cal'] = $data['las'] = $data['mak'] =
@@ -108,7 +109,6 @@ class police extends Controller
             }
         }
 
-        $data['galleries'] = $missings->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
         return view('police.geo', $data);
     }
 
