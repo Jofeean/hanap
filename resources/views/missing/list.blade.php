@@ -79,7 +79,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <div class="col-md-12">
+                                                                    <div class="col-md-10 offset-1">
                                                                         Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
                                                                         <br>
                                                                         Missing since: {{ $gal->Missing_dodis }}
