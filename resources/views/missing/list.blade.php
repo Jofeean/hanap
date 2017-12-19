@@ -84,12 +84,15 @@
                                                 </div>
                                                 <div class="carousel-caption"
                                                      style="background: rgba(11,16,17,0.21); border-radius: 10px">
-                                                    @foreach($gals as $gal)
-                                                        <div class="col-md-2">
-                                                            Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }} <br>
-                                                            Missing since: {{ $gal->Missing_dodis }}
-                                                        </div>
-                                                    @endforeach
+                                                    <div class="row">
+                                                        @foreach($gals as $gal)
+                                                            <div class="col-md-2">
+                                                                Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
+                                                                <br>
+                                                                Missing since: {{ $gal->Missing_dodis }}
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endif
