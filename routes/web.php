@@ -145,6 +145,9 @@ Route::get('/news/delete/{id}', 'admin@delnews');
 //missingperson list police
 Route::get('/missingperson/reports', 'police@missings');
 
+//missingperson list search police
+Route::post('/missingperson/reports/search-result', 'police@missings');
+
 //geo-map
 Route::get('/geomap', 'police@geomap');
 
