@@ -23,7 +23,7 @@
                         <ol class="carousel-indicators">
                             @for($i = sizeof($announcements)-1; $i>=0; $i-- )
                                 <li data-target="#carouselExampleIndicators" data-slide-to="{{ $i }}"
-                                    class="@if($loop->first) active @endif"></li>
+                                    class="@if($i == sizeof($announcements)-1) active @endif"></li>
                             @endfor
                         </ol>
                         <div class="carousel-inner" role="listbox" style="height: 500px;">
@@ -158,7 +158,7 @@
                                         <ol class="carousel-indicators">
                                             @for($i = sizeof($news)-1; $i>=0; $i-- )
                                                 <li data-target="#carouselExampleIndicators" data-slide-to="{{ $i }}"
-                                                    class="@if($loop->first) active @endif"></li>
+                                                    class="@if($i == sizeof($news)-1) active @endif"></li>
                                             @endfor
                                         </ol>
                                         <div class="carousel-inner" role="listbox" style="height: 500px;">
