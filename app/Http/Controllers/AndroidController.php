@@ -16,14 +16,14 @@ class AndroidController extends Controller
 {
     public function login(Request $request)
     {
-        $email = $request->email;
-        $password = $request->password;
-
-        $user = user::where('User_email', $email)->first();
-        if ($user == null) return 0;
-        if (!Hash::check($password, $user->User_password)) return 2;
-
-        return 1;
+//        $email = $request->email;
+//        $password = $request->password;
+//
+//        $user = user::where('User_email', $email)->first();
+//        if ($user == null) return 0;
+//        if (!Hash::check($password, $user->User_password)) return 2;
+//
+//        return 1;
     }
 
     public function loginPolice(Request $request)
