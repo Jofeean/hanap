@@ -544,6 +544,7 @@ class home extends Controller
         $data['missings'] = array();
 
         foreach ($searches as $search) {
+
             $user = $users
                 ->orwhere('Missing_fname', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_mname', 'LIKE', "%" . $search . "%")
@@ -562,18 +563,14 @@ class home extends Controller
                 ->orWhere('Missing_discity', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_bodymarkings', 'LIKE', "%" . $search . "%")
                 ->orWhere('Missing_clothes', 'LIKE', "%" . $search . "%")
-                ->orWhere('Missing_other', 'LIKE', "%" . $search . "%")->get();
+                ->orWhere('Missing_other', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_gender', '=', $search)->get();
 
             foreach ($user as $use) {
                 if ($use->Missing_status == 0) {
                     array_push($data['missings'], $use);
                 }
             }
-        }
-
-        $user = $users->where('Missing_gender', '=', $search)->get();
-        foreach ($user as $use) {
-            array_push($data['missings'], $use);
         }
 
         $users = new user;
