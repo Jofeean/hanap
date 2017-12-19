@@ -60,7 +60,7 @@
                             <div class="page-carousel col-md-12">
                                 <div id="carouselExampleIndicators-1" class="carousel slide"
                                      data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox" style="height: 370px;">
+                                    <div class="carousel-inner" style="height: 370px;">
                                         <?php $i = $t = 0; $gals = array(); ?>
                                         @foreach($galleries as $gallery)
                                             <?php
@@ -73,7 +73,7 @@
                                             ?>
 
                                             @if($i == 6)
-                                                <div class="carousel-item @if($t == 1) active @endif">
+                                                <div class="item @if($t == 1) active @endif">
                                                     <div style="margin: auto">
                                                         <table style="height: 370px;">
 
@@ -147,14 +147,14 @@
                                             <?php $i++; ?>
                                         @endforeach
                                     </div>
-                                    <a class="left carousel-control carousel-control-prev"
-                                       href="#carouselExampleIndicators-1" role="button" data-slide="prev">
-                                        <span class="fa fa-angle-left"></span>
+                                    <a class="left carousel-control"
+                                       href="#carouselExampleIndicators-1" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left"></span>
                                         <span class="sr-only">Previous</span>
                                     </a>
-                                    <a class="right carousel-control carousel-control-next"
-                                       href="#carouselExampleIndicators-1" role="button" data-slide="next">
-                                        <span class="fa fa-angle-right"></span>
+                                    <a class="right carousel-control"
+                                       href="#carouselExampleIndicators-1" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
                                         <span class="sr-only">Next</span>
                                     </a>
                                 </div>
