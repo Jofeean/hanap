@@ -66,7 +66,7 @@
                                         @if($i == 6)
                                             <div class="carousel-item @if($t == 1) active @endif">
                                                 <div style="margin: auto">
-                                                    <table style="height: 250px;">
+                                                    <table style="height: 320px;">
 
                                                         @foreach($gals as $gal)
                                                             <td valign="middle" align="center">
