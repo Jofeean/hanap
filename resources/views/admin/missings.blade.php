@@ -139,7 +139,7 @@
                                 <p class="category">Found/Still Missing</p>
                             </div>
 
-                            <form action="/missingperson/lists/search-results" method="post">
+                            <form action="/missingperson/lists/search-result" method="post">
                                 {{ csrf_field() }}
                                 <div class="col-md-7">
 
