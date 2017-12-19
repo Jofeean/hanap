@@ -623,7 +623,6 @@ class admin extends Controller
 
             $user = $users
                 ->orwhere('Police_Name', 'LIKE', "%" . $search . "%")
-                ->orWhere('Police_mname', 'LIKE', "%" . $search . "%")
                 ->orWhere('Police_lname', 'LIKE', "%" . $search . "%")
                 ->orWhere('Police_bday', 'LIKE', "%" . $search . "%")
                 ->orWhere('Police_address', 'LIKE', "%" . $search . "%")
