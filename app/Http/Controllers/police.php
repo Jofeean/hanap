@@ -242,6 +242,6 @@ class police extends Controller
         $data['users'] = $users->get();
         $data['missings'] = array_unique($data['missings']);
 
-        return view('admin.missings', $data);
+        return view('police.missings', $data);
     }
 }
