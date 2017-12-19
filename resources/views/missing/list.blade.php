@@ -96,41 +96,42 @@
                                                 </div>
                                             </div>
                                             <?php $gals = array()?>
-                                        @elseif($loop->last)
 
-                                            <div class="carousel-item @if($t == 1) active @endif">
-                                                <div style="margin: auto">
-                                                    <table style="height: 370px;">
+                                        {{--@elseif($loop->last)--}}
 
-                                                        <td valign="middle" align="center">
-                                                            <div class="row" style="height: 250px">
-                                                                @foreach($gals as $gal)
-                                                                    <div class="col-md-2">
-                                                                        <img class="d-block img-fluid"
-                                                                             src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
-                                                                             alt="First slide"
-                                                                             style="max-width: 100%; max-height: 250px; width: auto;"><br>
-                                                                    </div>
-                                                                @endforeach
-                                                            </div>
-                                                            <div class="row">
-                                                                @foreach($gals as $gal)
-                                                                    <div class="col-md-2">
-                                                                        Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
-                                                                        <br>
-                                                                        Missing since: {{ $gal->Missing_dodis }}
-                                                                    </div>
-                                                                @endforeach
-                                                            </div>
-                                                        </td>
-                                                        <?php $t = 0 ?>
-                                                    </table>
-                                                    <div class="carousel-caption d-none d-md-block">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php $gals = array()?>
-                                        @endif
+                                            {{--<div class="carousel-item @if($t == 1) active @endif">--}}
+                                                {{--<div style="margin: auto">--}}
+                                                    {{--<table style="height: 370px;">--}}
+
+                                                        {{--<td valign="middle" align="center">--}}
+                                                            {{--<div class="row" style="height: 250px">--}}
+                                                                {{--@foreach($gals as $gal)--}}
+                                                                    {{--<div class="col-md-2">--}}
+                                                                        {{--<img class="d-block img-fluid"--}}
+                                                                             {{--src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"--}}
+                                                                             {{--alt="First slide"--}}
+                                                                             {{--style="max-width: 100%; max-height: 250px; width: auto;"><br>--}}
+                                                                    {{--</div>--}}
+                                                                {{--@endforeach--}}
+                                                            {{--</div>--}}
+                                                            {{--<div class="row">--}}
+                                                                {{--@foreach($gals as $gal)--}}
+                                                                    {{--<div class="col-md-2">--}}
+                                                                        {{--Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}--}}
+                                                                        {{--<br>--}}
+                                                                        {{--Missing since: {{ $gal->Missing_dodis }}--}}
+                                                                    {{--</div>--}}
+                                                                {{--@endforeach--}}
+                                                            {{--</div>--}}
+                                                        {{--</td>--}}
+                                                        {{--<?php $t = 0 ?>--}}
+                                                    {{--</table>--}}
+                                                    {{--<div class="carousel-caption d-none d-md-block">--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--<?php $gals = array()?>--}}
+                                        {{--@endif--}}
 
                                         <?php $i++; ?>
                                     @endforeach
