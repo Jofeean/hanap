@@ -63,31 +63,32 @@
                                         }
                                         ?>
 
-                                        @if($i == 6)
+                                        @if($i == 6 || $loop->last)
                                             <div class="carousel-item @if($t == 1) active @endif">
                                                 <div style="margin: auto">
                                                     <table style="height: 370px;">
 
-                                                        @foreach($gals as $gal)
-                                                            <td valign="middle" align="center">
-                                                                <div class="row" style="height: 250px">
+                                                        <td valign="middle" align="center">
+                                                            <div class="row" style="height: 250px">
+                                                                @foreach($gals as $gal)
                                                                     <div class="col-md-12">
                                                                         <img class="d-block img-fluid"
                                                                              src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
                                                                              alt="First slide"
                                                                              style="max-width: 100%; max-height: 250px; width: auto;"><br>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row">
+                                                                @endforeach
+                                                            </div>
+                                                            <div class="row">
+                                                                @foreach($gals as $gal)
                                                                     <div class="col-md-10 offset-1">
                                                                         Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
                                                                         <br>
                                                                         Missing since: {{ $gal->Missing_dodis }}
                                                                     </div>
-                                                                </div>
-                                                            </td>
-
-                                                        @endforeach
+                                                                @endforeach
+                                                            </div>
+                                                        </td>
                                                         <?php $t = 0 ?>
                                                     </table>
                                                     <div class="carousel-caption d-none d-md-block">
