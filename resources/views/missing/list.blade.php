@@ -55,14 +55,12 @@
                                     <?php $i = $t = 0; $gals = array();?>
                                     @foreach($galleries as $gallery)
                                         <?php
-                                        if ($i == 0) {
+                                        if ($i != 7) {
                                             array_push($gals, $gallery);
                                         }
                                         if ($loop->first) {
                                             $t = 1;
                                         }
-                                        var_dump($gals);
-                                        die()
                                         ?>
 
                                         @if($i == 6)
