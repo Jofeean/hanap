@@ -54,48 +54,35 @@
                                 <div class="carousel-inner" role="listbox" style="height: 370px;">
                                     <?php $i = $t = 0; $gals = array();?>
                                     @foreach($galleries as $gallery)
-                                        <?php
-                                        if ($i != 6) {
-                                            array_push($gals, $gallery);
-                                        }
-                                        if ($loop->first) {
-                                            $t = 1;
-                                        }
-                                        ?>
 
-                                        @if($i == 6)
-                                            <div class="carousel-item @if($t == 1) active @endif">
-                                                <div style="margin: auto">
-                                                    <table style="height: 370px;">
+                                        <div class="carousel-item @if($t == 1) active @endif">
+                                            <div style="margin: auto">
+                                                <table style="height: 370px;">
 
-                                                        @foreach($gals as $gal)
-                                                            <td valign="middle" align="center">
-                                                                <div class="row" style="height: 250px">
-                                                                    <div class="col-md-12">
-                                                                        <img class="d-block img-fluid"
-                                                                             src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
-                                                                             alt="First slide"
-                                                                             style="max-width: 100%; max-height: 250px; width: auto;"><br>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-10 offset-1">
-                                                                        Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
-                                                                        <br>
-                                                                        Missing since: {{ $gal->Missing_dodis }}
-                                                                    </div>
-                                                                </div>
-                                                            </td>
+                                                    <td valign="middle" align="center">
+                                                        <div class="row" style="height: 250px">
+                                                            <div class="col-md-12">
+                                                                <img class="d-block img-fluid"
+                                                                     src="{!! asset('images/missingthumb/'. $gallery->Missing_picture) !!}"
+                                                                     alt="First slide"
+                                                                     style="max-width: 100%; max-height: 250px; width: auto;"><br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-10 offset-1">
+                                                                Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
+                                                                <br>
+                                                                Missing since: {{ $gal->Missing_dodis }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
 
-                                                        @endforeach
-                                                        <?php $t = 0 ?>
-                                                    </table>
-                                                    <div class="carousel-caption d-none d-md-block">
-                                                    </div>
+                                                </table>
+                                                <div class="carousel-caption d-none d-md-block">
                                                 </div>
                                             </div>
-                                        @endif
-                                        <?php $i++ ?>
+                                        </div>
+
                                     @endforeach
                                 </div>
                                 <a class="left carousel-control carousel-control-prev"
