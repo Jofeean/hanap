@@ -69,37 +69,38 @@
                                                     <table style="height: 250px;">
 
                                                         @foreach($gals as $gal)
-                                                            <td valign="middle" align="center" class="col-md-2">
+                                                            <td valign="middle" align="center">
                                                                 <img class="d-block img-fluid"
                                                                      src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
                                                                      alt="First slide"
                                                                      style="max-width: 100%; max-height: 250px; width: auto;">
                                                             </td>
-                                                            <td valign="middle" align="center" class="col-md-2">
+
+                                                            <td valign="middle" align="center">
                                                                 <img class="d-block img-fluid"
                                                                      src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
                                                                      alt="First slide"
                                                                      style="max-width: 100%; max-height: 250px; width: auto;">
                                                             </td>
-                                                            <td valign="middle" align="center" class="col-md-2">
+                                                            <td valign="middle" align="center">
                                                                 <img class="d-block img-fluid"
                                                                      src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
                                                                      alt="First slide"
                                                                      style="max-width: 100%; max-height: 250px; width: auto;">
                                                             </td>
-                                                            <td valign="middle" align="center" class="col-md-2">
+                                                            <td valign="middle" align="center">
                                                                 <img class="d-block img-fluid"
                                                                      src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
                                                                      alt="First slide"
                                                                      style="max-width: 100%; max-height: 250px; width: auto;">
                                                             </td>
-                                                            <td valign="middle" align="center" class="col-md-2">
+                                                            <td valign="middle" align="center">
                                                                 <img class="d-block img-fluid"
                                                                      src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
                                                                      alt="First slide"
                                                                      style="max-width: 100%; max-height: 250px; width: auto;">
                                                             </td>
-                                                            <td valign="middle" align="center" class="col-md-2">
+                                                            <td valign="middle" align="center">
                                                                 <img class="d-block img-fluid"
                                                                      src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
                                                                      alt="First slide"
