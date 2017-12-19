@@ -187,7 +187,9 @@
                                 <br>
                                 <b>Age:</b> {{ $interval->y }}<br>
                                 <b>Status:</b> @if($missing->Missing_status == 0)
-                                    Missing @elseif($missing->Missing_status == 1) Found @endif<br>
+                                    <p style="color: red; font-weight: bold">Missing</p>
+                                @elseif($missing->Missing_status == 1)
+                                    <p style="color: lightgreen; font-weight: bold">Found</p> @endif<br>
                                 <b>Missing on:</b> {{ $missing->Missing_dodis }}
                                 <br><br>
                             </div>
