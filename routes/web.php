@@ -107,6 +107,9 @@ Route::post('/user/lists/search-result', 'admin@usersearch');
 //police list admin
 Route::get('/police/lists', 'admin@polices');
 
+//police list search admin
+Route::get('/police/lists/search-result', 'admin@polsearch');
+
 //missingperson list admin
 Route::get('/missingperson/lists', 'admin@missings');
 

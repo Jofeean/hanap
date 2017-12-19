@@ -591,6 +591,52 @@ class admin extends Controller
             }
         }
 
+        $data['users'] = array_unique($data['users']);
+
         return view('admin.accounts', $data);
+    }
+
+    public function polsearch(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'fname' => 'required|max:250'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput($request->input());
+        }
+
+        $users = new police;
+        $key = strip_tags(htmlspecialchars(trim($request->fname)));
+        $searches = explode(' ', $key);
+        $data['users'] = array();
+
+        foreach ($searches as $search) {
+
+            $user = $users->where('Police_gender', '=', $search)->get();
+            foreach ($user as $use) {
+                array_push($data['users'], $use);
+            }
+
+            $user = $users
+                ->orwhere('Police_fname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Police_mname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Police_lname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Police_bday', 'LIKE', "%" . $search . "%")
+                ->orWhere('Police_address', 'LIKE', "%" . $search . "%")
+                ->orWhere('Police_email', 'LIKE', "%" . $search . "%")
+                ->orWhere('Police_mobilenum', 'LIKE', "%" . $search . "%")->get();
+
+            foreach ($user as $use) {
+                array_push($data['users'], $use);
+            }
+        }
+
+        $data['users'] = array_unique($data['users']);
+
+        return view('admin.police', $data);
     }
 }

@@ -22,7 +22,29 @@
                     <div class="card">
                         <div class="header">
                             <h4 class="title">All Police Accounts</h4>
-                            <p class="category"></p>
+                            <div class="col-md-4">
+                                <p class="category">Accounts of all police forces</p>
+                            </div>
+                            <form action="/user/lists/search-result" method="post">
+                                {{ csrf_field() }}
+                                <div class="col-md-7">
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="fname"
+                                               placeholder="Name, Address, Gender, Birthdays">
+                                        @if($errors->has('fname'))
+                                            <div style="color: red">Sorry, you must enter a text.
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-1">
+                                    <input type="submit" value="Search" class="btn btn-info">
+                                </div>
+
+                            </form>
                         </div>
                         <div class="content table-responsive table-full-width">
                             <table class="table table-striped">
