@@ -68,9 +68,8 @@
                                                 <div class="carousel-caption d-none d-md-block">
                                                 </div>
                                             </div>
-                                            <div class="carousel-caption">
-                                                <div class="col-md-2"
-                                                     style="background: rgba(11,16,17,0.21); border-radius: 10px">
+                                            <div class="carousel-caption"style="background: rgba(11,16,17,0.21); border-radius: 10px">
+                                                <div class="col-md-2">
                                                     qer
                                                 </div>
                                             </div>
