@@ -25,7 +25,7 @@
                             <div class="col-md-4">
                                 <p class="category">Accounts of all police forces</p>
                             </div>
-                            <form action="/user/lists/search-result" method="post">
+                            <form action="/police/lists/search-result" method="post">
                                 {{ csrf_field() }}
                                 <div class="col-md-7">
 

@@ -26,7 +26,7 @@
                                 <p class="category">Activated/Inactive accounts</p>
                             </div>
 
-                            <form action="/police/lists/search-result" method="post">
+                            <form action="/user/lists/search-result" method="post">
                                 {{ csrf_field() }}
                                 <div class="col-md-7">
 
