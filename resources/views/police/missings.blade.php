@@ -128,6 +128,7 @@
                     </div>
                 </div>
             </div>
+            <br>
 
             <div class="row">
                 <div class="row">
@@ -139,27 +140,30 @@
                                 <br>
                             </div>
                         </div>
-                        <form action="/missingperson/reports/search-result" method="post">
-                            {{ csrf_field() }}
-                            <div class="col-md-7">
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="fname"
-                                           placeholder="Name, Address, Gender, Birthdays">
-                                    @if($errors->has('fname'))
-                                        <div style="color: red">Sorry, you must enter a text.
-                                        </div>
-                                    @endif
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-1">
-                                <input type="submit" value="Search" class="btn btn-info">
-                            </div>
-
-                        </form>
                     </div>
+                </div>
+
+                <div class="row">
+                    <form action="/missingperson/reports/search-result" method="post">
+                        {{ csrf_field() }}
+                        <div class="col-md-5">
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="fname"
+                                       placeholder="Name, Address, Gender, Birthdays">
+                                @if($errors->has('fname'))
+                                    <div style="color: red">Sorry, you must enter a text.
+                                    </div>
+                                @endif
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-1">
+                            <input type="submit" value="Search" class="btn btn-info">
+                        </div>
+
+                    </form>
                 </div>
 
                 @foreach($missings as $missing)
