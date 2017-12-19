@@ -538,6 +538,7 @@ class home extends Controller
         }
 
         $users = new missing;
+        $data['galleries'] = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
         $key = strip_tags(htmlspecialchars(trim($request->fname)));
         $searches = explode(' ', $key);
         $data['missings'] = array();
@@ -564,13 +565,13 @@ class home extends Controller
                 ->orWhere('Missing_other', 'LIKE', "%" . $search . "%")->get();
 
             foreach ($user as $use) {
-                if($use->Missing_status == 0){
+                if ($use->Missing_status == 0) {
                     array_push($data['missings'], $use);
                 }
             }
         }
 
-        $user = $users->where('Missing_gender', '=', $search )->get();
+        $user = $users->where('Missing_gender', '=', $search)->get();
         foreach ($user as $use) {
             array_push($data['missings'], $use);
         }
