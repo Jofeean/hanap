@@ -107,6 +107,9 @@ Route::get('/police/lists', 'admin@polices');
 //missingperson list admin
 Route::get('/missingperson/lists', 'admin@missings');
 
+//missingperson list search admin
+Route::post('/missingperson/lists/search-result', 'admin@missings');
+
 //police add admin
 Route::post('/police/register/{id}', 'admin@regpol');
 

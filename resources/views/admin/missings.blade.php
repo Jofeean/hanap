@@ -139,13 +139,14 @@
                                 <p class="category">Found/Still Missing</p>
                             </div>
 
-                            <form action="#" method="">
+                            <form action="/missingperson/lists/search-results" method="post">
+                                {{ csrf_field() }}
                                 <div class="col-md-7">
 
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="search"
+                                        <input type="text" class="form-control" name="fname"
                                                placeholder="Name, Address, Gender, Birthdays">
-                                        @if($errors->has('search'))
+                                        @if($errors->has('fname'))
                                             <div style="color: red">Sorry, you must enter a text.
                                             </div>
                                         @endif

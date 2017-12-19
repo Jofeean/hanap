@@ -482,4 +482,73 @@ class admin extends Controller
         }
         return redirect('/');
     }
+
+    public function search(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'fname' => 'required|max:250'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput($request->input());
+        }
+
+        $users = new missing;
+        $key = strip_tags(htmlspecialchars(trim($request->fname)));
+        $searches = explode(' ', $key);
+        $data['missings'] = array();
+        $data['galleries'] = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
+
+        foreach ($searches as $search) {
+
+            $user = $users->where('Missing_gender', '=', $search)->get();
+            foreach ($user as $use) {
+                if ($use->Missing_status == 0) {
+                    array_push($data['missings'], $use);
+                }
+            }
+
+            $user = $users->where('Missing_status', '=', $search)->get();
+            foreach ($user as $use) {
+                if ($use->Missing_status == 0) {
+                    array_push($data['missings'], $use);
+                }
+            }
+
+            $user = $users
+                ->orwhere('Missing_fname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_mname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_lname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bday', 'LIKE', "%" . $search . "%")
+                ->orwhere('Missing_hcolor', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_height', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_eyecolor', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_hair', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_weight', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bodytype', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bodyhair', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_facialhair', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_dodis', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_disaddress', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_discity', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bodymarkings', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_clothes', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_other', 'LIKE', "%" . $search . "%")->get();
+
+            foreach ($user as $use) {
+                if ($use->Missing_status == 0) {
+                    array_push($data['missings'], $use);
+                }
+            }
+        }
+
+        $users = new user;
+        $data['users'] = $users->get();
+        $data['missings'] = array_unique($data['missings']);
+
+        return view('admin.missings', $data);
+    }
 }
