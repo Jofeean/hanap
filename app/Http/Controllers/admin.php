@@ -545,4 +545,52 @@ class admin extends Controller
 
         return view('admin.missings', $data);
     }
+
+    public function usersearch(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'fname' => 'required|max:250'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput($request->input());
+        }
+
+        $users = new user;
+        $key = strip_tags(htmlspecialchars(trim($request->fname)));
+        $searches = explode(' ', $key);
+        $data['users'] = array();
+
+        foreach ($searches as $search) {
+
+            $user = $users->where('User_gender', '=', $search)->get();
+            foreach ($user as $use) {
+                array_push($data['users'], $use);
+            }
+
+            $user = $users->where('User_status', '=', $search)->get();
+            foreach ($user as $use) {
+                array_push($data['users'], $use);
+            }
+
+            $user = $users
+                ->orwhere('User_fname', 'LIKE', "%" . $search . "%")
+                ->orWhere('User_mname', 'LIKE', "%" . $search . "%")
+                ->orWhere('User_lname', 'LIKE', "%" . $search . "%")
+                ->orWhere('User_bday', 'LIKE', "%" . $search . "%")
+                ->orWhere('User_address', 'LIKE', "%" . $search . "%")
+                ->orWhere('User_city', 'LIKE', "%" . $search . "%")
+                ->orWhere('User_email', 'LIKE', "%" . $search . "%")
+                ->orWhere('User_mobilenum', 'LIKE', "%" . $search . "%")->get();
+
+            foreach ($user as $use) {
+                array_push($data['users'], $use);
+            }
+        }
+
+        return view('admin.accounts', $data);
+    }
 }

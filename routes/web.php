@@ -101,6 +101,9 @@ Route::post('/missingperson/list/search-results', 'home@search');
 //users list admin
 Route::get('/user/lists', 'admin@users');
 
+//users list search admin
+Route::get('/user/lists/search-result', 'admin@usersearch');
+
 //police list admin
 Route::get('/police/lists', 'admin@polices');
 
