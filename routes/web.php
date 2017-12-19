@@ -59,11 +59,12 @@ Route::get('/missingperson/list', function () {
     $i = 0;
     foreach ($users as $uses) {
         if ($i != 6) {
-            array_push($data['galleries'], ["" . $i . "" => $uses]);
+            array_push($data['galleries'], [$i => $uses]);
         }
         if ($i == 6) {
             $i = 0;
         }
+        $i++;
     }
     dd($data['galleries']);
 
