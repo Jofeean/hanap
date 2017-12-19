@@ -55,11 +55,14 @@
                                     <?php $i = $t = 0; $gals = array(); ?>
                                     @foreach($galleries as $gallery)
                                         <?php
-                                        if ($i != 6) {
-                                            array_push($gals, $gallery);
-                                        }
+
                                         if ($loop->first) {
                                             $t = 1;
+                                            if ($i != 6) {
+                                                array_push($gals, $gallery);
+                                            }
+                                        } elseif ($i != 6) {
+                                            array_push($gals, $gallery);
                                         }
                                         ?>
 
