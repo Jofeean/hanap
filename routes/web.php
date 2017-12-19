@@ -52,7 +52,21 @@ Route::get('/missingperson/reportsighting', function () {
 Route::get('/missingperson/list', function () {
     $users = new App\missing;
     $data['missings'] = $users->where('Missing_status', '=', '0')->paginate(15);
-    $data['galleries'] = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
+
+    $users = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
+
+    $data['galleries'];
+    $i = 0;
+    foreach ($users as $uses) {
+        if ($i != 6) {
+            array_push($data['galleries'], [$i => $uses]);
+        }
+        if ($i == 6) {
+            $i = 0;
+        }
+    }
+    dd($data['galleries']);
+
     $users = new App\user;
     $data['users'] = $users->get();
 
