@@ -635,7 +635,7 @@ class admin extends Controller
             }
         }
 
-        $data['users'] = array_unique($data['users']);
+        //$data['users'] = array_unique($data['users']);
 
         return view('admin.police', $data);
     }
