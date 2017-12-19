@@ -55,7 +55,7 @@
                                     <?php $i = $t = 0; $gals = array();?>
                                     @foreach($galleries as $gallery)
 
-                                        <div class="carousel-item @if($t == 1) active @endif">
+                                        <div class="carousel-item @if($loop->first) active @endif">
                                             <div style="margin: auto">
                                                 <table style="height: 250px;">
                                                     <td valign="middle" align="center">
