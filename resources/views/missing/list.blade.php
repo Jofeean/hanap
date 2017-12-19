@@ -58,7 +58,7 @@
                                         }
                                         ?>
 
-                                        @if($i == 6 || $loop->last)
+                                        @if($i == 6 || $loop->parent->last)
                                             <div class="carousel-item @if($t == 1) active @endif">
                                                 <div style="margin: auto">
                                                     <table style="height: 370px;">
