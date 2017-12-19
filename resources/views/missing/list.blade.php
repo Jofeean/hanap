@@ -45,11 +45,16 @@
                     <div class="row" style="padding: 20px">
                         <div class="page-carousel col-md-12">
                             <div id="carouselExampleIndicators-1" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators-1" data-slide-to="0"
+                                        class="active"></li>
+                                    <li data-target="#carouselExampleIndicators-1" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
+                                </ol>
                                 <div class="carousel-inner" role="listbox" style="height: 370px;">
-                                    <?php $i = $t = 0; ?>
+                                    <?php $i = $t = 0; $gals = array();?>
                                     @foreach($galleries as $gallery)
                                         <?php
-                                        $gals = array();
                                         if ($i != 7) {
                                             array_push($gals, $gallery);
                                         }
