@@ -57,7 +57,7 @@
                                     @foreach($galleries as $gallery)
                                         <?php
                                         if ($i == 0) {
-                                            array_add($gals, $gallery);
+                                            array_push($gals, $gallery);
                                         }
                                         ?>
 
