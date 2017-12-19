@@ -46,26 +46,28 @@
                         <div class="page-carousel col-md-12">
                             <div id="carouselExampleIndicators-1" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                    <?php $i = $t = 0; $gals = array();?>
 
+                                    <?php $i = $t = 0; ?>
                                     @foreach($galleries as $gallery)
                                         <?php
+                                        $gals = array();
                                         if ($i != 7) {
                                             array_push($gals, $gallery);
                                         }
                                         ?>
 
-                                        @if($i == 6)
-                                            <li data-target="#carouselExampleIndicators-1" data-slide-to="{{ $t }}"
-                                                class="@if($t == 0) active @endif"></li>
+                                        @if($i == 6 || $loop->last)
+                                            <li data-target="#carouselExampleIndicators-1" data-slide-to="{{$t}}"
+                                                class="@if($t == 0)active@endif"></li>
                                         @endif
-                                        <?php $i++; $t++ ?>
+                                        <?php $i++ ?>
                                     @endforeach
                                 </ol>
                                 <div class="carousel-inner" role="listbox" style="height: 370px;">
-                                    <?php $i = $t = 0;?>
+                                    <?php $i = $t = 0; ?>
                                     @foreach($galleries as $gallery)
                                         <?php
+                                        $gals = array();
                                         if ($i != 7) {
                                             array_push($gals, $gallery);
                                         }
@@ -74,7 +76,7 @@
                                         }
                                         ?>
 
-                                        @if($i == 6)
+                                        @if($i == 6 || $loop->last)
                                             <div class="carousel-item @if($t == 1) active @endif">
                                                 <div style="margin: auto">
                                                     <table style="height: 370px;">
