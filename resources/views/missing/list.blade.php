@@ -52,9 +52,10 @@
                                     <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
                                 </ol>
                                 <div class="carousel-inner" role="listbox" style="height: 370px;">
-                                    <?php $i = $t = 0; $gals = array();?>
+                                    <?php $i = $t = 0; ?>
                                     @foreach($galleries as $gallery)
                                         <?php
+                                        $gals = array();
                                         if ($i != 6) {
                                             array_push($gals, $gallery);
                                         }
