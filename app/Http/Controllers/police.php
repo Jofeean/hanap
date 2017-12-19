@@ -34,6 +34,7 @@ class police extends Controller
             $users = new user;
             $data['users'] = $users->get();
             $users = new missing;
+            $data['galleries'] = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
             $data['missings'] = $users->orderBy('Missing_fname', 'asc')->get();
             return view('police.missings', $data);
         }
@@ -107,6 +108,7 @@ class police extends Controller
             }
         }
 
+        $data['galleries'] = $missings->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
         return view('police.geo', $data);
     }
 
