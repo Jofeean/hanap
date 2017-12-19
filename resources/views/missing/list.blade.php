@@ -54,27 +54,33 @@
                                 <?php $i = 0?>
                                 @foreach($galleries as $gallery)
 
-                                    <div class="carousel-item @if($loop->first) active @endif">
-                                        <div style="margin: auto">
-                                            <table style="height: 500px;">
-                                                @if($i !=6)
+                                    @if($i == 0)
+                                        <div class="carousel-item @if($loop->first) active @endif">
+                                            <div style="margin: auto">
+                                                <table style="height: 500px;">
+                                                    @endif
+
                                                     <td valign="middle" align="center">
                                                         <img class="d-block img-fluid"
                                                              src="{!! asset('images/articles/'. $gallery->Missing_picture) !!}"
                                                              alt="First slide"
                                                              style="max-width: 100%; max-height: 500px; width: auto;">
                                                     </td>
+                                                    @if($i == 0)
+                                                </table>
+                                                <div class="carousel-caption d-none d-md-block">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-caption"
+                                                 style="background: rgba(11,16,17,0.21); border-radius: 10px">
                                                 @endif
-                                            </table>
-                                            <div class="carousel-caption d-none d-md-block">
+                                                <div class="col-md-2">qer</div>
+
+                                                @if($i == 0)
                                             </div>
                                         </div>
-                                        <div class="carousel-caption"
-                                             style="background: rgba(11,16,17,0.21); border-radius: 10px">
-                                            <div class="col-md-2">qer</div>
-                                        </div>
-                                    </div>
 
+                                    @endif
                                     <?php $i++ ?>
                                 @endforeach
 
