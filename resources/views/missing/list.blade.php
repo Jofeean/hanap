@@ -51,7 +51,7 @@
                                     <li data-target="#carouselExampleIndicators-1" data-slide-to="1"></li>
                                     <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
                                 </ol>
-                                <div class="carousel-inner" role="listbox" style="height: 500px;">
+                                <div class="carousel-inner" role="listbox" style="height: 250px;">
                                     <?php $i = $t = 0; $gals = array();?>
                                     @foreach($galleries as $gallery)
 
