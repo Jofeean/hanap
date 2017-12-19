@@ -223,8 +223,8 @@ class admin extends Controller
         if (session('priv') == 'admin') {
             $users = new user;
             $data['users'] = $users->get();
-            $data['galleries'] = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
             $users = new missing;
+            $data['galleries'] = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
             $data['missings'] = $users->orderBy('Missing_fname', 'asc')->get();
             return view('admin.missings', $data);
         }
