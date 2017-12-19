@@ -102,7 +102,7 @@ Route::post('/missingperson/list/search-results', 'home@search');
 Route::get('/user/lists', 'admin@users');
 
 //users list search admin
-Route::get('/user/lists/search-result', 'admin@usersearch');
+Route::post('/user/lists/search-result', 'admin@usersearch');
 
 //police list admin
 Route::get('/police/lists', 'admin@polices');
