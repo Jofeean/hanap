@@ -223,8 +223,8 @@ class admin extends Controller
         if (session('priv') == 'admin') {
             $users = new user;
             $data['users'] = $users->get();
-                $users = new missing;
-                $data['galleries'] = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
+            $users = new missing;
+            $data['galleries'] = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
             $data['missings'] = $users->orderBy('Missing_fname', 'asc')->get();
             return view('admin.missings', $data);
         }
@@ -506,16 +506,12 @@ class admin extends Controller
 
             $user = $users->where('Missing_gender', '=', $search)->get();
             foreach ($user as $use) {
-                if ($use->Missing_status == 0) {
-                    array_push($data['missings'], $use);
-                }
+                array_push($data['missings'], $use);
             }
 
             $user = $users->where('Missing_status', '=', $search)->get();
             foreach ($user as $use) {
-                if ($use->Missing_status == 0) {
-                    array_push($data['missings'], $use);
-                }
+                array_push($data['missings'], $use);
             }
 
             $user = $users
@@ -539,9 +535,7 @@ class admin extends Controller
                 ->orWhere('Missing_other', 'LIKE', "%" . $search . "%")->get();
 
             foreach ($user as $use) {
-                if ($use->Missing_status == 0) {
-                    array_push($data['missings'], $use);
-                }
+                array_push($data['missings'], $use);
             }
         }
 
