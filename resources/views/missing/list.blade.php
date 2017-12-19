@@ -46,13 +46,24 @@
                         <div class="page-carousel col-md-12">
                             <div id="carouselExampleIndicators-1" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                    <li data-target="#carouselExampleIndicators-1" data-slide-to="0"
-                                        class="active"></li>
-                                    <li data-target="#carouselExampleIndicators-1" data-slide-to="1"></li>
-                                    <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
-                                </ol>
-                                <div class="carousel-inner" role="listbox" style="height: 350px;">
                                     <?php $i = $t = 0; $gals = array();?>
+
+                                    @foreach($galleries as $gallery)
+                                        <?php
+                                        if ($i != 7) {
+                                            array_push($gals, $gallery);
+                                        }
+                                        ?>
+
+                                        @if($i == 6)
+                                            <li data-target="#carouselExampleIndicators-1" data-slide-to="{{ $t }}"
+                                                class="@if($t == 0) active @endif"></li>
+                                        @endif
+                                        <?php $i++; $t++ ?>
+                                    @endforeach
+                                </ol>
+                                <div class="carousel-inner" role="listbox" style="height: 370px;">
+                                    <?php $i = $t = 0;?>
                                     @foreach($galleries as $gallery)
                                         <?php
                                         if ($i != 7) {
@@ -66,7 +77,7 @@
                                         @if($i == 6)
                                             <div class="carousel-item @if($t == 1) active @endif">
                                                 <div style="margin: auto">
-                                                    <table style="height: 350px;">
+                                                    <table style="height: 370px;">
 
                                                         @foreach($gals as $gal)
                                                             <td valign="middle" align="center">
