@@ -61,7 +61,7 @@
                                             if ($i != 6) {
                                                 array_push($gals, $gallery);
                                             }
-                                        } elseif ($i != 6) {
+                                        } elseif ($i != 7) {
                                             array_push($gals, $gallery);
                                         }
                                         ?>
