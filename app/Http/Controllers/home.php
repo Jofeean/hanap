@@ -542,8 +542,10 @@ class home extends Controller
         $searches = explode(' ', $key);
         $data['missings'] = array();
         $data['galleries'] = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
+
         foreach ($searches as $search) {
-            $user = $users->where('Missing_gender', '=', $search)->get();
+
+            $user = $users->where('Missing_gender', $search)->get();
             foreach ($user as $use) {
                 if ($use->Missing_status == 0) {
                     array_push($data['missings'], $use);
