@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h1>Missing Person List adfsdf</h1>
+                <h1>Missing Person List</h1>
             </div>
 
             <div class="col-md-6">
@@ -39,59 +39,65 @@
         </div>
         <br>
 
-        {{--<div class="row">--}}
-            {{--<div style="background-color: white; border-radius: 10px">--}}
-                {{--<div class="row" style="padding: 20px">--}}
-                    {{--<div class="page-carousel">--}}
-                        {{--<div id="carouselExampleIndicators-1" class="carousel slide" data-ride="carousel">--}}
-                            {{--<ol class="carousel-indicators">--}}
-                                {{--<li data-target="#carouselExampleIndicators-1" data-slide-to="0"--}}
-                                    {{--class="active"></li>--}}
-                                {{--<li data-target="#carouselExampleIndicators-1" data-slide-to="1"></li>--}}
-                                {{--<li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>--}}
-                            {{--</ol>--}}
-                            {{--<div class="carousel-inner" role="listbox" style="height: 500px;">--}}
-                                {{--@foreach($news as $announcement)--}}
-                                    {{--<div class="carousel-item @if($loop->first) active @endif">--}}
-                                        {{--<div style="margin: auto">--}}
-                                            {{--<table style="height: 500px;">--}}
-                                                {{--<td valign="middle" align="center">--}}
-                                                    {{--<img class="d-block img-fluid"--}}
-                                                         {{--src="{!! asset('images/articles/'. $announcement->News_picture) !!}"--}}
-                                                         {{--alt="First slide"--}}
-                                                         {{--style="max-width: 100%; max-height: 500px; width: auto;">--}}
-                                                {{--</td>--}}
-                                            {{--</table>--}}
-                                            {{--<div class="carousel-caption d-none d-md-block">--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="carousel-caption"--}}
-                                             {{--style="background: rgba(11,16,17,0.21); border-radius: 10px">--}}
-                                            {{--<p>{{ $announcement->News_caption }}</p>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--@endforeach--}}
+        <div class="row">
+            <div style="background-color: white; border-radius: 10px">
+                <div class="row" style="padding: 20px">
+                    <div class="page-carousel">
+                        <div id="carouselExampleIndicators-1" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators-1" data-slide-to="0"
+                                    class="active"></li>
+                                <li data-target="#carouselExampleIndicators-1" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner" role="listbox" style="height: 500px;">
+                                <?php $i = 0?>
+                                @foreach($galleries as $gallery)
 
-                            {{--</div>--}}
+                                    <div class="carousel-item @if($loop->first) active @endif">
+                                        <div style="margin: auto">
+                                            <table style="height: 500px;">
+                                                @if($i !=6)
+                                                    <td valign="middle" align="center">
+                                                        <img class="d-block img-fluid"
+                                                             src="{!! asset('images/articles/'. $gallery->Missing_picture) !!}"
+                                                             alt="First slide"
+                                                             style="max-width: 100%; max-height: 500px; width: auto;">
+                                                    </td>
+                                                @endif
+                                            </table>
+                                            <div class="carousel-caption d-none d-md-block">
+                                            </div>
+                                        </div>
+                                        <div class="carousel-caption"
+                                             style="background: rgba(11,16,17,0.21); border-radius: 10px">
+                                            <div class="col-md-2">qer</div>
+                                        </div>
+                                    </div>
 
-                            {{--<a class="left carousel-control carousel-control-prev"--}}
-                               {{--href="#carouselExampleIndicators-1" role="button" data-slide="prev">--}}
-                                {{--<span class="fa fa-angle-left"></span>--}}
-                                {{--<span class="sr-only">Previous</span>--}}
-                            {{--</a>--}}
-                            {{--<a class="right carousel-control carousel-control-next"--}}
-                               {{--href="#carouselExampleIndicators-1" role="button" data-slide="next">--}}
-                                {{--<span class="fa fa-angle-right"></span>--}}
-                                {{--<span class="sr-only">Next</span>--}}
-                            {{--</a>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="row" style="padding: 20px">--}}
+                                    <?php $i++ ?>
+                                @endforeach
 
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
+                            </div>
+
+                            <a class="left carousel-control carousel-control-prev"
+                               href="#carouselExampleIndicators-1" role="button" data-slide="prev">
+                                <span class="fa fa-angle-left"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control carousel-control-next"
+                               href="#carouselExampleIndicators-1" role="button" data-slide="next">
+                                <span class="fa fa-angle-right"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding: 20px">
+
+                </div>
+            </div>
+        </div>
         <br>
 
         <div class="row">
