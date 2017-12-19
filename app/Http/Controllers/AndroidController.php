@@ -139,18 +139,18 @@ class AndroidController extends Controller
 
     public function getMyMissingPersons(Request $request)
     {
-//        $email = $request->email;
-//        $user = user::where('User_email', $email)->first();
-//        $mps = MissingPerson::where('User_id', $user->User_id)->orderBy('created_at', 'desc')->get()->toArray();
-//        $ss = sighting::where('User_id', $user->User_id)->orderBy('created_at', 'desc')->get()->toArray();
-//
-//        $ret = array();
-//        foreach ($mps as $mp)
-//            $ret[] = $mp;
-//        foreach ($ss as $s)
-//            $ret[] = $s;
-//
-//        return json_encode($ret);
+        $email = $request->email;
+        $user = user::where('User_email', $email)->first();
+        $mps = MissingPerson::where('User_id', $user->User_id)->orderBy('created_at', 'desc')->get()->toArray();
+        $ss = sighting::where('User_id', $user->User_id)->orderBy('created_at', 'desc')->get()->toArray();
+
+        $ret = array();
+        foreach ($mps as $mp)
+            $ret[] = $mp;
+        foreach ($ss as $s)
+            $ret[] = $s;
+
+        return json_encode($ret);
     }
 
     public function getMissingPerson(Request $request)
