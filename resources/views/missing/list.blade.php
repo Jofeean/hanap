@@ -51,7 +51,7 @@
                                     <li data-target="#carouselExampleIndicators-1" data-slide-to="1"></li>
                                     <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
                                 </ol>
-                                <div class="carousel-inner" role="listbox" style="height: 300px;">
+                                <div class="carousel-inner" role="listbox" style="height: 320px;">
                                     <?php $i = $t = 0; $gals = array();?>
                                     @foreach($galleries as $gallery)
                                         <?php
@@ -73,7 +73,7 @@
                                                                 <img class="d-block img-fluid"
                                                                      src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
                                                                      alt="First slide"
-                                                                     style="max-width: 100%; max-height: 250px; width: auto;"><br>
+                                                                     style="max-width: 100%; max-height: 250px; width: auto;"><br><br>
                                                                 Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
                                                                 <br>
                                                                 Missing since: {{ $gal->Missing_dodis }}
