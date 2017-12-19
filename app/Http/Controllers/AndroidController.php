@@ -76,11 +76,11 @@ class AndroidController extends Controller
         $user->User_valId1 = $file;
         $user->save();
 
-//        $name = $user->User_fname . ' ' . $user->User_lname;
-//        $body = 'Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.';
-//        $subject = 'Account Verification';
-//
-//        Mail::to($user->User_email)->send(new Emails($subject, $body, $name));
+        $name = $firstname . ' ' . $lastname;
+        $body = 'Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.';
+        $subject = 'Account Verification';
+
+        Mail::to($email)->send(new Emails($subject, $body, $name));
 
         $this->itexmo($user->User_mobilenum, "Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.", "ST-ANTON124629_M8INX");
 
@@ -119,11 +119,11 @@ class AndroidController extends Controller
         $user->Police_picture = $file;
         $user->save();
 
-//        $name = $firstname . ' ' . $lastname;
-//        $body = 'Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.';
-//        $subject = 'Account Verification';
+        $name = $firstname . ' ' . $lastname;
+        $body = 'Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.';
+        $subject = 'Account Verification';
 
-//        Mail::to($email   )->send(new Emails($subject, $body, $name));
+        Mail::to($email)->send(new Emails($subject, $body, $name));
 
         $this->itexmo($user->User_mobilenum, "Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.", "ST-ANTON124629_M8INX");
 
@@ -261,6 +261,28 @@ class AndroidController extends Controller
         $faceids[] = $faceid3;
         $item->Missing_faceid = json_encode($faceids);
 
+        //email
+        $name = $user->User_fname . ' ' . $user->User_lname;
+        $body = "Your report is now posted at the missing person list. We hope you'll see him/her soon.";
+        $subject = 'Missing person report';
+
+        Mail::to($user->User_email)->send(new Emails($subject, $body, $name));
+
+        //text
+        $result = $this->itexmo($user->User_mobilenum,
+            "Your report is now posted at the missing person list. We hope you'll see him/her soon.",
+            "ST-ANTON124629_M8INX");
+
+        if ($result == "") {
+            echo "something went wrong please try it again";
+            die();
+        } else if ($result == 0) {
+
+        } else {
+            echo "something went wrong please try it again";
+            die();
+        }
+
         $item->save();
 
         return MissingPerson::orderBy('Missing_id', 'DESC')->first()->Missing_id;
@@ -333,10 +355,6 @@ class AndroidController extends Controller
         $match->Match_confidence = $request->confidence;
         $match->save();
 
-
-//        $sighthing->Missing_id=$id;
-//        $sighthing->User_id=User::where('User_Email', $founder)->first()->User_id;
-
         $tokens = array();
         $ctr = 0;
         $ut = UserTokens::where('User_id', $reporterId)->get();
@@ -353,7 +371,7 @@ class AndroidController extends Controller
     public function sendNotificationPolice(Request $request)
     {
         $city = $request->city;
-
+        $id = $request->id;
         $faceid = $request->faceid;
 
         $mps = MissingPerson::where('Missing_livcity', $city)->get();

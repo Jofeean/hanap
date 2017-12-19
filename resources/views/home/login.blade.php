@@ -21,9 +21,10 @@
                 <div class="card page-carousel">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            @for($i = sizeof($announcements)-1; $i>=0; $i-- )
+                                <li data-target="#carouselExampleIndicators" data-slide-to="{{ $i }}"
+                                    class="@if($loop->first) active @endif"></li>
+                            @endfor
                         </ol>
                         <div class="carousel-inner" role="listbox" style="height: 500px;">
                             @foreach($announcements as $announcement)
