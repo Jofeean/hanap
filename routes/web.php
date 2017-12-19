@@ -55,7 +55,7 @@ Route::get('/missingperson/list', function () {
 
     $users = $users->where('Missing_status', '=', '0')->inRandomOrder()->limit(30)->get();
 
-    $data['galleries'];
+    $data['galleries'] = array();
     $i = 0;
     foreach ($users as $uses) {
         if ($i != 6) {
