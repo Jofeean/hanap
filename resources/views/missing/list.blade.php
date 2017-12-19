@@ -71,14 +71,18 @@
                                                         @foreach($gals as $gal)
                                                             <td valign="middle" align="center">
                                                                 <div class="row">
-                                                                    <img class="d-block img-fluid"
-                                                                         src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
-                                                                         alt="First slide"
-                                                                         style="max-width: 100%; max-height: 250px; width: auto;"><br>
+                                                                    <div class="col-md-12">
+                                                                        <img class="d-block img-fluid"
+                                                                             src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
+                                                                             alt="First slide"
+                                                                             style="max-width: 100%; max-height: 250px; width: auto;"><br>
+                                                                    </div>
                                                                 </div>
-                                                                Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
-                                                                <br>
-                                                                Missing since: {{ $gal->Missing_dodis }}
+                                                                <div class="row">
+                                                                    Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
+                                                                    <br>
+                                                                    Missing since: {{ $gal->Missing_dodis }}
+                                                                </div>
                                                             </td>
 
                                                         @endforeach
