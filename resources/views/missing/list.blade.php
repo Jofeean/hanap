@@ -61,6 +61,7 @@
                                         if ($loop->first) {
                                             $t = 1;
                                         }
+                                        dd($gals)
                                         ?>
 
                                         @if($i == 6)
