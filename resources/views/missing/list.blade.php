@@ -75,37 +75,6 @@
                                                                      alt="First slide"
                                                                      style="max-width: 100%; max-height: 250px; width: auto;">
                                                             </td>
-
-                                                            <td valign="middle" align="center">
-                                                                <img class="d-block img-fluid"
-                                                                     src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
-                                                                     alt="First slide"
-                                                                     style="max-width: 100%; max-height: 250px; width: auto;">
-                                                            </td>
-                                                            <td valign="middle" align="center">
-                                                                <img class="d-block img-fluid"
-                                                                     src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
-                                                                     alt="First slide"
-                                                                     style="max-width: 100%; max-height: 250px; width: auto;">
-                                                            </td>
-                                                            <td valign="middle" align="center">
-                                                                <img class="d-block img-fluid"
-                                                                     src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
-                                                                     alt="First slide"
-                                                                     style="max-width: 100%; max-height: 250px; width: auto;">
-                                                            </td>
-                                                            <td valign="middle" align="center">
-                                                                <img class="d-block img-fluid"
-                                                                     src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
-                                                                     alt="First slide"
-                                                                     style="max-width: 100%; max-height: 250px; width: auto;">
-                                                            </td>
-                                                            <td valign="middle" align="center">
-                                                                <img class="d-block img-fluid"
-                                                                     src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
-                                                                     alt="First slide"
-                                                                     style="max-width: 100%; max-height: 250px; width: auto;">
-                                                            </td>
                                                         @endforeach
                                                     <?php $t =0 ?>
                                                     </table>
