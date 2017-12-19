@@ -89,7 +89,7 @@
                                             <?php $i = 0;?>
                                         @endif
 
-                                        <?php $i++ ?>
+                                        <?php $i++; $t = 0; ?>
                                     @endforeach
                                 </div>
                                 <a class="left carousel-control carousel-control-prev"
