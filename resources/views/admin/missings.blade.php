@@ -114,12 +114,12 @@
                                     </div>
                                     <a class="left carousel-control"
                                        href="#carouselExampleIndicators-1" data-slide="prev">
-                                        <span class="ti-angle-left"></span>
+                                        <span class="glyphicon glyphicon-chevron-left"></span>
                                         <span class="sr-only">Previous</span>
                                     </a>
                                     <a class="right carousel-control"
                                        href="#carouselExampleIndicators-1" data-slide="next">
-                                        <span class="ti-angle-right"></span>
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
                                         <span class="sr-only">Next</span>
                                     </a>
                                 </div>
