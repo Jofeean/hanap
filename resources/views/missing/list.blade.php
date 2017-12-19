@@ -46,16 +46,15 @@
                         <div class="page-carousel col-md-12">
                             <div id="carouselExampleIndicators-1" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                    <?php $i = $t = 0; ?>
-                                    @foreach($galleries as $gallery)
+                                    {{--<?php $i = $t = 0; ?>--}}
+                                    {{--@foreach($galleries as $gallery)--}}
+                                        {{--@if($i == 6 || $loop->last)--}}
+                                            {{--<li data-target="#carouselExampleIndicators-1" data-slide-to="{{$t}}"--}}
+                                                {{--class="@if($t == 0) active @endif"></li>--}}
+                                        {{--@endif--}}
 
-                                        @if($i == 6 || $loop->last)
-                                            <li data-target="#carouselExampleIndicators-1" data-slide-to="{{$t}}"
-                                                class="@if($t == 0) active @endif"></li>
-                                        @endif
-
-                                        <?php $i++; $t++; ?>
-                                    @endforeach
+                                        {{--<?php $i++; $t++; ?>--}}
+                                    {{--@endforeach--}}
                                 </ol>
                                 <div class="carousel-inner" role="listbox" style="height: 370px;">
                                     <?php $i = $t = 0; ?>
