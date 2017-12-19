@@ -61,7 +61,8 @@
                                         if ($loop->first) {
                                             $t = 1;
                                         }
-                                        dd($gals)
+                                        var_dump($gals);
+                                        die()
                                         ?>
 
                                         @if($i == 6)
