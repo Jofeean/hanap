@@ -84,7 +84,7 @@
                                                 </div>
                                             </div>
                                         @else@if($i == 0)
-                                                <?php $i=0 ?>
+                                                <?php $i=0   ?>
                                         @endif
                                             <?php $i++ ?>
                                     @endforeach

@@ -247,7 +247,7 @@ Route::prefix('api')->group(function () {
     Route::post('loginPolice', 'AndroidController@loginPolice');
     Route::post('register', 'AndroidController@register');
     Route::post('registerPolice', 'AndroidController@registerPolice');
-    Route::post('get_missing_persons', 'AndroidController@getMissingPersons');
+    Route::get('get_missing_persons', 'AndroidController@getMissingPersons');
     Route::post('get_missing_person', 'AndroidController@getMissingPerson');
     Route::post('report', 'AndroidController@report');
     Route::post('setToken', 'AndroidController@setToken');
