@@ -52,16 +52,19 @@
                                     <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
                                 </ol>
                                 <div class="carousel-inner" role="listbox" style="height: 250px;">
-                                    <?php $i = 0; $gals = array();?>
+                                    <?php $i = $t = 0; $gals = array();?>
                                     @foreach($galleries as $gallery)
                                         <?php
                                         if ($i == 0) {
                                             array_push($gals, $gallery);
                                         }
+                                        if ($loop->first) {
+                                            $t = 1;
+                                        }
                                         ?>
 
                                         @if($i == 6)
-                                            <div class="carousel-item @if($loop->first) active @endif">
+                                            <div class="carousel-item @if($t == 1) active @endif">
                                                 <div style="margin: auto">
                                                     <table style="height: 250px;">
 
@@ -73,7 +76,7 @@
                                                                      style="max-width: 100%; max-height: 250px; width: auto;">
                                                             </td>
                                                         @endforeach
-
+                                                    <?php $t =0 ?>
                                                     </table>
                                                     <div class="carousel-caption d-none d-md-block">
                                                     </div>
@@ -86,6 +89,7 @@
                                                 </div>
                                             </div>
                                         @endif
+                                            <?php $i++ ?>
                                     @endforeach
                                 </div>
                                 <a class="left carousel-control carousel-control-prev"
