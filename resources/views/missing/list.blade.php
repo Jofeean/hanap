@@ -70,7 +70,7 @@
 
                                                         @foreach($gals as $gal)
                                                             <td valign="middle" align="center">
-                                                                <div class="row">
+                                                                <div class="row" style="height: 250px">
                                                                     <div class="col-md-12">
                                                                         <img class="d-block img-fluid"
                                                                              src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
@@ -79,9 +79,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
-                                                                    <br>
-                                                                    Missing since: {{ $gal->Missing_dodis }}
+                                                                    <div class="col-md-12">
+                                                                        Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
+                                                                        <br>
+                                                                        Missing since: {{ $gal->Missing_dodis }}
+                                                                    </div>
                                                                 </div>
                                                             </td>
 
