@@ -95,8 +95,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <?php $gals = array()?>
                                         @endif
-                                        <?php $i++; $gals = array() ?>
+                                        <?php $i++; ?>
                                     @endforeach
                                 </div>
                                 <a class="left carousel-control carousel-control-prev"
