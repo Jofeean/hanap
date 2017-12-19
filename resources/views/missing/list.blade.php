@@ -51,7 +51,7 @@
                                     <li data-target="#carouselExampleIndicators-1" data-slide-to="1"></li>
                                     <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
                                 </ol>
-                                <div class="carousel-inner" role="listbox" style="height: 320px;">
+                                <div class="carousel-inner" role="listbox" style="height: 350px;">
                                     <?php $i = $t = 0; $gals = array();?>
                                     @foreach($galleries as $gallery)
                                         <?php
@@ -66,14 +66,16 @@
                                         @if($i == 6)
                                             <div class="carousel-item @if($t == 1) active @endif">
                                                 <div style="margin: auto">
-                                                    <table style="height: 320px;">
+                                                    <table style="height: 350px;">
 
                                                         @foreach($gals as $gal)
                                                             <td valign="middle" align="center">
-                                                                <img class="d-block img-fluid"
-                                                                     src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
-                                                                     alt="First slide"
-                                                                     style="max-width: 100%; max-height: 250px; width: auto;"><br><br>
+                                                                <div class="row">
+                                                                    <img class="d-block img-fluid"
+                                                                         src="{!! asset('images/missingthumb/'. $gal->Missing_picture) !!}"
+                                                                         alt="First slide"
+                                                                         style="max-width: 100%; max-height: 250px; width: auto;"><br>
+                                                                </div>
                                                                 Name: {{ $gal->Missing_fname }} {{ $gal->Missing_lname }}
                                                                 <br>
                                                                 Missing since: {{ $gal->Missing_dodis }}
