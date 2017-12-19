@@ -79,7 +79,7 @@
                                                 @if($i == 0)
                                             </div>
                                         </div>
-
+                                    @elseif($i == 6)<?php $i = 0 ?>
                                     @endif
                                     <?php $i++ ?>
                                 @endforeach
