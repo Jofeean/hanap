@@ -50,11 +50,27 @@ class AndroidController extends Controller
         $email = $request->email;
         $password = $request->password;
         $mname = $request->mname;
+        $filename = date('mdyhi') . time() . '.' . $request->file('dp')->getClientOriginalExtension();
 
-        $file = 'user_' . strtotime("now") . '_' . rand(10, 20) . '.jpg';
-        $path = public_path('images/' . $file);
         $decoded = base64_decode($request->image);
-        file_put_contents($path, $decoded);
+
+        //image
+        //original
+        Image::make($decoded)
+            ->save(public_path('images/dp/' . $filename), 100);
+
+//        Image::make($request->file('vi1'))
+//            ->save(public_path('images/vi1/' . $filename), 100);
+
+        //thumbnail
+        Image::make($decoded)->resize(null, 400, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('images/dpthumb/' . $filename), 100);
+
+//        Image::make($request->file('vi1'))->resize(null, 400, function ($constraint) {
+//            $constraint->aspectRatio();
+//        })->save(public_path('images/vi1thumb/' . $filename), 100);
+
 
         $user = user::where('User_Email', $email)->first();
         if ($user != null) return 0;
@@ -72,8 +88,8 @@ class AndroidController extends Controller
         $user->User_Password = Hash::make($password);
         $user->User_Status = 1;
         $user->User_Code = 'WQKZ1qTQTI';
-        $user->User_picture = $file;
-        $user->User_valId1 = $file;
+        $user->User_picture = $filename;
+        $user->User_valId1 = $filename;
         $user->save();
 
         $name = $firstname . ' ' . $lastname;
