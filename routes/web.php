@@ -256,23 +256,7 @@ Route::get('/test/redirect', function () {
 //android
 Route::prefix('api')->group(function () {
     Route::post('login', 'AndroidController@login');
-    Route::post('loginPolice', 'AndroidController@loginPolice');
     Route::post('register', 'AndroidController@register');
-    Route::post('registerPolice', 'AndroidController@registerPolice');
-    Route::post('get_missing_persons', 'AndroidController@getMissingPersons');
-    Route::post('get_missing_person', 'AndroidController@getMissingPerson');
-    Route::post('report', 'AndroidController@report');
-    Route::post('setToken', 'AndroidController@setToken');
-    Route::post('sendNotification', 'AndroidController@sendNotification');
-    Route::post('sendNotificationPolice', 'AndroidController@sendNotificationPolice');
-    Route::post('getMyMissingPersons', 'AndroidController@getMyMissingPersons');
-    Route::post('getAccountDetails', 'AndroidController@getAccountDetails');
-    Route::get('createFaceList/{faceListId}', 'AndroidController@createFaceList');
-    Route::get('deleteFaceList/{faceListId}', 'AndroidController@deleteFaceList');
-    Route::get('addFace/{faceListId}/{url}', 'AndroidController@addFace');
-    Route::get('detect/{url}', 'AndroidController@detect');
-    Route::get('isFamiliar/{faceListId}/{faceId}', 'AndroidController@isFamiliar');
-
-    Route::post('recognize', 'AndroidController@recognize');
-    Route::post('add', 'AndroidController@add');
+    Route::get('list', 'AndroidController@list');
+    Route::post('profile', 'AndroidController@profile');
 });

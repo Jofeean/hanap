@@ -268,8 +268,6 @@
                                                             <b>Gender:</b> {{ $missing->Missing_gender }}
                                                             <br>
                                                             <b>Birthday:</b> {{ $missing->Missing_bday }}
-                                                            <br>
-                                                            <b>Address Living:</b> {{ $missing->Missing_livaddress }}
                                                             <HR>
                                                             <b>Date of Disappearance:</b> {{ $missing->Missing_dodis }}
                                                         </div>

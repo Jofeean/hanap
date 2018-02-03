@@ -236,8 +236,6 @@
                                         <b>Gender:</b> {{ $missing->Missing_gender }}
                                         <br>
                                         <b>Birthday:</b> {{ $missing->Missing_bday }}
-                                        <br>
-                                        <b>Address it Lives:</b> {{ $missing->Missing_livaddress }}
                                     </div>
                                     <div class="col-md-6">
                                         <h4>Details of Disappearance:</h4>
@@ -264,23 +262,6 @@
                                 <br>
                                 <h4>Other Details:</h4>
                                 <HR>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <b>Body Markings:</b>
-                                        <br>
-                                        {{ $missing->Missing_bodymarkings }}
-                                    </div>
-                                    <div class="col-md-4">
-                                        <b>Clothes:</b>
-                                        <br>
-                                        {{ $missing->Missing_clothes }}
-                                    </div>
-                                    <div class="col-md-4">
-                                        <b>Others:</b>
-                                        <br>
-                                        {{ $missing->Missing_other }}
-                                    </div>
-                                </div>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <b>Body Markings:</b>

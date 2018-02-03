@@ -250,8 +250,6 @@
                                         <b>Gender:</b> {{ $missing->Missing_gender }}
                                         <br>
                                         <b>Birthday:</b> {{ $missing->Missing_bday }}
-                                        <br>
-                                        <b>Address it Lives:</b> {{ $missing->Missing_livaddress }}
                                     </div>
                                     <div class="col-md-6">
                                         <h4>Details of Disappearance:</h4>

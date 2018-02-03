@@ -147,7 +147,7 @@ class home extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email  |max:250',
+            'email' => 'required|email|max:250',
             'password' => 'required|string|max:250',
         ]);
 
