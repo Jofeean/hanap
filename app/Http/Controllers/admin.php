@@ -274,7 +274,7 @@ class admin extends Controller
             //person group
             require_once 'HTTP/Request2.php';
 
-            $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}');
+            $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}');
             $url = $request->getUrl();
 
             $headers = array(
@@ -309,7 +309,7 @@ class admin extends Controller
                 //person
                 require_once 'HTTP/Request2.php';
 
-                $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons');
+                $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons');
                 $url = $request->getUrl();
 
                 $headers = array(
@@ -343,7 +343,7 @@ class admin extends Controller
 
 
                 //person face
-                $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons/{personId}/persistedFaces');
+                $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons/{personId}/persistedFaces');
                 $url = $request->getUrl();
 
                 $headers = array(

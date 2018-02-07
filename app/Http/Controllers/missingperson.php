@@ -133,7 +133,7 @@ class missingperson extends Controller
         require_once 'HTTP/Request2.php';
 
         //detect
-        $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/detect');
+        $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect');
         $url = $request->getUrl();
 
         $headers = array(
@@ -173,7 +173,7 @@ class missingperson extends Controller
         foreach ($missings as $missing1) {
 
             //face verification
-            $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/verify');
+            $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/verify');
             $url = $request->getUrl();
 
             $headers = array(
@@ -212,7 +212,7 @@ class missingperson extends Controller
         }
 
         //person
-        $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons');
+        $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons');
         $url = $request->getUrl();
 
         $headers = array(
@@ -245,7 +245,7 @@ class missingperson extends Controller
         }
 
         //person face
-        $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons/{personId}/persistedFaces');
+        $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/{personGroupId}/persons/{personId}/persistedFaces');
         $url = $request->getUrl();
 
         $headers = array(
@@ -359,7 +359,7 @@ class missingperson extends Controller
 
         $json1 = $json = null;
         //detect
-        $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/detect');
+        $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect');
         $url = $request->getUrl();
 
         $headers = array(
@@ -403,7 +403,7 @@ class missingperson extends Controller
         foreach ($missings as $missing) {
 
             //face verification
-            $request = new Http_Request2('https://southeastasia.api.cognitive.microsoft.com/face/v1.0/verify');
+            $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/verify');
             $url = $request->getUrl();
 
             $headers = array(
