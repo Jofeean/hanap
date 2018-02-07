@@ -18,6 +18,15 @@ class AndroidController extends Controller
 {
     public function login(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:250',
+            'password' => 'required|string|max:250',
+        ]);
+
+        if ($validator->fails()) {
+            echo "Please check all the fields";
+        }
+
         $user = new user;
         $user = $user->where('User_email', '=', trim(htmlspecialchars(strip_tags($request->email))))->first();
         $data = array();
@@ -35,9 +44,104 @@ class AndroidController extends Controller
                 $data['response'] = "Success";
                 $data['data']['id'] = $user->User_id;
                 $data['data']['email'] = $request->email;
-                    echo json_encode($data);
+                echo json_encode($data);
             }
         }
+    }
+
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'fname' => 'required|string|max:250',
+            'mname' => 'max:250',
+            'lname' => 'required|string|max:250',
+            'gender' => 'required|alpha|max:6',
+            'birthday' => 'required',
+            'connum' => 'required|digits:11',
+            'address' => 'required|string|max:250',
+            'city' => 'required|string|max:50',
+
+            'email' => 'required|email|unique:users,User_email|unique:admins,Admin_email|unique:polices,Police_email|max:250',
+            'password' => 'required|min:6|max:50',
+            'repass' => 'required|max:50|same:password',
+
+            'dp' => 'required|image',
+            'vi1' => 'required|image',
+        ]);
+
+        if ($validator->fails()) {
+            echo "Please check all the fields";
+            die();
+        }
+
+
+        $date = new DateTime($request->birthday);
+        $now = new DateTime();
+        $interval = $now->diff($date);
+
+        if ($interval->y < 18) {
+            return redirect()->back()->withErrors(['bday' => 'bday'])->withInput($request->input());
+        }
+
+        //inserting data
+        $filename = date('mdyhi') . time() . '.' . $request->file('dp')->getClientOriginalExtension();
+        $user = new user;
+        $user->User_fname = ucwords(trim(strip_tags(htmlspecialchars($request->fname))));
+        $user->User_mname = ucwords(trim(strip_tags(htmlspecialchars($request->mname))));
+        $user->User_lname = ucwords(trim(strip_tags(htmlspecialchars($request->lname))));
+
+        $user->User_gender = ucfirst(trim(strip_tags(htmlspecialchars($request->gender))));
+        $user->User_bday = trim(strip_tags(htmlspecialchars($request->birthday)));
+        $user->User_address = ucwords(trim(strip_tags(htmlspecialchars($request->address))));
+        $user->User_city = ucwords(trim(strip_tags(htmlspecialchars($request->city))));
+
+        $user->User_email = trim(strip_tags(htmlspecialchars($request->email)));
+        $user->User_password = bcrypt(trim(strip_tags(htmlspecialchars($request->password))));
+        $user->User_mobilenum = trim(strip_tags(htmlspecialchars($request->connum)));
+
+        $user->User_picture = $filename;
+        $user->User_valId1 = $filename;
+
+        //email
+        $name = $user->User_fname . ' ' . $user->User_lname;
+        $body = 'Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.';
+        $subject = 'Account Verification';
+
+        Mail::to($user->User_email)->send(new Emails($subject, $body, $name));
+
+        //text
+        $result = $this->itexmo($user->User_mobilenum, "Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.", "ST-ANTON124629_M8INX");
+
+        if ($result == "") {
+            echo "something went wrong please try it again";
+            die();
+        } else if ($result == 0) {
+
+        } else {
+            echo "something went wrong please try it again";
+            die();
+        }
+
+        //image
+        //original
+//        Image::make($request->file('dp'))
+//            ->save(public_path('images/dp/' . $filename), 100);
+//
+//        Image::make($request->file('vi1'))
+//            ->save(public_path('images/vi1/' . $filename), 100);
+
+        //thumbnail
+//        Image::make($request->file('dp'))->resize(null, 400, function ($constraint) {
+//            $constraint->aspectRatio();
+//        })->save(public_path('images/dpthumb/' . $filename), 100);
+//
+//        Image::make($request->file('vi1'))->resize(null, 400, function ($constraint) {
+//            $constraint->aspectRatio();
+//        })->save(public_path('images/vi1thumb/' . $filename), 100);
+//
+//        $user->save();
+
+        echo "Sucess";
     }
 
     public function list()
@@ -89,7 +193,7 @@ class AndroidController extends Controller
         $data['dodis'] = $missing->Missing_dodis;
         $data['address'] = $missing->Missing_disaddress . " " . $missing->Missing_discity;
 
-        $data['clothes'] = 'Clothes:     '. $missing->Missing_clothes;
+        $data['clothes'] = 'Clothes:     ' . $missing->Missing_clothes;
         $data['bodym'] = 'Body Markings:     ' . $missing->Missing_bodymarkings;
         $data['other'] = 'Other Info:     ' . $missing->Missing_other;
 
@@ -102,71 +206,6 @@ class AndroidController extends Controller
         $dat['data'] = $data;
 
         echo json_encode($dat);
-    }
-
-    public function register(Request $request)
-    {
-        $firstname = $request->firstname;
-        $lastname = $request->lastname;
-        $gender = $request->gender;
-        $birthday = $request->birthday;
-        $city = $request->city;
-        $address = $request->address;
-        $contactnumber = $request->contactnumber;
-        $email = $request->email;
-        $password = $request->password;
-        $mname = $request->mname;
-        $filename = date('mdyhi') . time() . '.' . $request->file('dp')->getClientOriginalExtension();
-
-        $decoded = base64_decode($request->image);
-
-        //image
-        //original
-        Image::make($decoded)
-            ->save(public_path('images/dp/' . $filename), 100);
-
-//        Image::make($request->file('vi1'))
-//            ->save(public_path('images/vi1/' . $filename), 100);
-
-        //thumbnail
-        Image::make($decoded)->resize(null, 400, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save(public_path('images/dpthumb/' . $filename), 100);
-
-//        Image::make($request->file('vi1'))->resize(null, 400, function ($constraint) {
-//            $constraint->aspectRatio();
-//        })->save(public_path('images/vi1thumb/' . $filename), 100);
-
-
-        $user = user::where('User_Email', $email)->first();
-        if ($user != null) return 0;
-
-        $user = new User();
-        $user->User_FName = $firstname;
-        $user->User_LName = $lastname;
-        $user->User_mname = $mname;
-        $user->User_Gender = $gender;
-        $user->User_bday = $birthday;
-        $user->User_address = $address;
-        $user->User_City = $city;
-        $user->User_mobilenum = $contactnumber;
-        $user->User_Email = $email;
-        $user->User_Password = Hash::make($password);
-        $user->User_Status = 1;
-        $user->User_Code = 'WQKZ1qTQTI';
-        $user->User_picture = $filename;
-        $user->User_valId1 = $filename;
-        $user->save();
-
-        $name = $firstname . ' ' . $lastname;
-        $body = 'Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.';
-        $subject = 'Account Verification';
-
-        Mail::to($email)->send(new Emails($subject, $body, $name));
-
-        $this->itexmo($user->User_mobilenum, "Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.", "ST-ANTON124629_M8INX");
-
-        return 1;
     }
 
     public function itexmo($number, $message, $apicode)
