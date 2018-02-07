@@ -24,7 +24,7 @@ class AndroidController extends Controller
         ]);
 
         if ($validator->fails()) {
-            echo "Please check all the fields";
+            echo json_encode($data['response'] ="Please check all the fields");
             die();
         }
 
