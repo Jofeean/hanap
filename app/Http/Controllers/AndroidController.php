@@ -25,6 +25,7 @@ class AndroidController extends Controller
 
         if ($validator->fails()) {
             echo "Please check all the fields";
+            die();
         }
 
         $user = new user;
