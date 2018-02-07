@@ -25,7 +25,10 @@ class AndroidController extends Controller
         ]);
 
         if ($validator->fails()) {
-            echo json_encode($data['response'] ="Please check all the fields");
+            $data['response'] ="Please check all the fields";
+            $data['data']['id'] = "null";
+            $data['data']['email'] = "null";
+            echo json_encode($data);
             die();
         }
 
@@ -33,16 +36,29 @@ class AndroidController extends Controller
         $user = $user->where('User_email', '=', trim(htmlspecialchars(strip_tags($request->email))))->first();
         $data = array();
         if ($user == null) {
-            echo json_encode($data['response'] = "Wrong Email or Password");
+            $data['response'] = "Wrong Email or Password";
+            $data['data']['id'] = "null";
+            $data['data']['email'] = "null";
+            $data['data']['id'] = $user->User_id;
+            $data['data']['email'] = $request->email;
+            echo json_encode($data);
             die();
         } elseif (!(Hash::check(trim(htmlspecialchars(strip_tags($request->password))), $user->User_password))) {
-            echo json_encode($data['response'] = "Wrong Email or Password");
+            $data['response'] = "Wrong Email or Password";
+            $data['data']['id'] = "null";
+            $data['data']['email'] = "null";
+            $data['data']['id'] = $user->User_id;
+            $data['data']['email'] = $request->email;
+            echo json_encode($data);
             die();
         } elseif
         (Hash::check(trim(htmlspecialchars(strip_tags($request->password))), $user->User_password)) {
 
             if ($user->User_status == 0) {
-                echo json_encode($data['response'] = "Account not Activated");
+                $data['response'] = "Account not Activated";
+                $data['data']['id'] = "null";
+                $data['data']['email'] = "null";
+                echo json_encode($data);
                 die();
             }
             if ($user->User_status != 0) {
