@@ -33,19 +33,23 @@ class AndroidController extends Controller
         $data = array();
         if ($user == null) {
             echo json_encode($data['response'] = "Wrong Email or Password");
+            die();
         } elseif (!(Hash::check(trim(htmlspecialchars(strip_tags($request->password))), $user->User_password))) {
             echo json_encode($data['response'] = "Wrong Email or Password");
+            die();
         } elseif
         (Hash::check(trim(htmlspecialchars(strip_tags($request->password))), $user->User_password)) {
 
             if ($user->User_status == 0) {
                 echo json_encode($data['response'] = "Account not Activated");
+                die();
             }
             if ($user->User_status != 0) {
                 $data['response'] = "Success";
                 $data['data']['id'] = $user->User_id;
                 $data['data']['email'] = $request->email;
                 echo json_encode($data);
+                die();
             }
         }
     }
