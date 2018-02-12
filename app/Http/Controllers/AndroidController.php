@@ -22,7 +22,7 @@ class AndroidController extends Controller
         ]);
 
         if ($validator->fails()) {
-            $data['response'] ="Please check all the fields";
+            $data['response'] = "Please check all the fields";
             $data['data']['id'] = "null";
             $data['data']['email'] = "null";
             echo json_encode($data);
@@ -70,7 +70,19 @@ class AndroidController extends Controller
 
     public function register(Request $request)
     {
-        
+        echo
+            $request->fname . '      ' .
+            $request->mname . '      ' .
+            $request->lname . '      ' .
+            $request->gender . '      ' .
+            $request->birthday . '      ' .
+            $request->connum . '      ' .
+            $request->address . '      ' .
+            $request->city . '      ' .
+            $request->email . '      ' .
+            $request->password . '      ' .
+            $request->repass;
+
         $validator = Validator::make($request->all(), [
             'fname' => 'required|string|max:250',
             'mname' => 'max:250',
@@ -86,10 +98,10 @@ class AndroidController extends Controller
             'repass' => 'required|max:50|same:password'
         ]);
 
-        if ($validator->fails()) {
-            echo "Please check all the fields";
-            die();
-        }
+//        if ($validator->fails()) {
+//            echo "Please check all the fields";
+//            die();
+//        }
 
 
 //        $date = new DateTime($request->birthday);
