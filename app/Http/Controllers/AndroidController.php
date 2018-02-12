@@ -70,6 +70,7 @@ class AndroidController extends Controller
 
     public function register(Request $request)
     {
+        
         $validator = Validator::make($request->all(), [
             'fname' => 'required|string|max:250',
             'mname' => 'max:250',
@@ -91,32 +92,32 @@ class AndroidController extends Controller
         }
 
 
-        $date = new DateTime($request->birthday);
-        $now = new DateTime();
-        $interval = $now->diff($date);
-
-        if ($interval->y < 18) {
-            return redirect()->back()->withErrors(['bday' => 'bday'])->withInput($request->input());
-        }
-
-        //inserting data
-        $filename = date('mdyhi') . time() . '.' . $request->file('dp')->getClientOriginalExtension();
-        $user = new user;
-        $user->User_fname = ucwords(trim(strip_tags(htmlspecialchars($request->fname))));
-        $user->User_mname = ucwords(trim(strip_tags(htmlspecialchars($request->mname))));
-        $user->User_lname = ucwords(trim(strip_tags(htmlspecialchars($request->lname))));
-
-        $user->User_gender = ucfirst(trim(strip_tags(htmlspecialchars($request->gender))));
-        $user->User_bday = trim(strip_tags(htmlspecialchars($request->birthday)));
-        $user->User_address = ucwords(trim(strip_tags(htmlspecialchars($request->address))));
-        $user->User_city = ucwords(trim(strip_tags(htmlspecialchars($request->city))));
-
-        $user->User_email = trim(strip_tags(htmlspecialchars($request->email)));
-        $user->User_password = bcrypt(trim(strip_tags(htmlspecialchars($request->password))));
-        $user->User_mobilenum = trim(strip_tags(htmlspecialchars($request->connum)));
-
-        $user->User_picture = $filename;
-        $user->User_valId1 = $filename;
+//        $date = new DateTime($request->birthday);
+//        $now = new DateTime();
+//        $interval = $now->diff($date);
+//
+//        if ($interval->y < 18) {
+//            return redirect()->back()->withErrors(['bday' => 'bday'])->withInput($request->input());
+//        }
+//
+//        //inserting data
+//        $filename = date('mdyhi') . time() . '.' . $request->file('dp')->getClientOriginalExtension();
+//        $user = new user;
+//        $user->User_fname = ucwords(trim(strip_tags(htmlspecialchars($request->fname))));
+//        $user->User_mname = ucwords(trim(strip_tags(htmlspecialchars($request->mname))));
+//        $user->User_lname = ucwords(trim(strip_tags(htmlspecialchars($request->lname))));
+//
+//        $user->User_gender = ucfirst(trim(strip_tags(htmlspecialchars($request->gender))));
+//        $user->User_bday = trim(strip_tags(htmlspecialchars($request->birthday)));
+//        $user->User_address = ucwords(trim(strip_tags(htmlspecialchars($request->address))));
+//        $user->User_city = ucwords(trim(strip_tags(htmlspecialchars($request->city))));
+//
+//        $user->User_email = trim(strip_tags(htmlspecialchars($request->email)));
+//        $user->User_password = bcrypt(trim(strip_tags(htmlspecialchars($request->password))));
+//        $user->User_mobilenum = trim(strip_tags(htmlspecialchars($request->connum)));
+//
+//        $user->User_picture = $filename;
+//        $user->User_valId1 = $filename;
 
         //email
 //        $name = $user->User_fname . ' ' . $user->User_lname;
