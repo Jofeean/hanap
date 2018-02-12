@@ -85,8 +85,8 @@ class AndroidController extends Controller
             'password' => 'required|min:6|max:50',
             'repass' => 'required|max:50|same:password',
 
-            'dp' => 'required|string|max:250',
-            'vi1' => 'required|string|max:50',
+            'dp' => 'required|string',
+            'vi1' => 'required|string',
         ]);
 
         if ($validator->fails()) {
