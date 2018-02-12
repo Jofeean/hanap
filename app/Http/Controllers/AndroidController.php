@@ -71,25 +71,25 @@ class AndroidController extends Controller
     public function register(Request $request)
     {
 
-//        $validator = Validator::make($request->all(), [
-//            'fname' => 'required|string|max:250',
-//            'mname' => 'max:250',
-//            'lname' => 'required|string|max:250',
-//            'gender' => 'required|alpha|max:6',
-//            'birthday' => 'required',
-//            'connum' => 'required|digits:11',
-//            'address' => 'required|string|max:250',
-//            'city' => 'required|string|max:50',
-//
-//            'email' => 'required|email|unique:users,User_email|unique:admins,Admin_email|unique:polices,Police_email|max:250',
-//            'password' => 'required|min:6|max:50',
-//            'repass' => 'required|max:50|same:password'
-//        ]);
+        $validator = Validator::make($request->all(), [
+            'fname' => 'required|string|max:250',
+            'mname' => 'max:250',
+            'lname' => 'required|string|max:250',
+            'gender' => 'required|alpha|max:6',
+            'birthday' => 'required',
+            'connum' => 'required|digits:11',
+            'address' => 'required|string|max:250',
+            'city' => 'required|string|max:50',
 
-//        if ($validator->fails()) {
-//            echo "Please check all the fields";
-//            die();
-//        }
+            'email' => 'required|email|unique:users,User_email|unique:admins,Admin_email|unique:polices,Police_email|max:250',
+            'password' => 'required|min:6|max:50',
+            'repass' => 'required|max:50|same:password'
+        ]);
+
+        if ($validator->fails()) {
+            echo "Please check all the fields";
+            die();
+        }
 
 
 //        $date = new DateTime($request->birthday);
