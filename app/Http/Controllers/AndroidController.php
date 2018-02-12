@@ -70,8 +70,6 @@ class AndroidController extends Controller
 
     public function register(Request $request)
     {
-        echo
-            "agsfgsdfgsd";
 
 //        $validator = Validator::make($request->all(), [
 //            'fname' => 'required|string|max:250',
