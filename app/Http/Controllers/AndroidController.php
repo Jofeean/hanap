@@ -140,7 +140,7 @@ class AndroidController extends Controller
 //        }
 
         //image
-//        //original
+        //original
 //        Image::make($request->dp)
 //            ->save(public_path('images/dp/' . $filename), 100);
 //
