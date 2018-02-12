@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\missing;
-use App\MissingPerson;
-use App\police;
 use App\sighting;
 use App\user;
 use App\match;
-use App\UserTokens;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -87,8 +84,8 @@ class AndroidController extends Controller
             'password' => 'required|min:6|max:50',
             'repass' => 'required|max:50|same:password',
 
-            'dp' => 'required|image',
-            'vi1' => 'required|image',
+            'dp' => 'required|string',
+            'vi1' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -125,39 +122,39 @@ class AndroidController extends Controller
         $user->User_valId1 = $filename;
 
         //email
-        $name = $user->User_fname . ' ' . $user->User_lname;
-        $body = 'Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.';
-        $subject = 'Account Verification';
-
-        Mail::to($user->User_email)->send(new Emails($subject, $body, $name));
-
-        //text
-        $result = $this->itexmo($user->User_mobilenum, "Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.", "ST-ANTON124629_M8INX");
-
-        if ($result == "") {
-            echo "something went wrong please try it again";
-            die();
-        } else if ($result == 0) {
-
-        } else {
-            echo "something went wrong please try it again";
-            die();
-        }
+//        $name = $user->User_fname . ' ' . $user->User_lname;
+//        $body = 'Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.';
+//        $subject = 'Account Verification';
+//
+//        Mail::to($user->User_email)->send(new Emails($subject, $body, $name));
+//
+//        //text
+//        $result = $this->itexmo($user->User_mobilenum, "Thank you for registering at HANAP. Your account will be verified first before it can be use. Please wait for the verification.", "ST-ANTON124629_M8INX");
+//
+//        if ($result == "") {
+//            echo "something went wrong please try it again";
+//            die();
+//        } else if ($result == 0) {
+//
+//        } else {
+//            echo "something went wrong please try it again";
+//            die();
+//        }
 
         //image
-        //original
-//        Image::make($request->file('dp'))
+//        //original
+//        Image::make($request->dp)
 //            ->save(public_path('images/dp/' . $filename), 100);
 //
-//        Image::make($request->file('vi1'))
+//        Image::make($request->vi1)
 //            ->save(public_path('images/vi1/' . $filename), 100);
-
-        //thumbnail
-//        Image::make($request->file('dp'))->resize(null, 400, function ($constraint) {
+//
+//        //thumbnail
+//        Image::make($request->dp)->resize(null, 400, function ($constraint) {
 //            $constraint->aspectRatio();
 //        })->save(public_path('images/dpthumb/' . $filename), 100);
 //
-//        Image::make($request->file('vi1'))->resize(null, 400, function ($constraint) {
+//        Image::make($request->vi1)->resize(null, 400, function ($constraint) {
 //            $constraint->aspectRatio();
 //        })->save(public_path('images/vi1thumb/' . $filename), 100);
 //
