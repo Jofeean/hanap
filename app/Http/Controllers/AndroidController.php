@@ -205,7 +205,7 @@ class AndroidController extends Controller
             return redirect("api/list");
         }
 
-        $jmissing = array();
+        $jmissings = array();
         $users = new missing;
         $key = strip_tags(htmlspecialchars(trim($request->search)));
         $searches = explode(' ', $key);
@@ -271,11 +271,30 @@ class AndroidController extends Controller
                     array_push($jmissings, $jmissing);
                 }
             }
+            foreach ($user as $use) {
+                if ($use->Missing_status == 0) {
+                    $jmissing = array();
+
+                    $date = new DateTime($use->Missing_bday);
+                    $now = new DateTime();
+                    $interval = $now->diff($date);
+
+                    $jmissing['id'] = $use->Missing_id;
+                    $jmissing['name'] = $use->Missing_fname . ' ' . $use->Missing_mname . ' ' . $use->Missing_lname;
+                    $jmissing['age'] = $interval->y;
+                    $jmissing['dodis'] = $use->Missing_dodis;
+                    $jmissing['image'] = $use->Missing_picture;
+                    $jmissing['userid'] = $use->User_id;
+
+                    array_push($jmissings, $jmissing);
+                }
+            }
         }
 
-        $json['result'] = array_unique($jmissing);
+        $json["result"] = $this->super_unique($jmissings, "id");
 
         echo json_encode($json);
+
     }
 
     public function profile(Request $request)
@@ -311,6 +330,18 @@ class AndroidController extends Controller
         $dat['data'] = $data;
 
         echo json_encode($dat);
+    }
+
+    public function super_unique($array,$key)
+    {
+        $temp_array = [];
+        foreach ($array as &$v) {
+            if (!isset($temp_array[$v[$key]]))
+                $temp_array[$v[$key]] =& $v;
+        }
+        $array = array_values($temp_array);
+        return $array;
+
     }
 
     public function itexmo($number, $message, $apicode)
