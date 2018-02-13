@@ -259,4 +259,5 @@ Route::prefix('api')->group(function () {
     Route::post('register', 'AndroidController@register');
     Route::get('list', 'AndroidController@list');
     Route::post('profile', 'AndroidController@profile');
+    Route::post('search', 'AndroidController@search');
 });

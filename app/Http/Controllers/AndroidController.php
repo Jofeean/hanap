@@ -172,24 +172,109 @@ class AndroidController extends Controller
         $jmissings = array();
 
         foreach ($missings as $missing) {
-            $jmissing = array();
+            if ($missing->Missing_status == 0) {
+                $jmissing = array();
 
-            $date = new DateTime($missing->Missing_bday);
-            $now = new DateTime();
-            $interval = $now->diff($date);
+                $date = new DateTime($missing->Missing_bday);
+                $now = new DateTime();
+                $interval = $now->diff($date);
 
-            $jmissing['id'] = $missing->Missing_id;
-            $jmissing['name'] = $missing->Missing_fname . ' ' . $missing->Missing_mname . ' ' . $missing->Missing_lname;
-            $jmissing['age'] = $interval->y;
-            $jmissing['dodis'] = $missing->Missing_dodis;
-            $jmissing['image'] = $missing->Missing_picture;
-            $jmissing['userid'] = $missing->User_id;
+                $jmissing['id'] = $missing->Missing_id;
+                $jmissing['name'] = $missing->Missing_fname . ' ' . $missing->Missing_mname . ' ' . $missing->Missing_lname;
+                $jmissing['age'] = $interval->y;
+                $jmissing['dodis'] = $missing->Missing_dodis;
+                $jmissing['image'] = $missing->Missing_picture;
+                $jmissing['userid'] = $missing->User_id;
 
-            array_push($jmissings, $jmissing);
+                array_push($jmissings, $jmissing);
+            }
         }
 
 
         $json['result'] = $jmissings;
+        echo json_encode($json);
+    }
+
+    public function search(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'search' => 'required|max:250'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect("api/list");
+        }
+
+        $jmissing = array();
+        $users = new missing;
+        $key = strip_tags(htmlspecialchars(trim($request->search)));
+        $searches = explode(' ', $key);
+        $data['missings'] = array();
+
+        foreach ($searches as $search) {
+
+            $user = $users->where('Missing_gender', '=', $search)->get();
+            foreach ($user as $use) {
+                if ($use->Missing_status == 0) {
+                    $jmissing = array();
+
+                    $date = new DateTime($use->Missing_bday);
+                    $now = new DateTime();
+                    $interval = $now->diff($date);
+
+                    $jmissing['id'] = $use->Missing_id;
+                    $jmissing['name'] = $use->Missing_fname . ' ' . $use->Missing_mname . ' ' . $use->Missing_lname;
+                    $jmissing['age'] = $interval->y;
+                    $jmissing['dodis'] = $use->Missing_dodis;
+                    $jmissing['image'] = $use->Missing_picture;
+                    $jmissing['userid'] = $use->User_id;
+
+                    array_push($jmissings, $jmissing);
+                }
+            }
+
+            $user = $users
+                ->orwhere('Missing_fname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_mname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_lname', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bday', 'LIKE', "%" . $search . "%")
+                ->orwhere('Missing_hcolor', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_height', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_eyecolor', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_hair', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_weight', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bodytype', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bodyhair', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_facialhair', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_dodis', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_disaddress', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_discity', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_bodymarkings', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_clothes', 'LIKE', "%" . $search . "%")
+                ->orWhere('Missing_other', 'LIKE', "%" . $search . "%")->get();
+
+            foreach ($user as $use) {
+                if ($use->Missing_status == 0) {
+                    $jmissing = array();
+
+                    $date = new DateTime($use->Missing_bday);
+                    $now = new DateTime();
+                    $interval = $now->diff($date);
+
+                    $jmissing['id'] = $use->Missing_id;
+                    $jmissing['name'] = $use->Missing_fname . ' ' . $use->Missing_mname . ' ' . $use->Missing_lname;
+                    $jmissing['age'] = $interval->y;
+                    $jmissing['dodis'] = $use->Missing_dodis;
+                    $jmissing['image'] = $use->Missing_picture;
+                    $jmissing['userid'] = $use->User_id;
+
+                    array_push($jmissings, $jmissing);
+                }
+            }
+        }
+
+        $json['result'] = array_unique($jmissing);
+
         echo json_encode($json);
     }
 
