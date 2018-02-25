@@ -20,7 +20,7 @@ class missingperson extends Controller
     public function itexmo($number, $message, $apicode)
     {
         $url = 'https://www.itexmo.com/php_api/api.php';
-        $itexmo = array('1' => $number, '2' => $message, '3' => $apicode);
+        $itexmo = array('1' => $number, '2' => $message, '3' => "ST-GORDS124629_SX6A4");
         $param = array(
             'http' => array(
                 'header' => "Content-type: application/x-www-form-urlencoded\r\n",
@@ -357,7 +357,8 @@ class missingperson extends Controller
         $apikey = new apikey;
         $apikey = $apikey->orderBy('created_at', 'desc')->first();
 
-        $json1 = $json = null;
+        $json1 = null ;
+        $json = null;
         //detect
         $request = new Http_Request2('https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect');
         $url = $request->getUrl();
@@ -440,7 +441,6 @@ class missingperson extends Controller
                     //inserting data for matches table
                     $matches = new match;
                     $matches->User_id = trim(htmlspecialchars(strip_tags(session('id'))));;
-                    $matches->Missing_id = $missing->Missing_id;
                     $matches->Missing_id = $missing->Missing_id;
                     $matches->Sighting_id = $sighting->Sighting_id;
                     $matches->Match_confidence = ($json1->confidence * 100);

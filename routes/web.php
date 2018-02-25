@@ -166,7 +166,7 @@ Route::get('/test/send/mobile', function () {
     function itexmo($number, $message, $apicode)
     {
         $url = 'https://www.itexmo.com/php_api/api.php';
-        $itexmo = array('1' => $number, '2' => $message, '3' => $apicode);
+        $itexmo = array('1' => $number, '2' => $message, '3' => "ST-GORDS124629_SX6A4");
         $param = array(
             'http' => array(
                 'header' => "Content-type: application/x-www-form-urlencoded\r\n",
@@ -222,21 +222,16 @@ Route::get('/test/view', function () {
 });
 
 Route::get('/test/redirect', function () {
-    return redirect('/')->withErrors(['registered' => 'registered']);
 });
 
 //test
-//Route::get('/test', function () {
-//
-//    $date1 = new DateTime('7/22/1998');
-//    $date = new DateTime('7/24/2017');
-//    $now = new DateTime();
-//    $dodis = $now->diff($date1);
-//    $age = $now->diff($date);
-//
-//    echo strtotime('now') .' '. date("m/d/Y", strtotime('now'));
-//
-//});
+Route::get('/test', function () {
+
+    $date = new DateTime("");
+    $now = new DateTime();
+    $interval = $now->diff($date);
+
+});
 
 //add admin static
 //Route::get('/test/add/admin', function () {
@@ -252,7 +247,6 @@ Route::get('/test/redirect', function () {
 //    $user->save();
 //});
 
-
 //android
 Route::prefix('api')->group(function () {
     Route::post('login', 'AndroidController@login');
@@ -260,4 +254,6 @@ Route::prefix('api')->group(function () {
     Route::get('list', 'AndroidController@list');
     Route::post('profile', 'AndroidController@profile');
     Route::post('search', 'AndroidController@search');
+    Route::post('reportsuspected', 'AndroidController@match');
+    Route::post('file', 'AndroidController@file');
 });

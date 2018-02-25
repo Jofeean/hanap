@@ -21,7 +21,7 @@ class home extends Controller
     public function itexmo($number, $message, $apicode)
     {
         $url = 'https://www.itexmo.com/php_api/api.php';
-        $itexmo = array('1' => $number, '2' => $message, '3' => $apicode);
+        $itexmo = array('1' => $number, '2' => $message, '3' => "ST-GORDS124629_SX6A4");
         $param = array(
             'http' => array(
                 'header' => "Content-type: application/x-www-form-urlencoded\r\n",

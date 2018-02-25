@@ -266,11 +266,20 @@
                                             <b>Height:</b> {{ $missing->Missing_height }} ft
                                             <br>
                                             <b>Weight:</b> {{ $missing->Missing_weight }} kg
+                                            <br>
+                                            <b>Facial Hair:</b> {{ $missing->Missing_facialhair }}
                                         </div>
                                         <div class="col-md-4">
                                             <b>Eye Color:</b> {{ $missing->Missing_eyecolor }}
                                             <br>
                                             <b>Body Physique:</b> {{ $missing->Missing_bodytype }}
+                                            <br>
+                                            <b>Body Hair:</b> {{ $missing->Missing_bodyhair }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            <b>Hair:</b> {{ $missing->Missing_hair }}
+                                            <br>
+                                            <b>Hair Color:</b> {{ $missing->Missing_hcolor }}
                                         </div>
                                     </div>
                                     <br>
