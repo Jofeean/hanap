@@ -155,19 +155,19 @@ class AndroidController extends Controller
         //image
         //original
         Image::make($dp)
-            ->save(public_path('images/dp/' . $filename), 100);
+            ->save(('images/dp/' . $filename), 100);
 
         Image::make($vi1)
-            ->save(public_path('images/vi1/' . $filename), 100);
+            ->save(('images/vi1/' . $filename), 100);
 
         //thumbnail
         Image::make($dp)->resize(null, 400, function ($constraint) {
             $constraint->aspectRatio();
-        })->save(public_path('images/dpthumb/' . $filename), 100);
+        })->save(('images/dpthumb/' . $filename), 100);
 
         Image::make($vi1)->resize(null, 400, function ($constraint) {
             $constraint->aspectRatio();
-        })->save(public_path('images/vi1thumb/' . $filename), 100);
+        })->save(('images/vi1thumb/' . $filename), 100);
 
         $user->save();
 
@@ -342,11 +342,11 @@ class AndroidController extends Controller
 
         //image
         Image::make($pmp)
-            ->save(public_path('images/sighting/' . $filename), 100);
+            ->save(('images/sighting/' . $filename), 100);
 
         Image::make($pmp)->resize(null, 400, function ($constraint) {
             $constraint->aspectRatio();
-        })->save(public_path('images/sightingthumb/' . $filename), 100);
+        })->save(('images/sightingthumb/' . $filename), 100);
 
 
         $apikey = new apikey;
@@ -663,11 +663,11 @@ class AndroidController extends Controller
 
         //image
         Image::make($pmp)
-            ->save(public_path('images/missing/' . $filename), 100);
+            ->save(('images/missing/' . $filename), 100);
 
         Image::make($pmp)->resize(null, 400, function ($constraint) {
             $constraint->aspectRatio();
-        })->save(public_path('images/missingthumb/' . $filename), 100);
+        })->save(('images/missingthumb/' . $filename), 100);
 
         require_once 'HTTP/Request2.php';
 
