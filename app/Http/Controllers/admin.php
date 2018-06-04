@@ -365,7 +365,7 @@ class admin extends Controller
                 $request->setMethod(HTTP_Request2::METHOD_POST);
 
                 // Request body
-                $image = public_path('images/missingthumb/' . $missing->Missing_picture);
+                $image = public_path('images/missing/' . $missing->Missing_picture);
                 $fp = fopen($image, 'rb');
                 $request->setBody($fp);
 
@@ -374,6 +374,7 @@ class admin extends Controller
                     $response->getBody();
                 } catch (HttpException $ex) {
                     echo $ex;
+                    die();
                 }
 
                 $missings1->where('Missing_id', '=', $missing->Missing_id)->update(['Missing_faceid' => $personid]);
