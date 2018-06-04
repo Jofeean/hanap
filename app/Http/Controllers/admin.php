@@ -371,7 +371,7 @@ class admin extends Controller
 
                 try {
                     $response = $request->send();
-                    return $response->getBody();
+                    $response->getBody();
                 } catch (HttpException $ex) {
                     echo $ex;
                     die();
